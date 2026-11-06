@@ -96,6 +96,36 @@ footer{border-top:1px solid var(--line);padding:25px 28px;text-align:center;colo
 .magazine-intro{max-width:720px;color:var(--muted);font-size:13px;line-height:1.9;margin:8px 0 28px}.magazine-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 20px}.magazine-card{min-width:0}.magazine-cover{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:#f0e8e8;border:1px solid var(--line);box-shadow:0 5px 16px #39252b12}.magazine-name{font-size:14px;font-weight:500;line-height:1.6;margin:10px 0 3px;color:#493942}.magazine-year{font-size:11px;color:var(--muted)}.magazine-empty{padding:55px 18px;text-align:center;color:var(--muted);border:1px dashed var(--line);background:#fffdfb}.magazine-admin-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}.magazine-admin-item{border:1px solid var(--line);background:#fff;padding:10px;display:flex;gap:10px;align-items:center;min-width:0}.magazine-admin-item img{width:58px;height:76px;object-fit:cover;background:#f1e9e8}.magazine-admin-meta{min-width:0;flex:1}.magazine-admin-meta b{display:block;font-size:12px;overflow-wrap:anywhere}.magazine-admin-meta small{color:var(--muted);font-size:11px}.magazine-admin-item button{border:1px solid #dfb8c2;background:white;color:#a14f62;padding:6px 8px;cursor:pointer;font-size:11px}.magazine-upload-preview{max-width:150px;max-height:200px;object-fit:contain;border:1px solid var(--line);display:none;margin-top:8px}.magazine-form-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.magazine-form-actions button{border:0;background:var(--ink);color:#fff;padding:10px 16px;cursor:pointer}.magazine-form-actions button:disabled{opacity:.55;cursor:wait}
 @media(max-width:760px){.magazine-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 13px}.magazine-admin-list{grid-template-columns:1fr}}
 
+
+/* 站点公告栏 */
+.announcement-section{margin:26px 0 34px;background:linear-gradient(120deg,#fbf1f3,#fffdfb 70%);border:1px solid #e7d5db;padding:20px 22px;position:relative}
+.announcement-heading{display:flex;align-items:center;gap:10px;margin:0 0 14px;color:#765263}
+.announcement-heading .announcement-icon{font-size:19px}
+.announcement-heading h2{font:24px Georgia,serif;font-weight:normal;margin:0}
+.announcement-list{display:grid;gap:12px}
+.announcement-item{background:#fffdfb;border:1px solid #eee2e5;padding:14px 16px}
+.announcement-item.pinned{border-left:3px solid #b77d91}
+.announcement-item h3{font-size:14px;font-weight:600;color:#604452;margin:0 0 6px}
+.announcement-item time{font-size:11px;color:#a1848e;display:block;margin-bottom:8px}
+.announcement-content{font-size:13px;line-height:1.9;color:#65585d;white-space:pre-wrap;overflow-wrap:anywhere}
+.announcement-empty{font-size:12px;color:#98878d;padding:8px 0}
+.announcement-admin-list{display:grid;gap:10px;margin-top:18px}
+.announcement-admin-item{border:1px solid var(--line);background:#fff;padding:13px}
+.announcement-admin-item h4{margin:0 0 6px;font-size:14px;font-weight:500}
+.announcement-admin-item p{font-size:12px;color:var(--muted);white-space:pre-wrap;line-height:1.7;margin:0}
+.announcement-admin-meta{font-size:11px;color:#967e87;margin:7px 0}
+.announcement-admin-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.announcement-admin-actions button{border:1px solid #d9b8c1;background:#fffaf9;color:#704454;padding:7px 10px;cursor:pointer;font:inherit;font-size:12px}
+.announcement-admin-actions .delete{color:#a14f62;border-color:#dfb8c2}
+.announcement-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.announcement-form-grid .full{grid-column:1/-1}
+.announcement-form-grid label{font-size:12px;color:var(--muted);display:block;margin-bottom:6px}
+.announcement-form-grid input,.announcement-form-grid textarea{width:100%;box-sizing:border-box;border:1px solid var(--line);background:#fff;padding:10px 12px;font:inherit;font-size:13px}
+.announcement-form-grid textarea{min-height:125px;resize:vertical;line-height:1.8}
+.announcement-options{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:12px}
+.announcement-options label{display:flex;gap:6px;align-items:center}
+@media(max-width:650px){.announcement-section{padding:16px}.announcement-form-grid{grid-template-columns:1fr}.announcement-form-grid .full{grid-column:auto}}
+
 </style>
 </head>
 <body>
@@ -131,6 +161,10 @@ footer{border-top:1px solid var(--line);padding:25px 28px;text-align:center;colo
       <div class="hero-wordmark">Mememichi Archive ♡</div>
     </div>
   </div>
+  <section class="announcement-section" aria-labelledby="announcementHeading">
+    <div class="announcement-heading"><span class="announcement-icon" aria-hidden="true">📢</span><h2 id="announcementHeading">站点公告</h2></div>
+    <div id="announcementPublicList" class="announcement-list"><p class="announcement-empty">公告载入中……</p></div>
+  </section>
   <div class="about-block">
     <div class="about-copy"><p class="script-kicker">About</p><h1>MEMEMICHI<br><span>ARCHIVE</span></h1><p class="about-lead">这里是莲理枝的专属粉丝档案馆。</p><p>本网站以目黑莲与道枝骏佑的公开活动和公开资料为基础，整理两人的合作经历、节目与采访记录，以及粉丝值得回看的互动片段。</p><p>我们希望用时间线串联重要节点，用资料库保存原始出处，并通过糖点分析记录不同粉丝视角。每条内容尽可能注明来源，公开事实与个人解读分开呈现。</p><p class="quote-line">「把喜欢过的瞬间，认真收藏起来。」</p></div>
     <div class="polaroid"><div class="polaroid-art"><img src="./assets/homepage-couple.jpeg" alt="目黑莲与道枝骏佑" style="width:100%;height:100%;object-fit:cover"></div><div class="polaroid-caption">Mememichi ♡</div></div>
@@ -198,7 +232,25 @@ footer{border-top:1px solid var(--line);padding:25px 28px;text-align:center;colo
 
 
 <section class="page" id="community"><div class="community-wrap"><h1 class="page-title">粉丝投稿与反馈</h1><p class="page-desc">可以针对某条时间线提交补充、纠错或个人反馈，也可以建议新增档案。所有内容先进入审核队列，审核通过后才会公开。</p><div class="notice">请只提交与目黑莲、道枝骏佑公开活动有关的资料。不要提交私人联系方式、住址、行程推测、人身攻击或未经证实的隐私内容。粉丝观察、二手repo与本人公开发言请注明来源类型。</div><div class="community-card"><h3>提交新建议</h3><p class="community-help">需要登录后提交。若要针对具体时间线条目反馈，请回到对应卡片点击「反馈这条记录」。</p><form id="communityForm"><div class="community-field"><label for="submissionType">投稿类型</label><select id="submissionType" name="submission_type"><option value="new_entry">建议新增糖点／时间线</option><option value="edit_suggestion">建议修改已有记录</option><option value="feedback">其他反馈</option></select></div><div class="community-grid"><div class="community-field"><label>事件日期（新增时填写）</label><input name="event_date" placeholder="例如：2026-11-06"></div><div class="community-field"><label>分类</label><select name="category"><option>公开互动</option><option>采访记录</option><option>节目记录</option><option>杂志记录</option><option>粉丝观察</option><option>粉丝repo</option><option>作品关联</option></select></div><div class="community-field full"><label>标题</label><input name="title" maxlength="160" placeholder="填写事件标题"></div><div class="community-field full"><label>事件内容／建议</label><textarea name="summary" required maxlength="5000" placeholder="请描述具体事件、发生背景，以及你认为值得收录或修改的内容"></textarea></div><div class="community-field full"><label>补充分析／来源状态</label><textarea name="analysis" maxlength="5000" placeholder="例如：官方报道、本人直播转述、粉丝repo、原始视频待核等"></textarea></div><div class="community-field full"><label>来源链接（选填）</label><input name="source_url" type="url" maxlength="1000" placeholder="https://..."></div><div class="community-field full"><label>其他说明</label><textarea name="message" maxlength="3000" placeholder="如为修改建议，请写明原记录需要修改的地方"></textarea></div></div><button class="community-submit" type="submit">提交审核</button><p id="communityMessage" class="community-help" aria-live="polite"></p></form></div><div class="community-card"><h3>我的投稿记录</h3><div id="mySubmissions"><p class="community-help">登录后可以查看自己的投稿状态。</p></div></div></div></section>
-<section class="page" id="admin"><div class="community-wrap"><h1 class="page-title">管理员后台</h1><p class="page-desc">审核粉丝投稿，并在同一张编辑表单中直接修改时间线全部字段、排序与来源。保存后同步到公开网站。</p><div class="notice">审核原则：核对来源与日期；区分官方事实、当事人转述、粉丝repo和粉丝解读；不收录私人隐私、骚扰内容或无关猜测。</div><div class="community-card"><h3>待审核队列</h3><div id="adminQueue"><p class="community-help">正在读取投稿……</p></div></div><div class="community-card"><h3>已审核记录</h3><div id="reviewedQueue"></div></div><div class="community-card" id="magazineAdminPanel"><h3>双人杂志管理</h3><p class="community-help">上传杂志封面，填写杂志名称和发行年份。保存后会直接显示在网站「双人杂志」栏目。</p><form id="magazineForm"><input type="hidden" name="magazine_id"><input type="hidden" name="old_storage_path"><div class="community-grid"><div class="community-field full"><label>杂志名称</label><input name="title" maxlength="180" required placeholder="例如：Myojo 2024年某月号"></div><div class="community-field"><label>发行年份（选填）</label><input name="issue_year" maxlength="20" placeholder="例如：2024"></div><div class="community-field"><label>封面图片（JPG／PNG／WebP，建议不超过 8MB）</label><input id="magazineCoverFile" name="cover" type="file" accept="image/jpeg,image/png,image/webp" required></div></div><img id="magazineCoverPreview" class="magazine-upload-preview" alt="封面预览"><div class="magazine-form-actions"><button id="magazineSaveBtn" type="submit">上传并保存</button><button type="button" class="community-secondary" onclick="resetMagazineForm()">清空表单</button></div><p id="magazineAdminMessage" class="community-help" aria-live="polite"></p></form><div id="magazineAdminList" class="magazine-admin-list"><p class="community-help">正在读取已收录杂志……</p></div></div>
+<section class="page" id="admin"><div class="community-wrap"><h1 class="page-title">管理员后台</h1><p class="page-desc">审核粉丝投稿，并在同一张编辑表单中直接修改时间线全部字段、排序与来源。保存后同步到公开网站。</p><div class="notice">审核原则：核对来源与日期；区分官方事实、当事人转述、粉丝repo和粉丝解读；不收录私人隐私、骚扰内容或无关猜测。</div><div class="community-card"><h3>待审核队列</h3><div id="adminQueue"><p class="community-help">正在读取投稿……</p></div></div><div class="community-card"><h3>已审核记录</h3><div id="reviewedQueue"></div></div><div class="community-card" id="announcementAdminPanel">
+<h3>站点公告管理</h3>
+<p class="community-help">在这里直接发布、修改、置顶或删除首页公告。未发布的公告仅管理员可见。</p>
+<form id="announcementForm">
+<input type="hidden" name="announcement_id">
+<div class="announcement-form-grid">
+<div class="full"><label for="announcementTitle">公告标题</label><input id="announcementTitle" name="title" maxlength="120" required placeholder="例如：网站更新通知"></div>
+<div class="full"><label for="announcementContent">公告内容</label><textarea id="announcementContent" name="content" maxlength="5000" required placeholder="输入公告正文，支持换行。"></textarea></div>
+</div>
+<div class="announcement-options">
+<label><input type="checkbox" name="is_pinned"> 置顶公告</label>
+<label><input type="checkbox" name="is_published" checked> 立即公开</label>
+</div>
+<div class="magazine-form-actions" style="margin-top:14px"><button id="announcementSaveBtn" type="submit">发布公告</button><button type="button" class="community-secondary" onclick="resetAnnouncementForm()">清空表单</button></div>
+<p id="announcementAdminMessage" class="community-help" aria-live="polite"></p>
+</form>
+<div id="announcementAdminList" class="announcement-admin-list"><p class="community-help">正在读取公告……</p></div>
+</div>
+<div class="community-card" id="magazineAdminPanel"><h3>双人杂志管理</h3><p class="community-help">上传杂志封面，填写杂志名称和发行年份。保存后会直接显示在网站「双人杂志」栏目。</p><form id="magazineForm"><input type="hidden" name="magazine_id"><input type="hidden" name="old_storage_path"><div class="community-grid"><div class="community-field full"><label>杂志名称</label><input name="title" maxlength="180" required placeholder="例如：Myojo 2024年某月号"></div><div class="community-field"><label>发行年份（选填）</label><input name="issue_year" maxlength="20" placeholder="例如：2024"></div><div class="community-field"><label>封面图片（JPG／PNG／WebP，建议不超过 8MB）</label><input id="magazineCoverFile" name="cover" type="file" accept="image/jpeg,image/png,image/webp" required></div></div><img id="magazineCoverPreview" class="magazine-upload-preview" alt="封面预览"><div class="magazine-form-actions"><button id="magazineSaveBtn" type="submit">上传并保存</button><button type="button" class="community-secondary" onclick="resetMagazineForm()">清空表单</button></div><p id="magazineAdminMessage" class="community-help" aria-live="polite"></p></form><div id="magazineAdminList" class="magazine-admin-list"><p class="community-help">正在读取已收录杂志……</p></div></div>
 <div class="community-card"><h3>已发布的时间线板块</h3><p class="community-help">这里可以直接编辑已发布的粉丝补充条目、调整时间线排序或删除。年份颜色会按事件日期自动套用：早期粉色、2021鼠尾草绿、2022—2024雾蓝灰、2025雾紫灰、2026雾蓝。</p><div id="publishedEntries"><p class="community-help">正在读取…</p></div></div></div></section>
 
 </main>
@@ -641,7 +693,7 @@ function showPage(id){
   if(id==="sweet") renderSweet();
   if(id==="archive") renderArchive();
   if(id==="stats") renderStats();
-  if(id==="admin") loadAdminQueue();
+  if(id==="admin"){loadAdminQueue();loadAdminAnnouncements();}
   if(id==="community") loadMySubmissions();
   window.scrollTo({top:0,behavior:"smooth"});
 }
@@ -689,7 +741,62 @@ function setAuthMode(mode){authMode=mode;document.getElementById('authLoginTab')
 function updateAuthUI(){const label=document.getElementById('authUserLabel'),open=document.getElementById('authOpenBtn'),logout=document.getElementById('authLogoutBtn');if(currentAuthUser){label.hidden=false;label.textContent=(currentAuthUser.user_metadata?.display_name||currentAuthUser.email?.split('@')[0]||'已登录')+(currentAuthRole==='admin'?' · 管理员':'');open.hidden=true;logout.hidden=false;logout.title=currentAuthRole==='admin'?'管理员账号':'普通粉丝账号';document.querySelectorAll('.admin-only').forEach(el=>el.style.display=currentAuthRole==='admin'?'inline-block':'none');}else{label.hidden=true;open.hidden=false;logout.hidden=true;document.querySelectorAll('.admin-only').forEach(el=>el.style.display='none');}}
 async function loadAuthProfile(user){currentAuthRole='user';if(!authClient||!user)return;try{const {data,error}=await authClient.from('profiles').select('role,display_name').eq('id',user.id).maybeSingle();if(!error&&data){currentAuthRole=data.role||'user';if(data.display_name)user.user_metadata={...(user.user_metadata||{}),display_name:data.display_name};}}catch(e){console.warn('读取用户资料失败',e);}updateAuthUI();}
 async function signOutUser(){if(!authClient)return;const {error}=await authClient.auth.signOut();if(error){alert('退出登录失败：'+error.message);return;}currentAuthUser=null;currentAuthRole='guest';updateAuthUI();}
-async function initAuth(){const cfg=window.MM_SUPABASE_CONFIG||{};if(!cfg.url||!cfg.anonKey||cfg.url.includes('YOUR_')||cfg.anonKey.includes('YOUR_')){document.getElementById('authOpenBtn').title='身份系统尚未连接：请先配置Supabase项目参数';return;}if(!window.supabase?.createClient){authMessage('身份服务组件加载失败，请刷新页面。',true);return;}authClient=window.supabase.createClient(cfg.url,cfg.anonKey);const {data:{session}}=await authClient.auth.getSession();if(session){currentAuthUser=session.user;await loadAuthProfile(currentAuthUser);}updateAuthUI();await loadCommunityEntries();authClient.auth.onAuthStateChange((_event,session)=>{currentAuthUser=session?.user||null;currentAuthRole=currentAuthUser?'user':'guest';setTimeout(async()=>{if(currentAuthUser)await loadAuthProfile(currentAuthUser);else updateAuthUI();await loadCommunityEntries();},0);});}
+
+// 站点公告：内容保存在 Supabase 的 site_announcements 表中。
+let announcementRows=[];
+function announcementMsg(message,isError=false){const el=document.getElementById('announcementAdminMessage');if(el){el.textContent=message;el.style.color=isError?'#a14c58':'#765767';}}
+function formatAnnouncementDate(value){if(!value)return '';const d=new Date(value);return Number.isNaN(d.getTime())?'':d.toLocaleDateString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit'});}
+async function loadAnnouncements(){
+  const box=document.getElementById('announcementPublicList');if(!box)return;
+  if(!authClient){box.innerHTML='<p class="announcement-empty">公告服务暂时不可用，请稍后刷新。</p>';return;}
+  try{
+    const {data,error}=await authClient.from('site_announcements').select('id,title,content,is_pinned,created_at').eq('is_published',true).order('is_pinned',{ascending:false}).order('created_at',{ascending:false}).limit(8);
+    if(error)throw error;
+    box.innerHTML=(data||[]).length?(data||[]).map(a=>`<article class="announcement-item ${a.is_pinned?'pinned':''}"><h3>${a.is_pinned?'📌 ':''}${esc(a.title)}</h3><time>${esc(formatAnnouncementDate(a.created_at))}</time><div class="announcement-content">${esc(a.content)}</div></article>`).join(''):'<p class="announcement-empty">目前暂无公告，欢迎稍后再来查看。</p>';
+  }catch(err){box.innerHTML='<p class="announcement-empty">公告暂时无法读取，请确认已完成公告数据表初始化。</p>';console.warn('读取站点公告失败',err);}
+}
+async function loadAdminAnnouncements(){
+  const box=document.getElementById('announcementAdminList');if(!box)return;
+  if(currentAuthRole!=='admin'){box.innerHTML='<p class="community-help">此区域仅对管理员开放。</p>';return;}
+  try{
+    const {data,error}=await authClient.from('site_announcements').select('id,title,content,is_pinned,is_published,created_at').order('created_at',{ascending:false});
+    if(error)throw error;announcementRows=data||[];
+    box.innerHTML=announcementRows.length?announcementRows.map(a=>`<article class="announcement-admin-item"><h4>${a.is_pinned?'📌 ':''}${esc(a.title)}</h4><p>${esc(a.content)}</p><div class="announcement-admin-meta">${esc(formatAnnouncementDate(a.created_at))} · ${a.is_published?'已公开':'未公开'} · ${a.is_pinned?'已置顶':'未置顶'}</div><div class="announcement-admin-actions"><button type="button" onclick="editAnnouncement('${String(a.id)}')">编辑</button><button type="button" onclick="toggleAnnouncementPublished('${String(a.id)}',${!a.is_published})">${a.is_published?'设为不公开':'设为公开'}</button><button type="button" class="delete" onclick="deleteAnnouncement('${String(a.id)}')">删除</button></div></article>`).join(''):'<p class="community-help">还没有公告，填写上方表单即可发布。</p>';
+  }catch(err){box.innerHTML='<p class="community-help">读取公告失败：'+esc(err.message)+'。请先在 Supabase 执行公告表初始化 SQL。</p>';}
+}
+function resetAnnouncementForm(){
+  const f=document.getElementById('announcementForm');if(!f)return;f.reset();f.elements.announcement_id.value='';f.elements.is_published.checked=true;
+  document.getElementById('announcementSaveBtn').textContent='发布公告';announcementMsg('');
+}
+function editAnnouncement(id){
+  const a=announcementRows.find(x=>String(x.id)===String(id));if(!a)return;
+  const f=document.getElementById('announcementForm');f.elements.announcement_id.value=a.id;f.elements.title.value=a.title||'';f.elements.content.value=a.content||'';f.elements.is_pinned.checked=!!a.is_pinned;f.elements.is_published.checked=!!a.is_published;
+  document.getElementById('announcementSaveBtn').textContent='保存修改';f.scrollIntoView({behavior:'smooth',block:'center'});announcementMsg('正在编辑：'+a.title);
+}
+document.getElementById('announcementForm')?.addEventListener('submit',async e=>{
+  e.preventDefault();if(currentAuthRole!=='admin'||!authClient){announcementMsg('请使用管理员账号登录后操作。',true);return;}
+  const f=e.currentTarget,fd=new FormData(f),id=String(fd.get('announcement_id')||''),title=String(fd.get('title')||'').trim(),content=String(fd.get('content')||'').trim();
+  if(!title||!content){announcementMsg('请填写公告标题和正文。',true);return;}
+  const payload={title,content,is_pinned:f.elements.is_pinned.checked,is_published:f.elements.is_published.checked,updated_at:new Date().toISOString()};
+  const btn=document.getElementById('announcementSaveBtn');btn.disabled=true;const oldText=btn.textContent;btn.textContent='正在保存…';
+  try{
+    const result=id?await authClient.from('site_announcements').update(payload).eq('id',id):await authClient.from('site_announcements').insert({...payload,created_by:currentAuthUser.id});
+    if(result.error)throw result.error;
+    resetAnnouncementForm();announcementMsg(id?'公告修改成功。':'公告发布成功。');await loadAnnouncements();await loadAdminAnnouncements();
+  }catch(err){announcementMsg('保存失败：'+err.message,true);}
+  finally{btn.disabled=false;btn.textContent=oldText;}
+});
+async function toggleAnnouncementPublished(id,value){
+  if(currentAuthRole!=='admin')return;
+  const {error}=await authClient.from('site_announcements').update({is_published:value,updated_at:new Date().toISOString()}).eq('id',id);
+  if(error){announcementMsg('修改失败：'+error.message,true);return;}await loadAnnouncements();await loadAdminAnnouncements();
+}
+async function deleteAnnouncement(id){
+  if(currentAuthRole!=='admin'||!confirm('确定删除这条公告吗？'))return;
+  const {error}=await authClient.from('site_announcements').delete().eq('id',id);
+  if(error){announcementMsg('删除失败：'+error.message,true);return;}announcementMsg('公告已删除。');await loadAnnouncements();await loadAdminAnnouncements();
+}
+async function initAuth(){const cfg=window.MM_SUPABASE_CONFIG||{};if(!cfg.url||!cfg.anonKey||cfg.url.includes('YOUR_')||cfg.anonKey.includes('YOUR_')){document.getElementById('authOpenBtn').title='身份系统尚未连接：请先配置Supabase项目参数';return;}if(!window.supabase?.createClient){authMessage('身份服务组件加载失败，请刷新页面。',true);return;}authClient=window.supabase.createClient(cfg.url,cfg.anonKey);const {data:{session}}=await authClient.auth.getSession();if(session){currentAuthUser=session.user;await loadAuthProfile(currentAuthUser);}updateAuthUI();await loadCommunityEntries();await loadAnnouncements();authClient.auth.onAuthStateChange((_event,session)=>{currentAuthUser=session?.user||null;currentAuthRole=currentAuthUser?'user':'guest';setTimeout(async()=>{if(currentAuthUser)await loadAuthProfile(currentAuthUser);else updateAuthUI();await loadCommunityEntries();await loadAnnouncements();},0);});}
 document.getElementById('authForm').addEventListener('submit',async e=>{e.preventDefault();if(!authClient){authMessage('还没有连接身份服务。请先创建Supabase项目并填写 auth-config.js。',true);return;}const btn=document.getElementById('authSubmit');btn.disabled=true;authMessage('正在处理…');const email=document.getElementById('authEmail').value.trim();const password=document.getElementById('authPassword').value;try{if(authMode==='signup'){const displayName=document.getElementById('authDisplayName').value.trim();if(!displayName){authMessage('请设置档案馆昵称。',true);return;}const {data,error}=await authClient.auth.signUp({email,password,options:{data:{display_name:displayName}}});if(error)throw error;if(data.session){currentAuthUser=data.user;await loadAuthProfile(currentAuthUser);authMessage('注册成功，已登录。');setTimeout(closeAuthModal,900);}else{authMessage('注册申请已提交！请检查邮箱并点击验证链接，验证后即可登录。');}}else{const {data,error}=await authClient.auth.signInWithPassword({email,password});if(error)throw error;currentAuthUser=data.user;await loadAuthProfile(currentAuthUser);authMessage('登录成功！');setTimeout(closeAuthModal,700);}}catch(err){authMessage(err.message||'操作失败，请稍后重试。',true);}finally{btn.disabled=false;}});
 
 function communityMsg(msg,isError=false){const el=document.getElementById('communityMessage');if(el){el.textContent=msg;el.style.color=isError?'#a14c58':'#765767';}}
