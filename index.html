@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8f5f3">
+<title>莲理枝档案馆｜MEMEMICHI ARCHIVE</title>
+<style>
+:root{--ink:#242124;--pink:#d99aaa;--pink-light:#f5e4e9;--paper:#faf7f5;--white:#fffdfb;--muted:#82797b;--line:#e8dddf;--serif:Georgia,"Times New Roman",serif}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+header{position:sticky;top:0;z-index:10;background:rgba(250,247,245,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top{max-width:1180px;margin:auto;padding:17px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-family:var(--serif);font-size:19px;letter-spacing:2px;font-weight:bold}.brand small{display:block;font-family:inherit;font-size:9px;letter-spacing:3px;color:var(--muted);margin-top:4px}
+nav{display:flex;gap:7px;flex-wrap:wrap}nav button,.btn{border:0;background:transparent;padding:9px 12px;color:#625b5c;cursor:pointer;font-size:13px;border-radius:3px}nav button.active,nav button:hover{background:var(--pink-light);color:#5c303d}
+main{max-width:1180px;margin:auto;padding:0 28px 70px}
+/* 首页：杂志拼贴式主视觉 */
+.home-hero{position:relative;margin:26px 0 42px;min-height:480px;overflow:hidden;border:1px solid #eadfe1;background:linear-gradient(135deg,#f8e9ed 0%,#fffdfb 48%,#f2e2e5 100%);}
+.home-hero:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent 0 22px,rgba(255,255,255,.24) 22px 23px);pointer-events:none}
+.hero-topline{position:relative;z-index:2;display:flex;justify-content:space-between;padding:17px 22px;font:11px var(--serif);letter-spacing:2px;color:#7e6870}
+.collage-stage{position:relative;z-index:1;min-height:380px;display:flex;align-items:center;justify-content:center;padding:8px 20px 30px}
+.paper-shape{position:absolute;width:48%;height:300px;top:28px;left:8%;background:#242124;transform:rotate(-7deg);box-shadow:0 12px 28px #33242a24}
+.paper-shape.pink{left:auto;right:8%;top:42px;background:#e7b9c5;transform:rotate(7deg)}
+.portrait-sticker{position:absolute;width:min(38%,290px);height:300px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 10px 8px #33242a2a)}
+.portrait-sticker.left{left:17%;top:22px;transform:rotate(-5deg)}.portrait-sticker.right{right:17%;top:42px;transform:rotate(5deg)}
+.portrait-frame{width:100%;height:100%;background:#fffdfb;border:8px solid #fffdfb;outline:1px solid #dfcfd3;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.portrait-frame svg{width:100%;height:100%;display:block}
+.sticker-label{position:absolute;bottom:13px;left:50%;transform:translateX(-50%) rotate(-2deg);z-index:3;background:#fffdfb;padding:7px 15px;font:italic 15px var(--serif);white-space:nowrap;box-shadow:0 3px 8px #30242a20}
+.center-mark{position:absolute;z-index:4;top:45%;left:50%;transform:translate(-50%,-50%);font:italic 38px var(--serif);color:#fff;text-shadow:0 2px 8px #39232c;}
+.doodle{position:absolute;z-index:4;color:#fff;font-size:34px;line-height:1}.doodle.one{left:8%;top:18%}.doodle.two{right:8%;bottom:20%;color:#a76f80}.doodle.three{right:22%;top:8%;font-size:24px}
+.hero-wordmark{position:absolute;z-index:5;bottom:20px;left:0;right:0;text-align:center;font:italic clamp(30px,5vw,54px) var(--serif);color:#fff;text-shadow:0 2px 10px #3d2830;letter-spacing:1px;pointer-events:none}
+.about-block{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center;padding:24px 0 42px}
+.about-copy{padding:12px 0}.script-kicker{font:italic 35px var(--serif);color:var(--pink);margin:0 0 -3px}.about-copy h1{font: bold clamp(30px,4vw,46px)/1.05 var(--serif);letter-spacing:2px;margin:0 0 18px}.about-copy h1 span{color:#9a8188}.about-lead{font-size:17px;color:#4b4245;margin:0 0 14px}.about-copy p:not(.script-kicker){font-size:14px;line-height:2.05;color:var(--muted);max-width:520px}.quote-line{color:#c77f93!important;font-family:var(--serif);font-style:italic;letter-spacing:1px;margin-top:20px}
+.polaroid{background:#fff;padding:12px 12px 40px;transform:rotate(2deg);box-shadow:0 8px 22px #3c29301c;border:1px solid #eee5e5;max-width:420px;margin:0 auto;position:relative}.polaroid-art{height:235px;background:linear-gradient(135deg,#262326 0 49%,#e9c1cb 49% 100%);display:flex;align-items:center;justify-content:center;overflow:hidden}.polaroid-art svg{width:100%;height:100%}.polaroid-caption{position:absolute;bottom:10px;right:20px;font:italic 18px var(--serif)}
+
+.section{padding:36px 0;border-top:1px solid var(--line)}.section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:22px}.section h2{font-family:var(--serif);font-size:27px;font-weight:normal;margin:0 0 6px}.section-head p{font-size:12px;color:var(--muted);margin:0}.text-link{color:#9b6576;background:none;border:0;cursor:pointer}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:var(--white);border:1px solid var(--line);padding:20px;min-height:140px}.tag{display:inline-block;padding:4px 8px;background:var(--pink-light);color:#865767;font-size:10px;letter-spacing:1px}.card h3{font-size:15px;font-weight:500;margin:13px 0 8px}.card p{font-size:12px;color:var(--muted);line-height:1.8;margin:0}.date{font-family:var(--serif);font-size:12px;color:#9b6576}
+.page{display:none;padding-top:48px;min-height:65vh}.page.active{display:block}.page-title{font-family:var(--serif);font-size:38px;font-weight:normal;margin:0 0 8px}.page-desc{color:var(--muted);font-size:13px;margin:0 0 28px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 24px}.toolbar input,.toolbar select,.field input,.field textarea,.field select{border:1px solid var(--line);background:var(--white);padding:10px 12px;font:inherit;font-size:13px;color:var(--ink);border-radius:2px}.toolbar input{min-width:220px;flex:1}.timeline{border-left:1px solid #d8a6b4;margin:20px 0 0 12px;padding-left:28px}.event{position:relative;background:var(--white);border:1px solid var(--line);padding:18px 20px;margin:0 0 15px}.event:before{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:var(--pink);left:-34px;top:24px;border:3px solid var(--paper)}
+/* 2021合作启动阶段：与此前未共演时期的冷静档案灰调区分 */
+.event.phase-collab{background:linear-gradient(110deg,#f4f7f2 0%,#fffdfb 62%,#e9f0e8 100%);border-color:#cbd8c8;box-shadow:0 5px 18px rgba(73,101,78,.07)}.event.phase-collab:before{background:#78947b;box-shadow:0 0 0 3px #e3ebe1}.event.phase-collab .date,.event.phase-collab>small{color:#66816a}.event.phase-collab .detail{background:#f2f6f0;border-left-color:#91a891}.event.phase-collab .detail h4{color:#526d57}.event.phase-collab .detail blockquote{border-left-color:#91a891;background:#fffdfb}.event.phase-collab .event-open{color:#5f7b64}.event h3{font-size:15px;font-weight:500;margin:9px 0}.event p{font-size:13px;color:var(--muted);line-height:1.8;margin:0}.event small{color:#9b6576}
+.detail{display:none;background:#fff8fa;border-left:3px solid var(--pink);padding:16px;margin-top:12px;font-size:12px;line-height:1.9;color:#665b5e}.detail h4{font-size:13px;font-weight:600;color:#684b57;margin:14px 0 5px}.detail p{font-size:12px;line-height:1.95;color:#665b5e;margin:6px 0}.detail blockquote{margin:8px 0;padding:10px 13px;background:#fff;border-left:2px solid #d99aaa;color:#51464a;font-family:serif;font-size:14px}.detail a{color:#986476;text-decoration:none;border-bottom:1px solid #d9b8c2}.event .event-open{margin-top:12px;padding:7px 0}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.stat{background:var(--white);padding:24px;border:1px solid var(--line)}.stat strong{display:block;font-family:var(--serif);font-size:35px;font-weight:normal}.stat span{font-size:12px;color:var(--muted)}
+.archive-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.archive-item{background:var(--white);border:1px solid var(--line);padding:18px}
+.admin-panel{background:var(--white);border:1px solid var(--line);padding:22px;margin:22px 0}.admin-panel h3{font-weight:500;margin-top:0}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:12px;color:var(--muted)}.field.full{grid-column:1/-1}.field textarea{min-height:85px;resize:vertical}.primary{background:var(--ink);color:white;padding:11px 18px;border:0;cursor:pointer;margin-top:14px}.danger{color:#a14f62;background:transparent;border:1px solid #dfb8c2;padding:7px 10px;cursor:pointer}
+.notice{background:#f1e9e8;padding:13px 16px;color:#6d6061;font-size:12px;line-height:1.8;margin:18px 0}
+footer{border-top:1px solid var(--line);padding:25px 28px;text-align:center;color:var(--muted);font-family:var(--serif);font-size:11px;letter-spacing:2px}
+
+/* 图片与个人档案页 */
+.home-photo{display:block;width:100%;height:clamp(260px,48vw,560px);object-fit:cover;object-position:center 38%;border:8px solid #fffdfb;box-shadow:0 12px 30px #33242a24}
+.collage-stage{display:block;min-height:0;padding:10px 22px 28px}.home-photo-link{display:block;position:relative;z-index:1}.hero-wordmark{bottom:42px}
+.profile-entry-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:24px 0 42px}
+.profile-entry{border:1px solid var(--line);background:#fffdfb;padding:12px;text-align:left;cursor:pointer;transition:.2s}.profile-entry:hover{transform:translateY(-3px);box-shadow:0 10px 24px #38252c18}.profile-entry img{display:block;width:100%;height:270px;object-fit:cover;object-position:center 25%}.profile-entry strong{display:block;font:22px var(--serif);margin:12px 4px 3px}.profile-entry small{color:var(--muted);margin:0 4px}
+.profile-picker{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:850px}.profile-detail{display:none;max-width:1000px;background:#fffdfb;border:1px solid var(--line);padding:22px;margin-top:22px}.profile-detail.active{display:grid;grid-template-columns:minmax(220px, .8fr) 1.2fr;gap:28px;align-items:start}.profile-detail img{width:100%;max-height:560px;object-fit:cover;object-position:center 20%}.profile-detail h2{font:32px var(--serif);margin:0 0 5px}.profile-detail .roman{font:italic 16px var(--serif);color:var(--muted);margin:0 0 20px}.profile-facts{display:grid;grid-template-columns:110px 1fr;gap:10px 14px;font-size:13px;line-height:1.7}.profile-facts b{font-weight:500;color:#9b6576}.profile-back{margin:0 0 15px;padding:10px 15px;border:1px solid #d8b8c1;background:#fff;color:#6c5960;cursor:pointer;font-size:13px;border-radius:3px}.profile-backbar{grid-column:1/-1;display:flex;justify-content:flex-start;position:sticky;top:68px;z-index:5;padding:5px 0;background:#fffdfb}.profile-back:hover{background:var(--pink-light)}.profile-note{font-size:12px;line-height:1.8;color:var(--muted);margin-top:20px}
+@media(max-width:760px){.home-photo{height:260px;object-position:center 35%;border-width:4px}.collage-stage{padding:7px 8px 22px}.hero-wordmark{bottom:32px;font-size:25px}.profile-entry-grid,.profile-picker{grid-template-columns:1fr 1fr;gap:9px}.profile-entry{padding:7px}.profile-entry img{height:180px}.profile-entry strong{font-size:17px}.profile-detail{padding:13px}.profile-detail.active{grid-template-columns:1fr;gap:17px}.profile-detail img{max-height:430px;object-position:center 22%}.profile-facts{grid-template-columns:90px 1fr}}
+@media(max-width:760px){.top{padding:14px 16px;align-items:flex-start;flex-direction:column}.top nav{width:100%;overflow-x:auto;flex-wrap:nowrap}.top nav button{white-space:nowrap}.cards,.stat-grid{grid-template-columns:1fr}.archive-list{grid-template-columns:1fr}main{padding:0 17px 50px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.page-title{font-size:32px}.home-hero{margin-top:16px}.hero-topline{font-size:8px;padding:13px 12px;letter-spacing:1px}.collage-stage{min-height:300px;padding:0 8px 22px}.paper-shape{height:220px;width:52%;left:3%;top:30px}.paper-shape.pink{right:3%;left:auto;top:42px}.portrait-sticker{width:43%;height:215px}.portrait-sticker.left{left:8%;top:25px}.portrait-sticker.right{right:8%;top:39px}.portrait-frame{border-width:5px}.sticker-label{font-size:10px;padding:5px 8px;bottom:8px}.center-mark{font-size:27px}.hero-wordmark{font-size:29px;bottom:13px}.doodle{font-size:24px}.about-block{grid-template-columns:1fr;gap:20px;padding:12px 0 28px}.about-copy h1{font-size:36px}.script-kicker{font-size:29px}.about-lead{font-size:15px}.about-copy p:not(.script-kicker){font-size:13px}.polaroid{max-width:340px;width:88%}.polaroid-art{height:190px}}
+@media(max-width:380px){.portrait-sticker{height:190px}.collage-stage{min-height:270px}.sticker-label{font-size:9px}}
+
+
+.profile-bio{grid-column:1/-1;border-top:1px solid var(--line);padding-top:22px;margin-top:4px}.bio-intro{font-size:14px;line-height:2;color:#62585b;margin:0 0 22px}.bio-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.bio-card{border:1px solid var(--line);background:#fff;padding:16px 18px}.bio-card h3{font:20px var(--serif);font-weight:normal;margin:0 0 10px}.bio-card p,.bio-card li{font-size:13px;line-height:1.9;color:#665d60}.bio-card ul{padding-left:18px;margin:0}.bio-wide{grid-column:1/-1}.bio-links{display:flex;flex-wrap:wrap;gap:10px}.bio-links a{color:#986476;font-size:13px;text-decoration:none;border-bottom:1px solid #d9b8c2;padding-bottom:3px}.profile-facts{margin-top:16px}.profile-note{margin-top:14px}.bio-caption{font-size:11px;color:var(--muted);line-height:1.8;margin-top:15px}.work-table{width:100%;border-collapse:collapse;margin:8px 0 14px;font-size:12px;line-height:1.7}.work-table th,.work-table td{padding:8px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.work-table th{color:#986476;font-weight:600;background:#fbf6f7}.work-table-wrap{overflow-x:auto}.social-links{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}.social-links a{display:inline-block;padding:9px 13px;border:1px solid #d9b8c2;background:#fff;color:#80586a;text-decoration:none;font-size:13px;border-radius:3px}.social-links a:hover{background:var(--pink-light)}
+@media(max-width:760px){.bio-grid{grid-template-columns:1fr}.bio-wide{grid-column:auto}.bio-card{padding:14px}}
+
+/* 2022–2024 archive phase: muted slate blue, distinct from the earlier pink and sage-green phases */
+.event.phase-archive{background:linear-gradient(110deg,#eef2f7 0%,#fffdfb 62%,#e4eaf2 100%);border-color:#c8d2df;box-shadow:0 5px 18px rgba(79,98,125,.07)}
+.event.phase-archive:before{background:#7f91aa;box-shadow:0 0 0 3px #e5ebf2}
+.event.phase-archive .date,.event.phase-archive>small{color:#687d99}
+.event.phase-archive .detail{background:#f1f4f8;border-left-color:#93a4ba}
+.event.phase-archive .detail h4{color:#52677f}
+.event.phase-archive .detail blockquote{border-left-color:#93a4ba;background:#fffdfb}
+.event.phase-archive .event-open{color:#60758e}
+
+
+/* 2025–2026：雾紫灰新阶段，与早期粉色、2021鼠尾草绿及2022–2024雾蓝灰区分 */
+.event.phase-2025{background:linear-gradient(110deg,#f5f3f8 0%,#fffdfb 62%,#ebe8f2 100%);border-color:#d8d2e2;box-shadow:0 5px 18px rgba(91,82,119,.06)}
+.event.phase-2025:before{background:#8b82a5;box-shadow:0 0 0 3px #eae7f0}
+.event.phase-2025 .date,.event.phase-2025>small{color:#77708f}
+.event.phase-2025 .detail{background:#f7f5fa;border-left-color:#aaa1c0}
+.event.phase-2025 .detail h4{color:#625b7b}
+.event.phase-2025 .detail blockquote{border-left-color:#aaa1c0;background:#fffdfb}
+.event.phase-2025 .event-open{color:#716987}
+.event.phase-2026{background:linear-gradient(110deg,#f1f5f8 0%,#fffdfb 62%,#e5edf2 100%);border-color:#ccd9e1;box-shadow:0 5px 18px rgba(76,105,125,.06)}
+.event.phase-2026:before{background:#718fa3;box-shadow:0 0 0 3px #e2ebf0}
+.event.phase-2026 .date,.event.phase-2026>small{color:#607f94}
+.event.phase-2026 .detail{background:#f3f7f9;border-left-color:#91aabb}
+.event.phase-2026 .detail h4{color:#506d80}
+.event.phase-2026 .detail blockquote{border-left-color:#91aabb;background:#fffdfb}
+.event.phase-2026 .event-open{color:#607f94}
+
+.auth-actions{display:flex;align-items:center;gap:8px;margin-left:auto}.auth-btn{border:1px solid #d9b8c1;background:#fffaf9;color:#704454;padding:9px 13px;border-radius:3px;font:inherit;font-size:12px;cursor:pointer;white-space:nowrap}.auth-btn:hover{background:#f8edf0}.auth-user{font-size:12px;color:#765a64;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.auth-modal{position:fixed;inset:0;background:rgba(35,27,31,.45);z-index:100;display:none;align-items:center;justify-content:center;padding:18px}.auth-modal.open{display:flex}.auth-panel{width:min(100%,440px);background:#fffdfb;border:1px solid #e8dadd;padding:26px;box-shadow:0 18px 60px #2b1b222e;position:relative}.auth-panel h2{font-family:Georgia,serif;font-size:25px;margin:0 0 7px;color:#593b47}.auth-panel .muted{font-size:12px;color:#897b80;line-height:1.7;margin:0 0 18px}.auth-close{position:absolute;right:14px;top:12px;border:0;background:none;font-size:22px;color:#8c747d;cursor:pointer}.auth-tabs{display:flex;gap:8px;margin-bottom:18px}.auth-tabs button{flex:1;border:1px solid #eadde0;background:#fff;padding:9px;cursor:pointer;color:#80616d}.auth-tabs button.active{background:#f6e9ed;color:#603c4a;border-color:#d9b8c1}.auth-field{margin:12px 0}.auth-field label{display:block;font-size:12px;color:#765d66;margin-bottom:6px}.auth-field input{width:100%;box-sizing:border-box;border:1px solid #e4d8da;background:white;padding:11px 12px;font:inherit;font-size:13px}.auth-submit{width:100%;border:0;background:#825767;color:white;padding:12px;margin-top:8px;cursor:pointer;font:inherit}.auth-submit:disabled{opacity:.55;cursor:wait}.auth-message{font-size:12px;line-height:1.7;margin-top:12px;min-height:18px;color:#765767}.auth-note{font-size:11px;color:#9a8a8f;line-height:1.6;margin-top:14px}.top{gap:12px}.top nav{flex:0 1 auto}
+@media(max-width:760px){.auth-actions{margin-left:0;width:100%;justify-content:flex-end}.top{gap:8px}.auth-user{max-width:100px}}
+
+
+.community-wrap{max-width:920px;margin:28px auto}.community-card{background:#fffdfb;border:1px solid var(--line);padding:20px;margin:16px 0}.community-card h3{margin:0 0 8px;color:#654553}.community-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.community-field{display:flex;flex-direction:column;gap:6px;margin:10px 0}.community-field.full{grid-column:1/-1}.community-field label{font-size:12px;color:#765d66}.community-field input,.community-field textarea,.community-field select{width:100%;box-sizing:border-box;border:1px solid #e4d8da;background:white;padding:10px 12px;font:inherit;font-size:13px}.community-field textarea{min-height:95px;resize:vertical}.community-submit{border:0;background:#825767;color:white;padding:11px 17px;cursor:pointer;font:inherit;font-size:13px}.community-secondary{border:1px solid #d9b8c1;background:#fffaf9;color:#704454;padding:8px 12px;cursor:pointer;font:inherit;font-size:12px}.submission-item{border:1px solid var(--line);background:white;padding:15px;margin:12px 0}.submission-meta{font-size:11px;color:#947e86;margin-bottom:8px}.submission-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.submission-status{display:inline-block;padding:3px 8px;background:#f5edf0;color:#785363;font-size:11px}.published-admin-row{border:1px solid var(--line);background:#fffdfb;padding:13px;margin:10px 0}.published-admin-row h4{margin:5px 0;font-size:14px;font-weight:500}.published-admin-row .row-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.admin-edit-btn{border:1px solid #d9b8c1;background:#fffaf9;color:#704454;padding:7px 10px;cursor:pointer;font:inherit;font-size:12px}.admin-delete-btn{border:1px solid #dfb8c2;background:#fff;color:#a14f62;padding:7px 10px;cursor:pointer;font:inherit;font-size:12px}.admin-only{display:none}.admin-editor-modal{display:none;position:fixed;inset:0;background:rgba(35,24,29,.58);z-index:10000;overflow:auto;padding:18px;box-sizing:border-box}.admin-editor-modal.open{display:block}.admin-editor-dialog{max-width:820px;margin:22px auto;background:#fffdfb;border:1px solid var(--line);padding:22px;box-shadow:0 18px 60px rgba(35,24,29,.22)}.admin-editor-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.admin-editor-head h3{margin:0;font-weight:500}.admin-editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.admin-editor-field{display:flex;flex-direction:column;gap:6px;margin:8px 0}.admin-editor-field.full{grid-column:1/-1}.admin-editor-field label{font-size:12px;color:#765d66}.admin-editor-field input,.admin-editor-field textarea,.admin-editor-field select{width:100%;box-sizing:border-box;border:1px solid #e4d8da;background:white;padding:11px 12px;font:inherit;font-size:13px;color:var(--ink)}.admin-editor-field textarea{min-height:110px;resize:vertical}.admin-editor-actions{display:flex;gap:9px;justify-content:flex-end;flex-wrap:wrap;margin-top:16px;position:sticky;bottom:0;background:#fffdfb;padding:12px 0 0}.admin-editor-actions button{padding:11px 18px;border:1px solid #d9b8c1;background:#fff;color:#704454;cursor:pointer}.admin-editor-actions .save{background:#704454;color:#fff;border-color:#704454}.admin-editor-help{font-size:12px;color:#897b80;line-height:1.6}.rich-toolbar{display:flex;flex-wrap:wrap;gap:6px;padding:9px;background:#f8f1f3;border:1px solid #e4d8da;border-bottom:0}.rich-toolbar button{border:1px solid #d9b8c1;background:#fff;color:#704454;padding:7px 10px;font:inherit;font-size:12px;cursor:pointer}.rich-editor{min-height:300px;max-height:55vh;overflow:auto;border:1px solid #e4d8da;background:#fff;padding:14px;line-height:1.8;font-size:14px;color:var(--ink);outline:none}.rich-editor:focus{border-color:#a77b8a;box-shadow:0 0 0 2px #f2e5e9}.rich-editor h4{font-size:15px;margin:16px 0 7px}.rich-editor blockquote{margin:10px 0;padding:8px 12px;border-left:3px solid #c99eae;background:#fbf5f7}.rich-editor p{margin:8px 0}.rich-editor ul,.rich-editor ol{padding-left:24px}@media(max-width:650px){.admin-editor-grid{grid-template-columns:1fr}.admin-editor-field.full{grid-column:auto}.admin-editor-dialog{padding:15px;margin:5px auto}}.admin-badge{font-size:10px;color:#785363;border:1px solid #d9b8c1;padding:3px 7px;margin-left:5px}.event-feedback{margin:10px 0 0;border:1px solid #e7d6dc;background:#fffaf9;color:#795565;padding:7px 10px;font:inherit;font-size:11px;cursor:pointer}.community-help{font-size:12px;color:#897b80;line-height:1.7}@media(max-width:650px){.community-grid{grid-template-columns:1fr}.community-field.full{grid-column:auto}}
+
+
+/* 双人杂志展示墙 */
+.magazine-intro{max-width:720px;color:var(--muted);font-size:13px;line-height:1.9;margin:8px 0 28px}.magazine-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 20px}.magazine-card{min-width:0}.magazine-cover{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:#f0e8e8;border:1px solid var(--line);box-shadow:0 5px 16px #39252b12}.magazine-name{font-size:14px;font-weight:500;line-height:1.6;margin:10px 0 3px;color:#493942}.magazine-year{font-size:11px;color:var(--muted)}.magazine-empty{padding:55px 18px;text-align:center;color:var(--muted);border:1px dashed var(--line);background:#fffdfb}.magazine-admin-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}.magazine-admin-item{border:1px solid var(--line);background:#fff;padding:10px;display:flex;gap:10px;align-items:center;min-width:0}.magazine-admin-item img{width:58px;height:76px;object-fit:cover;background:#f1e9e8}.magazine-admin-meta{min-width:0;flex:1}.magazine-admin-meta b{display:block;font-size:12px;overflow-wrap:anywhere}.magazine-admin-meta small{color:var(--muted);font-size:11px}.magazine-admin-item button{border:1px solid #dfb8c2;background:white;color:#a14f62;padding:6px 8px;cursor:pointer;font-size:11px}.magazine-upload-preview{max-width:150px;max-height:200px;object-fit:contain;border:1px solid var(--line);display:none;margin-top:8px}.magazine-form-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.magazine-form-actions button{border:0;background:var(--ink);color:#fff;padding:10px 16px;cursor:pointer}.magazine-form-actions button:disabled{opacity:.55;cursor:wait}
+@media(max-width:760px){.magazine-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 13px}.magazine-admin-list{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<header><div class="top">
+  <div class="brand">MEMEMICHI ARCHIVE<small>莲 理 枝 · 双 人 关 系 数 字 档 案 馆</small></div>
+  <nav id="nav"><button type="button" class="active" data-page="home" onclick="showPage('home')">首页</button><button type="button" data-page="profiles" onclick="showPage('profiles')">个人介绍</button><button type="button" data-page="timeline" onclick="showPage('timeline')">时间线</button><button type="button" data-page="magazines" onclick="showPage('magazines')">双人杂志</button><button type="button" data-page="community" onclick="showPage('community')">投稿反馈</button><button type="button" data-page="admin" class="admin-only" id="adminNavBtn" onclick="showPage('admin')">管理后台</button></nav>
+  <div class="auth-actions"><span id="authUserLabel" class="auth-user" hidden></span><button id="authOpenBtn" class="auth-btn" type="button" onclick="openAuthModal()">登录 / 注册</button><button id="authLogoutBtn" class="auth-btn" type="button" onclick="signOutUser()" hidden>退出登录</button></div>
+</div></header>
+
+<div class="auth-modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle" onclick="if(event.target===this)closeAuthModal()">
+  <div class="auth-panel">
+    <button class="auth-close" type="button" aria-label="关闭" onclick="closeAuthModal()">×</button>
+    <h2 id="authTitle">粉丝账号</h2>
+    <p class="muted">注册后可以参与档案反馈与资料投稿。请使用可接收验证邮件的邮箱。</p>
+    <div class="auth-tabs"><button type="button" id="authLoginTab" class="active" onclick="setAuthMode('login')">登录</button><button type="button" id="authSignupTab" onclick="setAuthMode('signup')">注册</button></div>
+    <form id="authForm">
+      <div class="auth-field" id="authNameWrap" hidden><label for="authDisplayName">档案馆昵称</label><input id="authDisplayName" type="text" maxlength="24" autocomplete="nickname" placeholder="设置一个公开昵称"></div>
+      <div class="auth-field"><label for="authEmail">邮箱</label><input id="authEmail" type="email" autocomplete="email" required placeholder="name@example.com"></div>
+      <div class="auth-field"><label for="authPassword">密码</label><input id="authPassword" type="password" minlength="8" autocomplete="current-password" required placeholder="至少8位"></div>
+      <button class="auth-submit" id="authSubmit" type="submit">登录</button>
+    </form>
+    <div class="auth-message" id="authMessage" aria-live="polite"></div>
+    <p class="auth-note">账号仅用于档案馆互动功能。请勿使用他人邮箱，也不要在昵称或投稿中填写真实住址、电话等个人信息。</p>
+  </div>
+</div>
+
+<main>
+<section class="page active" id="home">
+  <div class="home-hero">
+    <div class="hero-topline"><span>FAN-MADE DIGITAL ARCHIVE</span><span>MEGURO REN × MICHIEDA SHUNSUKE</span></div>
+    <div class="collage-stage">
+      <a class="home-photo-link" href="javascript:void(0)" aria-label="莲理枝首页照片"><img class="home-photo" src="./assets/homepage-couple.jpeg" alt="目黑莲与道枝骏佑合照"></a>
+      <div class="hero-wordmark">Mememichi Archive ♡</div>
+    </div>
+  </div>
+  <div class="about-block">
+    <div class="about-copy"><p class="script-kicker">About</p><h1>MEMEMICHI<br><span>ARCHIVE</span></h1><p class="about-lead">这里是莲理枝的专属粉丝档案馆。</p><p>本网站以目黑莲与道枝骏佑的公开活动和公开资料为基础，整理两人的合作经历、节目与采访记录，以及粉丝值得回看的互动片段。</p><p>我们希望用时间线串联重要节点，用资料库保存原始出处，并通过糖点分析记录不同粉丝视角。每条内容尽可能注明来源，公开事实与个人解读分开呈现。</p><p class="quote-line">「把喜欢过的瞬间，认真收藏起来。」</p></div>
+    <div class="polaroid"><div class="polaroid-art"><img src="./assets/homepage-couple.jpeg" alt="目黑莲与道枝骏佑" style="width:100%;height:100%;object-fit:cover"></div><div class="polaroid-caption">Mememichi ♡</div></div>
+  </div>
+  <div class="section"><div class="section-head"><div><h2>艺人个人档案</h2><p>选择一位艺人，进入个人资料页面</p></div><button class="text-link" onclick="showPage('profiles')">进入个人介绍 →</button></div><div class="profile-entry-grid">
+    <button class="profile-entry" onclick="showProfile('meguro')"><img src="./assets/meguro-ren.jpeg" alt="目黑莲"><strong>目黑莲</strong><small>Meguro Ren · Snow Man</small></button>
+    <button class="profile-entry" onclick="showProfile('michieda')"><img src="./assets/michieda-shunsuke.jpeg" alt="道枝骏佑"><strong>道枝骏佑</strong><small>Michieda Shunsuke · なにわ男子</small></button>
+  </div></div>
+  <div class="section"><div class="section-head"><div><h2>最新收录</h2><p>最近添加至档案馆的内容</p></div><button class="text-link" onclick="showPage('timeline')">查看全部 →</button></div><div class="cards" id="latestCards"></div></div>
+  <div class="section"><div class="section-head"><div><h2>档案说明</h2><p>关于内容收录与标注方式</p></div></div><div class="notice">本网站为非官方粉丝个人整理项目，与艺人本人及所属事务所无关。公开事实、原始出处与粉丝视角解读将分别标注；未经证实的信息不会作为事实呈现。页面所用照片仅用于非商业粉丝档案展示，图片版权归原权利人所有。</div></div>
+</section>
+<section class="page" id="profiles">
+  <h1 class="page-title">个人介绍</h1><p class="page-desc">选择想查看的艺人，进入个人档案。</p>
+  <div class="profile-picker" id="profilePicker">
+    <button class="profile-entry" onclick="showProfile('meguro')"><img src="./assets/meguro-ren.jpeg" alt="目黑莲"><strong>目黑莲</strong><small>Meguro Ren · Snow Man</small></button>
+    <button class="profile-entry" onclick="showProfile('michieda')"><img src="./assets/michieda-shunsuke.jpeg" alt="道枝骏佑"><strong>道枝骏佑</strong><small>Michieda Shunsuke · なにわ男子</small></button>
+  </div>
+  <article class="profile-detail" id="meguroDetail">
+    <div class="profile-backbar"><button class="profile-back" onclick="backToProfiles()">← 返回个人介绍选择页</button><button class="profile-back" onclick="showPage('home')">返回首页</button></div>
+    <div><img src="./assets/meguro-ren.jpeg" alt="目黑莲个人照片"></div>
+    <div><h2>目黑莲</h2><p class="roman">Ren Meguro</p>
+      <div class="profile-facts">
+        <b>日文姓名</b><span>目黒 蓮</span><b>日文假名</b><span>めぐろ れん</span><b>罗马音</b><span>Ren Meguro</span>
+        <b>出生日期</b><span>1997年2月16日</span><b>出身地</b><span>日本东京都</span><b>血型</b><span>B型</span>
+        <b>入所时间</b><span>2010年10月（公开资料常见记载为10月30日）</span><b>所属组合</b><span>Snow Man</span>
+        <b>所属公司</b><span>STARTO ENTERTAINMENT</span><b>唱片公司</b><span>MENT RECORDING</span><b>职业</b><span>歌手、演员、模特</span>
+      </div>
+      <p class="profile-note">日本艺人，Snow Man成员。以下按公开演艺资料分类整理，资料截止日期为2026年11月1日。</p>
+    </div>
+    <div class="profile-bio">
+      <p class="bio-intro">目黑莲是日本男子组合 Snow Man 的成员，同时活跃于电视剧、电影与时尚领域。2010年进入事务所后，经历 Junior 时期及宇宙Six 的团体活动，2019年加入 Snow Man，2020年随组合正式CD出道。此后逐步拓展个人演员工作，并参与国内外品牌及时尚项目。</p>
+      <section class="bio-card"><h3>所属组合｜Snow Man 队友</h3><p>岩本照、深泽辰哉、拉乌卢（ラウール）、渡边翔太、向井康二、阿部亮平、宫馆凉太、佐久间大介。</p><p class="bio-caption">以上为目黑莲以外的八位组合成员；Snow Man 共九名成员。</p></section>
+      <div class="bio-grid">
+<section class="bio-card "><h3>01｜人物经历</h3><p>2010年进入事务所，经历Junior时期及宇宙Six活动，2019年加入Snow Man，2020年随组合正式CD出道。以下按影视、舞台及组合综艺分类整理。</p></section><section class="bio-card bio-wide"><h3>02｜电视剧</h3><div class="work-table-wrap"><table class="work-table"><thead><tr><th>年份</th><th>中国大陆译名</th><th>日文原名</th><th>饰演角色</th></tr></thead><tbody><tr><td>2015</td><td>哥哥扭蛋</td><td>お兄ちゃん、ガチャ</td><td>少年E（正义）</td></tr><tr><td>2019</td><td>我来应聘简单工作了</td><td>簡単なお仕事です。に応募してみた</td><td>秋田若大</td></tr><tr><td>2021</td><td>教场II</td><td>教場II</td><td>杣利希斗</td></tr><tr><td>2021</td><td>消失的初恋</td><td>消えた初恋</td><td>井田浩介</td></tr><tr><td>2022</td><td>静雪</td><td>silent</td><td>佐仓想</td></tr><tr><td>2022</td><td>飞舞吧！</td><td>舞いあがれ！</td><td>柏木弘明</td></tr><tr><td>2023</td><td>一兆游戏</td><td>トリリオンゲーム</td><td>天王寺阳</td></tr><tr><td>2024</td><td>海的开始</td><td>海のはじまり</td><td>月冈夏</td></tr><tr><td>2025</td><td>皇家家族</td><td>ザ・ロイヤルファミリー</td><td>中条耕一</td></tr></tbody></table></div></section><section class="bio-card bio-wide"><h3>03｜网络剧及衍生作品</h3><div class="work-table-wrap"><table class="work-table"><thead><tr><th>年份</th><th>中国大陆译名</th><th>日文原名</th><th>饰演角色</th></tr></thead><tbody><tr><td>2022</td><td>静雪衍生特别篇</td><td>silent 相关特别内容</td><td>佐仓想</td></tr><tr><td>2024</td><td>与哥哥的开始</td><td>兄とのはじまり</td><td>月冈夏</td></tr></tbody></table></div><p class="bio-caption">衍生内容归入本栏目，不与电视剧正篇重复统计。</p></section><section class="bio-card bio-wide"><h3>04｜电影</h3><div class="work-table-wrap"><table class="work-table"><thead><tr><th>年份</th><th>中国大陆译名</th><th>日文原名</th><th>饰演角色</th></tr></thead><tbody><tr><td>2020</td><td>泷泽歌舞伎 ZERO 2020 电影版</td><td>滝沢歌舞伎 ZERO 2020 The Movie</td><td>Snow Man成员身份出演</td></tr><tr><td>2022</td><td>阿松</td><td>映画 おそ松さん</td><td>松野轻松</td></tr><tr><td>2022</td><td>月之圆缺</td><td>月の満ち欠け</td><td>三角哲彦</td></tr><tr><td>2023</td><td>我的幸福婚约</td><td>わたしの幸せな結婚</td><td>久堂清霞</td></tr><tr><td>2025</td><td>剧场版一兆游戏</td><td>劇場版 トリリオンゲーム</td><td>天王寺阳</td></tr><tr><td>2026</td><td>教场 Reunion</td><td>教場 Reunion</td><td>杣利希斗</td></tr><tr><td>2026</td><td>教场 Requiem</td><td>教場 Requiem</td><td>杣利希斗</td></tr><tr><td>2026</td><td>不久，就要告别了</td><td>ほどなく、お別れです</td><td>漆原礼二</td></tr><tr><td>2026</td><td>坂本日常</td><td>SAKAMOTO DAYS</td><td>坂本太郎</td></tr></tbody></table></div></section><section class="bio-card bio-wide"><h3>05｜舞台剧</h3><div class="work-table-wrap"><table class="work-table"><thead><tr><th>年份</th><th>中国大陆译名／作品名</th><th>日文原名</th><th>角色／说明</th></tr></thead><tbody><tr><td>2016</td><td>JOHNNYS’ Future WORLD</td><td>JOHNNYS’ Future WORLD</td><td>参与演出，角色资料待核</td></tr><tr><td>2017</td><td>桃山节拍部落</td><td>桃山ビート・トライブ</td><td>小平武士</td></tr><tr><td>2018</td><td>泷泽歌舞伎2018</td><td>滝沢歌舞伎2018</td><td>参与演出</td></tr><tr><td>2019</td><td>泷泽歌舞伎 ZERO</td><td>滝沢歌舞伎ZERO</td><td>参与演出</td></tr><tr><td>2022</td><td>泷泽歌舞伎 ZERO 2022</td><td>滝沢歌舞伎ZERO 2022</td><td>参与演出</td></tr></tbody></table></div></section><section class="bio-card "><h3>06｜音乐剧</h3><p>截至本档案整理范围，暂未列出能够独立确认的音乐剧出演作品。若后续获得官方节目册或演出方资料，再补充具体条目。</p></section><section class="bio-card bio-wide"><h3>07｜组合专属综艺</h3><div class="work-table-wrap"><table class="work-table"><thead><tr><th>年份</th><th>中国大陆译名</th><th>日文原名</th><th>说明</th></tr></thead><tbody><tr><td>2020—至今</td><td>请让 Snow Man 来做这件事</td><td>それSnow Manにやらせて下さい</td><td>Snow Man全员出演的组合冠名综艺</td></tr></tbody></table></div></section><section class="bio-card bio-wide"><h3>08｜官方 YouTube</h3><p><b>出道前：</b>杰尼斯Jr. Channel——收录Snow Man Junior时期的组合企划、游戏及挑战内容。</p><p><b>出道后：</b>すのちゅーぶ（Snow Man官方YouTube）——组合游戏、挑战、外景及日常企划。</p><div class="social-links"><a href="https://www.youtube.com/@SnowMan.official.9" target="_blank" rel="noopener">Snow Man Official YouTube ↗</a></div></section><section class="bio-card bio-wide"><h3>09｜个人社交媒体与官方资料</h3><div class="social-links"><a href="https://www.instagram.com/sn_meguro.ren_official/" target="_blank" rel="noopener">目黑莲 Instagram ↗</a><a href="https://mentrecording.jp/snowman/profile/detail.php?id=1002084&s=09" target="_blank" rel="noopener">Snow Man官方成员资料 ↗</a><a href="https://starto.jp/s/p/artist/128/profile?ima=2636" target="_blank" rel="noopener">STARTO官方个人资料 ↗</a></div><p class="bio-caption">Instagram账号由Snow Man官方成员资料页列为其官方SNS。</p></section>
+      </div>
+    </div>
+  </article>
+  <article class="profile-detail" id="michiedaDetail">
+    <div class="profile-backbar"><button class="profile-back" onclick="backToProfiles()">← 返回个人介绍选择页</button><button class="profile-back" onclick="showPage('home')">返回首页</button></div>
+    <div><img src="./assets/michieda-shunsuke.jpeg" alt="道枝骏佑个人照片"></div>
+    <div><h2>道枝骏佑</h2><p class="roman">Shunsuke Michieda</p>
+      <div class="profile-facts">
+        <b>日文姓名</b><span>道枝 駿佑</span><b>日文假名</b><span>みちえだ しゅんすけ</span><b>罗马音</b><span>Shunsuke Michieda</span>
+        <b>出生日期</b><span>2002年7月25日</span><b>出身地</b><span>日本大阪府</span><b>血型</b><span>O型</span>
+        <b>入所时间</b><span>2014年11月23日</span><b>所属组合</b><span>なにわ男子（浪花男子）</span>
+        <b>所属公司</b><span>STARTO ENTERTAINMENT</span><b>唱片公司</b><span>Storm Labels</span><b>职业</b><span>歌手、演员</span>
+      </div>
+      <p class="profile-note">日本演员、歌手，浪花男子成员。以下按公开演艺资料分类整理，资料截止日期为2026年11月1日。</p>
+    </div>
+    <div class="profile-bio">
+      <p class="bio-intro">道枝骏佑是日本男子组合浪花男子（なにわ男子）的成员，同时从事电视剧、电影等演员工作。2014年进入事务所，作为关西 Junior 活动，2018年加入浪花男子，2021年随组合正式CD出道。个人演艺方面，从电视剧出演逐渐拓展至电影主演及多类型作品。</p>
+      <section class="bio-card"><h3>所属组合｜浪花男子队友</h3><p>西畑大吾、大西流星、高桥恭平、长尾谦杜、藤原丈一郎、大桥和也。</p><p class="bio-caption">以上为道枝骏佑以外的六位组合成员；浪花男子共七名成员。</p></section>
+      <div class="bio-grid">
+<section class="bio-card "><h3>01｜人物经历</h3><p>2014年进入事务所，作为关西Junior活动，2018年加入浪花男子，2021年随组合正式CD出道。以下按影视、舞台及组合综艺分类整理。</p></section><section class="bio-card bio-wide"><h3>02｜电视剧</h3><div class="work-table-wrap"><table class="work-table"><thead><tr><th>年份</th><th>中国大陆译名</th><th>日文原名</th><th>饰演角色</th></tr></thead><tbody><tr><td>2017</td><td>成为母亲</td><td>母になる</td><td>柏崎广</td></tr><tr><td>2017</td><td>我们的勇气 未满都市2017</td><td>ぼくらの勇気 未満都市2017</td><td>高木</td></tr><tr><td>2018</td><td>绝对零度～未然犯罪潜入搜查～</td><td>絶対零度</td><td>冈崎直树</td></tr><tr><td>2018</td><td>Jr.选拔！通往目标之路</td><td>Jr.選抜！標への道</td><td>单元出演，具体角色待核</td></tr><tr><td>2019</td><td>我的裙子，去哪了？</td><td>俺のスカート、どこ行った？</td><td>东条正义</td></tr><tr><td>2020</td><td>年下男友</td><td>年下彼氏</td><td>多个单元角色，需逐集核对</td></tr><tr><td>2020</td><td>BG～身边警护人～第二季</td><td>BG～身辺警護人～</td><td>中岛小次郎</td></tr><tr><td>2020</td><td>型男高中</td><td>メンズ校</td><td>牧主税</td></tr><tr><td>2021</td><td>我家的故事</td><td>俺の家の話</td><td>长田大州</td></tr><tr><td>2021</td><td>让学生重启人生的学校</td><td>生徒が人生をやり直せる学校</td><td>木之叶陆也</td></tr><tr><td>2021</td><td>消失的初恋</td><td>消えた初恋</td><td>青木想太</td></tr><tr><td>2022</td><td>金田一少年事件簿</td><td>金田一少年の事件簿</td><td>金田一一</td></tr><tr><td>2023</td><td>彩虹粉笔</td><td>虹色のチョーク</td><td>大森广翔</td></tr><tr><td>2023</td><td>我的第二青春</td><td>マイ・セカンド・アオハル</td><td>小笠原拓</td></tr><tr><td>2024</td><td>Mars－零之革命－</td><td>マルス-ゼロの革命-</td><td>美岛零</td></tr><tr><td>2025</td><td>主播</td><td>キャスター</td><td>本桥悠介</td></tr></tbody></table></div></section><section class="bio-card "><h3>03｜网络剧及衍生作品</h3><p>目前未单独确认需要从电视剧正篇拆分的网络剧衍生作品。《年下男友》采用单元剧形式播出，已统一列入电视剧栏目，不重复统计。</p></section><section class="bio-card bio-wide"><h3>04｜电影</h3><div class="work-table-wrap"><table class="work-table"><thead><tr><th>年份</th><th>中国大陆译名</th><th>日文原名</th><th>饰演角色</th></tr></thead><tbody><tr><td>2017</td><td>关西杰尼斯Jr.搞笑明星诞生！</td><td>関西ジャニーズJr.のお笑いスター誕生！</td><td>高滨优辅</td></tr><tr><td>2020</td><td>461个便当</td><td>461個のおべんとう</td><td>铃本虹辉</td></tr><tr><td>2021</td><td>99.9：刑事专业律师 THE MOVIE</td><td>99.9-刑事専門弁護士-THE MOVIE</td><td>重盛守</td></tr><tr><td>2022</td><td>今夜，即使这份恋情从世界上消失</td><td>今夜、世界からこの恋が消えても</td><td>神谷透</td></tr><tr><td>2024</td><td>青春18×2 通往有你的旅程</td><td>青春18×2 君へと続く道</td><td>幸次</td></tr><tr><td>2026</td><td>你最后留下的歌</td><td>君が最後に遺した歌</td><td>水嶋春人</td></tr><tr><td>2026</td><td>宛如清晨的月亮</td><td>うるわしの宵の月</td><td>市村琥珀</td></tr></tbody></table></div></section><section class="bio-card bio-wide"><h3>05｜舞台剧</h3><div class="work-table-wrap"><table class="work-table"><thead><tr><th>年份</th><th>中国大陆译名／作品名</th><th>日文原名</th><th>角色／说明</th></tr></thead><tbody><tr><td>Junior时期</td><td>少年们</td><td>少年たち</td><td>参与演出，具体公演及角色待核</td></tr><tr><td>Junior时期</td><td>ANOTHER & Summer Show</td><td>ANOTHER & Summer Show</td><td>参与演出</td></tr><tr><td>2021</td><td>罗密欧与朱丽叶</td><td>ロミオとジュリエット</td><td>罗密欧</td></tr></tbody></table></div></section><section class="bio-card "><h3>06｜音乐剧</h3><p>截至本档案整理范围，暂未列出能够独立确认的音乐剧出演作品。舞台剧《罗密欧与朱丽叶》按舞台作品记录，后续如有官方分类资料再作调整。</p></section><section class="bio-card bio-wide"><h3>07｜组合专属综艺</h3><div class="work-table-wrap"><table class="work-table"><thead><tr><th>年份</th><th>中国大陆译名</th><th>日文原名</th><th>说明</th></tr></thead><tbody><tr><td>2020</td><td>浪花男子与一流姐姐</td><td>なにわ男子と一流姉さん</td><td>浪花男子全员出演</td></tr><tr><td>2021—2023</td><td>还没有更新吗？</td><td>まだアプデしてないの？</td><td>浪花男子全员出演</td></tr><tr><td>2023—至今</td><td>浪花男子的逆转男子</td><td>なにわ男子の逆転男子</td><td>浪花男子全员固定出演</td></tr></tbody></table></div><p class="bio-caption">《还没有更新吗？》与《浪花男子的逆转男子》作为节目改版前后阶段分别列出。</p></section><section class="bio-card bio-wide"><h3>08｜官方 YouTube</h3><p><b>出道前：</b>杰尼斯Jr. Channel——收录浪花男子出道前的组合游戏、挑战、外景及日常企划。</p><p><b>出道后：</b>なにわTube（浪花Tube）——浪花男子官方YouTube组合栏目。</p><div class="social-links"><a href="https://www.youtube.com/@naniwadanshi" target="_blank" rel="noopener">浪花男子 Official YouTube ↗</a></div></section><section class="bio-card bio-wide"><h3>09｜个人社交媒体与官方资料</h3><div class="social-links"><a href="https://www.instagram.com/michieda_725_shunsuke/" target="_blank" rel="noopener">道枝骏佑 Instagram ↗</a><a href="https://weibo.com/michieda725" target="_blank" rel="noopener">道枝骏佑 微博 ↗</a><a href="https://space.bilibili.com/3546830411401753" target="_blank" rel="noopener">浪花男子官方 Bilibili ↗</a><a href="https://weibo.com/7851057022" target="_blank" rel="noopener">浪花男子官方微博（Storm Labels）↗</a><a href="https://starto.jp/s/p/artist/133/profile" target="_blank" rel="noopener">STARTO官方个人资料 ↗</a><a href="https://web.storm-labels.co.jp/s/st/artist/J0011/profile?ima=2128" target="_blank" rel="noopener">浪花男子官方成员资料 ↗</a></div><p class="bio-caption">Instagram为道枝骏佑个人官方账号。道枝骏佑微博链接指向以本人名义运营、发布本人动态的账号页面；建议访客以账号认证及官方发布为准，谨防同名粉丝账号。浪花男子Bilibili频道由Storm Labels官方公告开设；组合微博为Storm Labels官方微博。</p></section>
+      </div>
+    </div>
+  </article>
+<div class="section" style="margin-top:38px"><div class="section-head"><div><h2>共同出演作品</h2><p>两人共同出演的影视作品</p></div></div><div class="bio-card"><h3>2021｜《消失的初恋》</h3><p>日文原名：消えた初恋</p><p>目黑莲：井田浩介　／　道枝骏佑：青木想太</p></div></div>
+</section>
+<section class="page" id="timeline"><h1 class="page-title">关系时间线</h1><p class="page-desc">从两人的早期交集开始，按年份整理个人经历、共同作品、公开互动与采访记录。卡片展示事件摘要，点击可阅读详细资料、原文摘录及出处。</p><div class="notice">档案原则：公开事实、当事人回忆与粉丝视角解读分开标注。采访原文仅摘录必要短句，完整内容请通过出处链接阅读。时间线覆盖2016年早期共同舞台、2019—2020年公开交集、2021年合作启动，以及2022—2024年的采访、博客、节目、社交媒体与现场记录。2022—2024年卡片使用雾蓝色，与早期粉色及2021年鼠尾草绿阶段区分。公开事实、当事人回忆、粉丝观察与粉丝解读分别标注。</div><div class="toolbar"><input id="timelineSearch" placeholder="搜索事件名称或关键词…" oninput="renderTimeline()"><select id="yearFilter" onchange="renderTimeline()"><option value="">全部年份</option></select><select id="typeFilter" onchange="renderTimeline()"><option value="">全部分类</option></select></div><p id="timelineCount" class="page-desc" aria-live="polite">正在载入档案……</p><div class="timeline" id="timelineList"></div></section>
+<section class="page" id="sweet"><h1 class="page-title">糖点分析</h1><p class="page-desc">收录互动片段，并区分原始事实与粉丝视角的解读。</p><div class="toolbar"><input id="sweetSearch" placeholder="搜索糖点…" oninput="renderSweet()"><select id="confidenceFilter" onchange="renderSweet()"><option value="">全部标注</option><option>公开可核实</option><option>粉丝视角解读</option><option>待补充来源</option></select></div><div class="cards" id="sweetCards"></div></section>
+<section class="page" id="archive"><h1 class="page-title">资料库</h1><p class="page-desc">采访、杂志、节目、直播与社交媒体等公开资料索引。</p><div class="toolbar"><input id="archiveSearch" placeholder="搜索资料标题或来源…" oninput="renderArchive()"><select id="archiveType" onchange="renderArchive()"><option value="">全部类型</option><option>采访</option><option>节目</option><option>杂志</option><option>社交媒体</option><option>其他</option></select></div><div class="archive-list" id="archiveList"></div></section>
+<section class="page" id="magazines"><h1 class="page-title">双人杂志</h1><p class="magazine-intro">收录目黑莲与道枝骏佑的双人杂志封面。按封面与刊名整理，留存每一次共同登上杂志的记录。</p><div id="magazineGallery" class="magazine-grid"><div class="magazine-empty">正在载入杂志封面……</div></div></section>
+<section class="page" id="stats"><h1 class="page-title">数据统计</h1><p class="page-desc">根据当前档案中的收录内容自动统计。</p><div class="stat-grid" id="statsGrid"></div><div class="notice">统计数量来自你在本网站录入的资料，不代表两位艺人的全部公开互动数量。</div></section>
+
+
+<section class="page" id="community"><div class="community-wrap"><h1 class="page-title">粉丝投稿与反馈</h1><p class="page-desc">可以针对某条时间线提交补充、纠错或个人反馈，也可以建议新增档案。所有内容先进入审核队列，审核通过后才会公开。</p><div class="notice">请只提交与目黑莲、道枝骏佑公开活动有关的资料。不要提交私人联系方式、住址、行程推测、人身攻击或未经证实的隐私内容。粉丝观察、二手repo与本人公开发言请注明来源类型。</div><div class="community-card"><h3>提交新建议</h3><p class="community-help">需要登录后提交。若要针对具体时间线条目反馈，请回到对应卡片点击「反馈这条记录」。</p><form id="communityForm"><div class="community-field"><label for="submissionType">投稿类型</label><select id="submissionType" name="submission_type"><option value="new_entry">建议新增糖点／时间线</option><option value="edit_suggestion">建议修改已有记录</option><option value="feedback">其他反馈</option></select></div><div class="community-grid"><div class="community-field"><label>事件日期（新增时填写）</label><input name="event_date" placeholder="例如：2026-11-06"></div><div class="community-field"><label>分类</label><select name="category"><option>公开互动</option><option>采访记录</option><option>节目记录</option><option>杂志记录</option><option>粉丝观察</option><option>粉丝repo</option><option>作品关联</option></select></div><div class="community-field full"><label>标题</label><input name="title" maxlength="160" placeholder="填写事件标题"></div><div class="community-field full"><label>事件内容／建议</label><textarea name="summary" required maxlength="5000" placeholder="请描述具体事件、发生背景，以及你认为值得收录或修改的内容"></textarea></div><div class="community-field full"><label>补充分析／来源状态</label><textarea name="analysis" maxlength="5000" placeholder="例如：官方报道、本人直播转述、粉丝repo、原始视频待核等"></textarea></div><div class="community-field full"><label>来源链接（选填）</label><input name="source_url" type="url" maxlength="1000" placeholder="https://..."></div><div class="community-field full"><label>其他说明</label><textarea name="message" maxlength="3000" placeholder="如为修改建议，请写明原记录需要修改的地方"></textarea></div></div><button class="community-submit" type="submit">提交审核</button><p id="communityMessage" class="community-help" aria-live="polite"></p></form></div><div class="community-card"><h3>我的投稿记录</h3><div id="mySubmissions"><p class="community-help">登录后可以查看自己的投稿状态。</p></div></div></div></section>
+<section class="page" id="admin"><div class="community-wrap"><h1 class="page-title">管理员后台</h1><p class="page-desc">审核粉丝投稿，并在同一张编辑表单中直接修改时间线全部字段、排序与来源。保存后同步到公开网站。</p><div class="notice">审核原则：核对来源与日期；区分官方事实、当事人转述、粉丝repo和粉丝解读；不收录私人隐私、骚扰内容或无关猜测。</div><div class="community-card"><h3>待审核队列</h3><div id="adminQueue"><p class="community-help">正在读取投稿……</p></div></div><div class="community-card"><h3>已审核记录</h3><div id="reviewedQueue"></div></div><div class="community-card" id="magazineAdminPanel"><h3>双人杂志管理</h3><p class="community-help">上传杂志封面，填写杂志名称和发行年份。保存后会直接显示在网站「双人杂志」栏目。</p><form id="magazineForm"><input type="hidden" name="magazine_id"><input type="hidden" name="old_storage_path"><div class="community-grid"><div class="community-field full"><label>杂志名称</label><input name="title" maxlength="180" required placeholder="例如：Myojo 2024年某月号"></div><div class="community-field"><label>发行年份（选填）</label><input name="issue_year" maxlength="20" placeholder="例如：2024"></div><div class="community-field"><label>封面图片（JPG／PNG／WebP，建议不超过 8MB）</label><input id="magazineCoverFile" name="cover" type="file" accept="image/jpeg,image/png,image/webp" required></div></div><img id="magazineCoverPreview" class="magazine-upload-preview" alt="封面预览"><div class="magazine-form-actions"><button id="magazineSaveBtn" type="submit">上传并保存</button><button type="button" class="community-secondary" onclick="resetMagazineForm()">清空表单</button></div><p id="magazineAdminMessage" class="community-help" aria-live="polite"></p></form><div id="magazineAdminList" class="magazine-admin-list"><p class="community-help">正在读取已收录杂志……</p></div></div>
+<div class="community-card"><h3>已发布的时间线板块</h3><p class="community-help">这里可以直接编辑已发布的粉丝补充条目、调整时间线排序或删除。年份颜色会按事件日期自动套用：早期粉色、2021鼠尾草绿、2022—2024雾蓝灰、2025雾紫灰、2026雾蓝。</p><div id="publishedEntries"><p class="community-help">正在读取…</p></div></div></div></section>
+
+</main>
+<footer>MEMEMICHI ARCHIVE ♡ · 非官方粉丝档案馆 · 记录公开资料，珍藏个人观察</footer>
+<script>
+const demo = [
+{id:2016,kind:"timeline",date:"2016",title:"初次共同登台｜《JOHNNYS’ Future WORLD》",category:"采访记录",confidence:"本人回忆／公开可核实",summary:"多年后，道枝骏佑在《CanCam》双人采访中回忆，自己记得曾于2016年与目黑莲在《JOHNNYS’ Future WORLD》共同登台；当时两人似乎没有太多交谈。",analysis:"2016年是目前能够追溯到的目黑莲与道枝骏佑最早的公开交集。需要注意，这一事件的具体年份与共同登台信息来自道枝骏佑在2021年的回忆性采访，而不是2016年当时发布的双人互动报道。",source:"https://cancam.jp/archives/1029384",extra:`
+<h4>事件背景</h4>
+<p>《JOHNNYS’ Future WORLD》是目黑莲与道枝骏佑早期演艺经历中出现交集的一次舞台演出。道枝骏佑在2021年为电视剧《消失的初恋》宣传、与目黑莲共同接受《CanCam》采访时，回忆起这段经历，并将其指向2016年的《JOHNNYS’ Future WORLD》。因此，档案馆将2016年设为目前可考的时间线起点。</p>
+<h4>糖点论述｜这段回忆值得记录在哪里？</h4>
+<p><b>① 道枝骏佑能够给出具体的早期舞台记忆。</b>多年后谈到与目黑莲初次共同登台，道枝骏佑将时间联系到2016年，并提及舞台名称。这使目黑莲与道枝骏佑的公开交集不必从2021年的《消失的初恋》才开始追溯。</p>
+<p><b>② 道枝骏佑也坦率说明当时并不熟络。</b>道枝骏佑回忆，自己与目黑莲当时没有怎么交谈。这个细节反而让时间线更完整：2016年是早期同台与交集，不应被包装成当时已经亲密或有频繁私下互动。</p>
+<p><b>③ 目黑莲与道枝骏佑的记忆角度有所不同。</b>同一采访中，目黑莲表示自己不太记得第一次见面的具体时间，但记得曾觉得道枝骏佑作为杰尼斯Jr.出演了不少电视剧，也注意到道枝骏佑后来长高了许多。道枝骏佑记得舞台名称，目黑莲则谈到对道枝骏佑工作的早期印象；这是两种不同的回忆，而不是双方对初见日期的共同确认。</p>
+<p><b>④ 目黑莲对道枝骏佑的早期印象。</b>目黑莲回忆，自己当时曾单方面觉得道枝骏佑很厉害。虽然这句话是在2021年回顾早期印象时说出的，不能直接证明2016年两人有过深入交流，但它补充了目黑莲当时从工作表现认识道枝骏佑的视角。</p>
+<h4>杂志访谈原文｜日语摘录</h4>
+<blockquote>「そのときはあまりしゃべらなかった気がします。」</blockquote>
+<p><b>中文译意：</b>“我感觉那时候我们没怎么说过话。”</p>
+<blockquote>「一方的にすごいなぁって思ってました。」</blockquote>
+<p><b>中文译意：</b>“（当时）我单方面觉得他很厉害。”——目黑莲谈及自己对道枝骏佑的早期印象。</p>
+<p class="bio-caption">以上为采访中的简短原文摘录。道枝骏佑关于2016年舞台的完整上下文，以及目黑莲谈及道枝骏佑的早期印象，请阅读《CanCam》原文报道；此处不转载整段杂志访谈。</p>
+<h4>资料出处</h4>
+<p>① <a href="https://cancam.jp/archives/1029384" target="_blank" rel="noopener">CanCam.jp｜なにわ男子 道枝駿佑＆Snow Man 目黒 蓮、強すぎる“神ビジュ”コンビがCanCam初表紙！</a>（2021年9月13日）——刊载双人采访内容及道枝对2016年舞台的回忆。</p>
+<p>② <a href="https://www.oricon.co.jp/news/2207465/full/" target="_blank" rel="noopener">ORICON NEWS｜道枝骏佑与目黑莲《CanCam》初表纸报道</a>（2021年9月）——对双方关于初次见面印象的回答作了报道。</p>
+<p>③ <a href="https://news.mynavi.jp/article/20210913-1971763/" target="_blank" rel="noopener">マイナビニュース｜道枝駿佑×目黒蓮、『CanCam』初表紙で大人のリンクコーデ</a>（2021年9月13日）——采访内容的媒体报道与补充信息。</p>
+<p class="bio-caption"><b>档案标注：</b>道枝骏佑本人回忆｜公开采访可核实｜粉丝视角解读。2016年为道枝骏佑回忆中的共同登台年份，不代表已确认目黑莲与道枝骏佑私下初识的确切日期。</p>
+`},
+{id:20190526,kind:"timeline",date:"2019-05",title:"Johnny’s IsLAND Festival｜三团联合演出",category:"合作作品",confidence:"同期报道／现场记录",summary:"Snow Man、Travis Japan与浪花男子共同参加联合演出。目黑莲与道枝骏佑均在出演阵容中；道枝骏佑与拉乌卢合作表演《青春アミーゴ》。",analysis:"这是2019年早期时间线中重要的共同活动节点。需要明确：目黑莲参加整场联合活动，但并未参与道枝骏佑与拉乌卢的《青春アミーゴ》双人表演。同期现场记录还提到道枝骏佑与岩本照在游戏环节互动，Snow Man成员在旁为道枝骏佑加油；这属于道枝骏佑与Snow Man成员的公开场合互动，不应改写成目黑莲与道枝骏佑单独互动。",source:"https://www.nikkansports.com/entertainment/news/201905260001376.html",extra:`
+<h4>活动背景</h4><p>2019年5月25日至26日，Snow Man、Travis Japan与浪花男子参加Johnny’s IsLAND Festival联合演出。日刊体育在5月27日的报道中记录了三团共同出演及活动规模。同期观演记录也记载了道枝骏佑与拉乌卢合作《青春アミーゴ》的舞台。</p>
+<h4>可确认内容</h4><p><b>① 共同活动：</b>目黑莲与道枝骏佑均属于参加该场联合活动的艺人阵容，因此可以确认两人曾在同一活动中出演。</p><p><b>② 舞台分工：</b>道枝骏佑与拉乌卢合作《青春アミーゴ》。目黑莲作为Snow Man成员参加活动，但不是这段双人表演的参与者。</p><p><b>③ 现场互动：</b>同期粉丝观演记录提到，道枝骏佑在游戏环节与岩本照有互动，Snow Man成员在旁为道枝骏佑加油。该记录来自观演者，不等同于官方逐字记录。</p>
+<h4>粉丝视角</h4><p>这场活动的意义在于，它把两人的早期交集放回真实的工作背景中：2016年曾共同登台，2019年又在三团联合活动中同场。对莲理枝考古来说，这是一个值得标记的共同活动节点；但现有资料不能证明两人在这场活动中有单独交流。</p>
+<h4>资料出处</h4><p><a href="https://www.nikkansports.com/entertainment/news/201905260001376.html" target="_blank" rel="noopener">日刊体育｜2019年5月26日联合演出报道</a>——确认三团共同出演。</p><p><a href="https://korinum.hatenablog.com/entry/report/islandfes2019" target="_blank" rel="noopener">2019年现场观演记录</a>——粉丝同期记录舞台及现场互动，作为补充资料使用。</p><p><a href="https://youjani.com/islandfestival-0526/" target="_blank" rel="noopener">YOUジャニ｜IsLAND Festival现场报道</a>——补充现场演出内容。</p><p class="bio-caption"><b>档案标注：</b>共同活动可由同期报道确认；具体舞台及互动细节部分依据同期观演记录。不可将同场出演等同于两人私下交流。</p>`},
+{id:20190701,kind:"timeline",date:"2019-07",title:"「世界三大美女」｜目黑莲写下道枝骏佑的名字",category:"公开互动",confidence:"用户提供节目考古／原片待补",summary:"在向井康二心中的「世界三大美女」相关环节中，目黑莲亲自写下道枝骏佑的名字，并使用假名书写。",analysis:"这条与单纯的同场出演不同：按用户提供的节目画面考古，写下名字的人是目黑莲，名单所指的是向井康二心中的「世界三大美女」。因此不能写成目黑莲把道枝骏佑列为自己心中的美女。目黑莲能够写出道枝骏佑的名字，至少说明当时知道道枝骏佑这个人；但仅凭使用假名，不能判断两人熟悉程度。",source:"",extra:`
+<h4>事件内容</h4><p>根据档案整理者提供的节目截图与考古信息，在「世界三大美女」相关环节中，目黑莲亲自写下了道枝骏佑的名字，并以假名形式书写。此处的名单主题是<strong>向井康二心中的世界三大美女</strong>，并非目黑莲在回答自己心中的世界三大美女。</p>
+<h4>这条记录的重点</h4><p><b>① 书写者是目黑莲。</b>这一细节使事件具有明确的个人指向：不是节目字幕单方面出现道枝骏佑的名字，而是目黑莲亲自写下。</p><p><b>② 名单归属需要准确表述。</b>道枝骏佑是被写入向井康二心中的「世界三大美女」名单；不能把它改写成目黑莲亲自评价道枝骏佑是自己心中的美女。</p><p><b>③ 假名书写是画面细节，不宜过度推论。</b>档案保留目黑莲当时使用假名书写这一观察。它可以作为节目画面特征记录，但不能单凭这一点断言目黑莲对道枝骏佑不熟悉。节目环节形式、书写习惯等都可能影响写法。</p>
+<h4>粉丝视角解读</h4><p>放在早期时间线里，这条有一个很具体的意义：2016年两人已经有过共同舞台；到了2019年，目黑莲在节目环节中能够直接写出道枝骏佑的名字。它为「目黑莲当时已经知道道枝骏佑」提供了一个可视化的节目记录。至于两人当时是否熟悉、是否有过私下交流，现有画面不足以得出结论。</p>
+<h4>原始资料状态</h4><p>当前档案依据为整理者提供的节目截图及粉丝考古资料。节目完整名称、播出日期、完整上下文与原始视频链接尚待补齐，因此本条暂不标记为独立完成一手核验。</p><p class="bio-caption"><b>档案标注：</b>节目画面考古｜目黑莲亲自书写道枝骏佑名字｜名单归属为向井康二｜原始节目出处待补。假名书写不作为熟悉程度的单独证据。</p>`},
+{id:20190719,kind:"timeline",date:"2019-07-19",title:"Music Station｜《青春アミーゴ》相关出演",category:"合作作品",confidence:"节目线索／后台照片待核",summary:"道枝骏佑与拉乌卢参与《青春アミーゴ》相关表演。粉丝考古另提及后台合照中出现目黑莲，但照片原始出处尚待核实。",analysis:"将节目出演线索与后台照片分开记录。现阶段不把「共用休息室」或两人有直接交流写成事实。",source:"https://fumido.jp/michiedasyunsukevsintyou/",extra:`
+<h4>事件背景</h4><p>粉丝考古资料将2019年7月19日Music Station列为道枝骏佑与拉乌卢合作《青春アミーゴ》的相关节点。</p><h4>后台照片线索</h4><p>你提供的考古内容指出，一张后台多人合照中可以看到目黑莲出现在画面角落。由于目前尚未确认该照片的最初发布渠道、拍摄时间及完整原图，本档案将其列为待核线索，不将其作为已完成核实的官方后台照片。</p><h4>粉丝视角</h4><p>如果后续能够确认照片确实拍摄于当日，那么它可以补充两人在同一工作环境中出现的视觉记录。但即便照片属实，也只能说明同场或同一后台环境，不能单凭合照证明两人共用休息室或有过直接交流。</p><h4>资料出处与状态</h4><p><a href="https://fumido.jp/michiedasyunsukevsintyou/" target="_blank" rel="noopener">节目及身高相关资料整理</a>——辅助检索线索，非官方原始节目页面。</p><p class="bio-caption"><b>档案标注：</b>节目线索待补官方出处；后台照片为粉丝考古线索，原始出处待核。</p>`},
+{id:20190808,kind:"timeline",date:"2019-08-08",title:"杰尼斯Jr.东京巨蛋演唱会｜8·8祭",category:"合作作品",confidence:"演出曲目记录／粉丝观察待核",summary:"目黑莲与道枝骏佑参加同一场东京巨蛋演出。道枝骏佑与拉乌卢表演《青春アミーゴ》，目黑莲参加另一首群体合唱曲目。",analysis:"两人共同参加整场演出，但并非同一段《青春アミーゴ》表演的搭档。关于后台直播中道枝骏佑调整镜头、让目黑莲进入画面的说法，仍需原始直播视频核实。",source:"https://dailysetlist.net/archives/151309",extra:`
+<h4>活动背景</h4><p>2019年8月8日，杰尼斯Jr.在东京巨蛋举行大型演出。现存曲目整理记录了多组艺人的表演内容。</p><h4>两人的演出情况</h4><p><b>道枝骏佑：</b>与拉乌卢合作表演《青春アミーゴ》。</p><p><b>目黑莲：</b>参与另一首群体合唱曲目。两人属于同一场演出的出演者，但并非同一段双人舞台的搭档。</p><h4>后台直播镜头线索</h4><p>粉丝考古称，道枝骏佑在后台直播时似乎注意到目黑莲经过，随后低头并调整镜头，让目黑莲进入画面。目前未找到完整后台直播原片，因此无法独立确认目光方向、镜头调整的原因及两人是否发生交流。</p><h4>粉丝视角</h4><p>这场演出可以作为2019年共同活动的后续节点。与5月IsLAND Festival相似，最稳妥的事实是两人同场出演；后台镜头则保留为待核的粉丝观察，不提前写成确定互动。</p><h4>资料出处</h4><p><a href="https://dailysetlist.net/archives/151309" target="_blank" rel="noopener">Daily Setlist｜2019年8月8日演出曲目整理</a>——辅助核对当日曲目。</p><p><a href="https://www.youtube.com/watch?v=Czp3yGGNKeg" target="_blank" rel="noopener">演出影像／曲目整理视频</a>——非官方上传，仅作为检索辅助。</p><p class="bio-caption"><b>档案标注：</b>共同出演及曲目记录可查；后台镜头为粉丝观察，原始直播待核。</p>`},
+{id:20200119,kind:"timeline",date:"2020-01-19",title:"人生歌曲｜目黑莲谈SMAP《この瞬間、きっと夢じゃない》",category:"采访记录",confidence:"节目文字记录可查／歌曲关联",summary:"目黑莲在节目中谈到SMAP的《この瞬間、きっと夢じゃない》，称这首歌改变了自己的人生。它也成为同年道枝骏佑推荐同一首歌时，粉丝回看的一条前置记录。",analysis:"这条首先是目黑莲的个人经历，并非两人之间的直接互动。它之所以进入莲理枝档案，是因为道枝骏佑在同年10月也推荐了同一首歌曲。",source:"https://www.tfm.co.jp/flow/archive/53751",extra:`
+<h4>事件背景</h4><p>2020年1月19日，目黑莲在节目中谈及SMAP的歌曲《この瞬間、きっと夢じゃない》。在谈到对自己有重要意义的歌曲时，他将这首歌与个人经历联系起来。</p>
+<h4>日语原文摘录</h4><blockquote>「これが僕の人生を変えてくれた曲ですね。」</blockquote><p><b>中文译意：</b>“这首歌改变了我的人生。”</p>
+<h4>与道枝骏佑的时间关联</h4><p>这条记录本身属于目黑莲的个人回忆。到了2020年10月5日，道枝骏佑也在Johnny’s web中推荐了同一首歌曲。两条记录先后出现，构成了粉丝可以回看的同曲关联。</p>
+<h4>粉丝视角解读</h4><p>这首歌对目黑莲而言有明确的个人意义，因此道枝骏佑后来推荐同一首歌，容易成为粉丝注意到的巧合。不过，目前没有证据证明道枝骏佑是因为目黑莲此前的发言才推荐这首歌，也不能将其认定为有意回应。</p>
+<h4>资料出处</h4><p><a href="https://www.tfm.co.jp/flow/archive/53751" target="_blank" rel="noopener">TOKYO FM｜木村拓哉 Flow 节目档案</a>——目黑莲谈及歌曲及个人经历的节目文字资料。</p>
+<p class="bio-caption"><b>档案标注：</b>节目文字记录｜目黑莲个人经历｜与10月5日道枝骏佑推荐同曲形成时间关联。</p>`},
+{id:20201005,kind:"timeline",date:"2020-10-05",title:"同一首歌｜道枝骏佑推荐SMAP《この瞬間、きっと夢じゃない》",category:"公开互动",confidence:"用户提供Johnny’s web记录／原文待存档",summary:"道枝骏佑在Johnny’s web中推荐SMAP《この瞬間、きっと夢じゃない》，并写下「ぜひ聴いてみてください！」。这首歌此前曾被目黑莲称为改变自己人生的歌曲。",analysis:"这条与1月19日的目黑莲节目发言构成同曲关联。道枝骏佑推荐歌曲的事实来自用户提供的Johnny’s web考古记录；目前尚未取得可公开访问的原文链接。",source:"",extra:`
+<h4>事件内容</h4><p>根据档案整理者提供的Johnny’s web记录，2020年10月5日，道枝骏佑在个人连载中推荐了SMAP的《この瞬間、きっと夢じゃない》，并写下：</p><blockquote>「ぜひ聴いてみてください！」</blockquote><p><b>中文译意：</b>“请一定要听一下！”</p>
+<h4>与目黑莲的时间关联</h4><p>同年1月19日，目黑莲曾在节目中谈到这首歌，并称它改变了自己的人生。道枝骏佑在约八个半月后推荐了同一首歌，因此两条记录在时间线上形成呼应。</p>
+<h4>粉丝视角解读</h4><p>值得收藏的是歌曲相同，以及两次公开提及的先后顺序。由于目前没有证据证明道枝骏佑看过目黑莲1月的节目，或是有意回应目黑莲，因此本条采用「同曲关联／时间巧合」的表述，不将其写成暗号或双向回应。</p>
+<h4>资料出处与状态</h4><p>原始资料为Johnny’s web于2020年10月5日发布的道枝骏佑个人连载内容。该内容需要会员或登录权限，当前未附可公开访问的原文链接；档案依据为整理者提供的原始记录。</p>
+<p class="bio-caption"><b>档案标注：</b>Johnny’s web记录｜用户提供原文线索｜同曲关联｜不推定为有意回应。</p>`},
+{id:20201019,kind:"timeline",date:"2020-10-19",title:"动作模仿｜道枝骏佑模仿目黑莲的摸脖子动作",category:"公开互动",confidence:"原视频确认",summary:"在《なにわイケメン学園ホームルーム》中，道枝骏佑模仿目黑莲常做的摸脖子动作；同伴指出这一动作与目黑莲有关，道枝骏佑笑着回应「是的」。",analysis:"这条有原视频作为依据，是2020年目前较直接的公开关联记录。它能确认节目中出现了动作模仿及同伴的指认，但不应进一步推断为私人关系或私下交流。",source:"https://wikiwiki.jp/oshigoto7010/%E3%81%AA%E3%81%AB%E3%82%8F%E3%82%A4%E3%82%B1%E3%83%A1%E3%83%B3%E5%AD%A6%E5%9C%92%E3%83%9B%E3%83%BC%E3%83%A0%E3%83%AB%E3%83%BC%E3%83%A0%E3%80%80%E9%85%8D%E4%BF%A1%E5%B1%A5%E6%AD%B4%E4%B8%80%E8%A6%A7",extra:`
+<h4>节目背景</h4><p>2020年10月19日，《なにわイケメン学園ホームルーム》发布第2回内容，主题为「No.1 KY Grand Prix」。本条所记录的动作模仿片段由档案整理者提供原视频确认。</p>
+<h4>视频中出现的内容</h4><p><b>① 动作：</b>道枝骏佑做出摸脖子的动作。</p><p><b>② 同伴指认：</b>同伴指出这是目黑莲经常做的动作，将动作与目黑莲联系起来。</p><p><b>③ 道枝骏佑回应：</b>道枝骏佑笑着回应「是的」。</p>
+<h4>粉丝视角解读</h4><p>与同场出演或同一首歌曲的时间巧合相比，这条有更明确的节目指向：道枝骏佑在节目中模仿了一个被同伴明确联系到目黑莲的动作。它是2020年时间线中较有辨识度的一条公开关联记录。</p><p>需要保持边界的是，视频能够证明节目中的动作、同伴的提示和道枝骏佑的回应，但不能单凭这一片段判断道枝骏佑私下关注目黑莲的程度，也不能据此推断两人当时的私人关系。</p>
+<h4>资料出处</h4><p><a href="https://wikiwiki.jp/oshigoto7010/%E3%81%AA%E3%81%AB%E3%82%8F%E3%82%A4%E3%82%B1%E3%83%A1%E3%83%B3%E5%AD%A6%E5%9C%92%E3%83%9B%E3%83%BC%E3%83%A0%E3%83%AB%E3%83%BC%E3%83%A0%E3%80%80%E9%85%8D%E4%BF%A1%E5%B1%A5%E6%AD%B4%E4%B8%80%E8%A6%A7" target="_blank" rel="noopener">节目配信履历整理</a>——用于核对节目配信日期及回次。动作模仿片段以档案整理者提供的原视频为依据。</p>
+<p class="bio-caption"><b>档案标注：</b>原视频确认｜公开节目中的动作模仿｜同伴明确提及目黑莲。</p>`},
+{id:20210401,kind:"timeline",date:"2021-04（约）",phase:"phase-collab",title:"合作消息传来｜目黑莲决定主动拉近距离",category:"采访记录",confidence:"目黑莲于2021年8月19日回忆／月份为约数",summary:"目黑莲在官宣采访中回忆，自己约四个月前得知企划后，便想着要尽快和道枝骏佑熟悉起来，于是向向井康二询问道枝骏佑的联系方式并主动联系。",analysis:"这里的2021年4月是根据目黑莲在8月19日采访中所说的「四个月左右前」推算，并非采访给出的精确日期。",source:"https://www.tv-asahi.co.jp/kietahatsukoi/news/0001/",extra:`
+<h4>事件背景</h4><p>在2021年8月19日《消失的初恋》双主演官宣采访中，目黑莲回忆，自己最初听说这部企划是在约四个月前。得知将与道枝骏佑合作后，他首先想到的是尽快熟悉彼此。</p>
+<h4>日语原文摘录</h4><blockquote>「早く仲を深めないと！」</blockquote><p><b>中文译意：</b>“得赶快加深彼此的关系才行！”</p><blockquote>「メンバーの（向井）康二に道枝くんの連絡先を聞いて連絡しました。」</blockquote><p><b>中文译意：</b>“我向成员（向井）康二询问了道枝君的联系方式，然后联系了他。”</p>
+<h4>可确认的事实</h4><p>① 目黑莲主动向向井康二询问道枝骏佑的联系方式。② 取得联系方式后，目黑莲主动联系了道枝骏佑。③ 这件事发生在2021年8月19日官宣采访所回溯的约四个月前。</p>
+<h4>粉丝视角</h4><p>这条是两人关系时间线的重要转折：此前的记录主要是共同舞台、同场活动或节目中的公开关联；从这次主动联系开始，出现了当事人亲口确认的、以进一步熟悉对方为目的的私人联系方式交换。它不等于已经公开了两人的聊天记录，但足以确认目黑莲主动迈出了联系的一步。</p>
+<h4>资料出处与时间说明</h4><p><a href="https://www.tv-asahi.co.jp/kietahatsukoi/news/0001/" target="_blank" rel="noopener">朝日电视台｜《消失的初恋》双主演官宣采访</a>（2021年8月19日）。2021年4月为依据「四个月左右前」推算的时间范围，不作为精确日期。</p><p class="bio-caption"><b>档案标注：</b>当事人采访回忆｜目黑莲主动索取联系方式并联系｜日期为约数。</p>`},
+{id:20210819,kind:"timeline",date:"2021-08-19",phase:"phase-collab",title:"交换联系方式之后｜两人一直聊着一起吃饭",category:"采访记录",confidence:"朝日电视台官方采访／双方表述",summary:"目黑莲透露会在道枝骏佑出演节目时主动联系；道枝骏佑则表示，交换联系方式后，两人一直在聊等情况稳定下来一起吃饭的事。",analysis:"采访确认了两人交换联系方式后的联系主题，但没有公开第一次聊天的具体消息、日期或完整聊天记录。",source:"https://www.tv-asahi.co.jp/kietahatsukoi/news/0001/",extra:`
+<h4>目黑莲谈交换联系方式后的联系</h4><blockquote>「道枝くんが何かに出ていたら連絡したりと、今も関係性を深めているところです。」</blockquote><p><b>中文译意：</b>“道枝骏佑如果出演了什么节目之类的，我也会联系他。现在我们也还在不断加深彼此的关系。”</p>
+<h4>道枝骏佑谈两人一直在聊的话题</h4><blockquote>「連絡先を交換してから、ずっとその話をしています。」</blockquote><p><b>中文译意：</b>“交换联系方式之后，我们就一直在聊这件事。”这里的「その話」指的是等情况稳定后一起吃饭。</p>
+<h4>一起吃饭的约定</h4><blockquote>「状況が落ち着いたら一緒にご飯を食べに行きたいですね。」</blockquote><p><b>中文译意：</b>“等情况稳定下来之后，想一起去吃饭。”</p>
+<h4>粉丝视角</h4><p>这段采访最值得注意的是双方的说法能够互相呼应：目黑莲讲述自己会主动联系道枝骏佑，道枝骏佑则确认两人交换联系方式后一直在聊一起吃饭的计划。它呈现的不是单方面的联系方式交换，而是两人已经开始通过联系逐渐熟悉的过程。</p>
+<h4>证据边界</h4><p>目前公开采访没有披露第一次加好友时的具体对话，也没有公开私人聊天截图。因此档案只记录当事人确认过的联系行为和聊天主题，不补写不存在于公开资料中的私聊细节。</p>
+<h4>资料出处</h4><p><a href="https://www.tv-asahi.co.jp/kietahatsukoi/news/0001/" target="_blank" rel="noopener">朝日电视台｜《消失的初恋》双主演官宣采访</a>（2021年8月19日）。</p><p class="bio-caption"><b>档案标注：</b>双方采访相互印证｜交换联系方式后持续联系｜一起吃饭为明确聊天主题｜未公开私聊原文。</p>`},
+{id:20210913,kind:"timeline",date:"2021-09-13",phase:"phase-collab",title:"CanCam双人采访｜回顾初次同台与合作后的熟悉",category:"采访记录",confidence:"杂志采访及媒体报道可查",summary:"CanCam刊载目黑莲与道枝骏佑双人采访。两人回顾2016年共同登台时并未有太多交谈，也谈到这次合作带来的进一步接触。",analysis:"本条收录采访中可确认的回忆与合作背景；关于「距离一下子拉近」及希望互称昵称的具体措辞，须以完整原刊或视频核对后再补入。",source:"https://cancam.jp/archives/1029384",extra:`
+<h4>杂志信息</h4><p>CanCam于2021年9月13日公开目黑莲与道枝骏佑的双人采访。该采访刊载于9月21日发售的《CanCam》2021年11月号，包含双人写真及对谈。</p>
+<h4>回顾2016年的共同舞台</h4><blockquote>「そのときはあまりしゃべらなかった気がします。」</blockquote><p><b>中文译意：</b>“当时似乎没有怎么交谈。”这是道枝骏佑回忆两人在2016年《JOHNNYS' Future WORLD》共同登台时的情况。</p><blockquote>「一方的にすごいなぁって思ってました。」</blockquote><p><b>中文译意：</b>“我当时只是单方面觉得他很厉害。”目黑莲在采访中回忆了自己对道枝骏佑的早期印象。</p>
+<h4>这次合作带来的变化</h4><p>与2016年共同登台时「似乎没有怎么交谈」的状态相比，《消失的初恋》让两人有了更多共同采访与工作接触。采访中，道枝骏佑表达了希望借这次合作进一步熟悉目黑莲的想法。</p>
+<h4>粉丝视角</h4><p>把这篇采访放在2021年8月官宣采访之后，可以看到时间线从「主动交换联系方式、开始联系」继续推进到「共同接受采访、回顾早期交集」。它也与2016年的早期档案形成对照：当时只是同台而少有交谈，到了2021年，两人已经能够公开谈论交换联系方式、联系与约饭。</p>
+<h4>资料出处</h4><p><a href="https://cancam.jp/archives/1029384" target="_blank" rel="noopener">CanCam.jp｜目黑莲与道枝骏佑双人采访</a>（2021年9月13日）。</p><p><a href="https://www.oricon.co.jp/news/2207465/full/" target="_blank" rel="noopener">ORICON NEWS｜CanCam双人封面及采访报道</a>。</p><p class="bio-caption"><b>档案标注：</b>杂志双人采访｜回顾2016年共同登台｜事实与粉丝视角分开。</p>`},
+{"id": 2021091301, "kind": "timeline", "date": "2021-09-13", "phase": "phase-collab", "title": "《别册Margaret》双人特别企划", "category": "杂志记录", "confidence": "杂志目录可查", "summary": "《别册Margaret》2021年10月号刊载目黑莲与道枝骏佑的双人特别写真及评论，是《消失的初恋》宣传期的早期双人杂志内容。", "analysis": "本条记录杂志发行与企划信息，不将写真中的摆拍姿势解释为现实互动。", "source": "https://shonenjumpplus.com/magazine/316112896848994975", "extra": "<h4>刊物信息</h4><p>《别册Margaret》2021年10月号于2021年9月13日发售，刊载目黑莲与道枝骏佑的双人特别写真及评论。</p><h4>档案意义</h4><p>这是《消失的初恋》宣传期双人杂志内容的一项记录，可与同月《CanCam》双人采访并列查看。杂志写真属于官方拍摄内容，画面构图与姿势不等同于演员私下相处状态。</p><h4>资料出处</h4><p><a href=\"https://shonenjumpplus.com/magazine/316112896848994975\" target=\"_blank\" rel=\"noopener\">少年Jump+｜《别册Margaret》2021年10月号目录</a>。</p><p class=\"bio-caption\"><b>档案标注：</b>杂志发行信息｜双人企划｜不将摆拍视为现实互动。</p>"},
+{"id": 20210921, "kind": "timeline", "date": "2021-09-21", "phase": "phase-collab", "title": "《CanCam》11月号特别版｜双人封面发售", "category": "杂志记录", "confidence": "杂志报道可查", "summary": "《CanCam》2021年11月号特别版以目黑莲与道枝骏佑为双人封面，刊载双人写真及采访。", "analysis": "9月13日为CanCam.jp采访公开日，9月21日为杂志发售日；两者是同一企划的不同时间节点。", "source": "https://cancam.jp/archives/1029384", "extra": "<h4>刊物信息</h4><p>《CanCam》2021年11月号特别版于2021年9月21日发售，目黑莲与道枝骏佑共同登上封面，并收录双人写真与采访。</p><h4>与9月13日网络报道的区别</h4><p>CanCam.jp于9月13日公开采访报道；本条记录的是9月21日纸本杂志发售，不重复当作一次新的采访。</p><h4>资料出处</h4><p><a href=\"https://cancam.jp/archives/1029384\" target=\"_blank\" rel=\"noopener\">CanCam.jp｜双人封面与采访报道</a>。</p><p class=\"bio-caption\"><b>档案标注：</b>杂志发售日期｜双人封面｜与9月13日线上报道为同一企划。</p>"},
+{"id": 20210922, "kind": "timeline", "date": "2021-09-22", "phase": "phase-collab", "title": "双主题曲公布｜《Secret Touch》与《初心LOVE》", "category": "作品与宣传", "confidence": "朝日电视台官方消息", "summary": "电视剧公布两首主题曲：Snow Man演唱《Secret Touch》，浪花男子演唱《初心LOVE》。目黑莲谈到与浪花男子尝试新的合作形式。", "analysis": "这是作品宣传及组合音乐活动信息，不将两首主题曲的关联解释为两位艺人之间的私人暗号。", "source": "https://www.tv-asahi.co.jp/kietahatsukoi/news/0003/", "extra": "<h4>官方公布内容</h4><p>《消失的初恋》公布双主题曲：Snow Man演唱片头曲《Secret Touch》，浪花男子演唱片尾曲《初心LOVE》。两首歌曲分别对应目黑莲与道枝骏佑所属组合。</p><h4>目黑莲的公开评论</h4><p>目黑莲谈及与浪花男子进行新的合作形式，并表达了对此次合作的期待。相关报道可参见下方官方公告及媒体采访。</p><h4>粉丝视角</h4><p>这项安排让两位主演所属组合都参与到电视剧音乐宣传中，是作品层面的交汇点。它首先是制作方的主题曲企划，不宜延伸为未经证实的私人含义。</p><h4>资料出处</h4><p><a href=\"https://www.tv-asahi.co.jp/kietahatsukoi/news/0003/\" target=\"_blank\" rel=\"noopener\">朝日电视台｜双主题曲公布</a>。</p><p><a href=\"https://thetv.jp/news/detail/1051566/p3/\" target=\"_blank\" rel=\"noopener\">WEBザテレビジョン｜目黑莲相关评论</a>。</p><p class=\"bio-caption\"><b>档案标注：</b>官方作品消息｜组合主题曲合作｜非私人互动。</p>"},
+{"id": 20211006, "kind": "timeline", "date": "2021-10-06", "phase": "phase-collab", "title": "制作发表会｜重现壁咚场景与拍摄花絮", "category": "官方幕后", "confidence": "朝日电视台官方报道", "summary": "制作发表会上，目黑莲与道枝骏佑重现剧中壁咚场景，并分享拍摄时拳头碰到墙面纤维的细节；目黑莲也询问道枝骏佑是否没事。", "analysis": "壁咚属于剧中角色场景的宣传重现；墙面纤维及现场问候属于公开活动中的幕后分享。需将角色演绎与演员现实互动区分。", "source": "https://www.tv-asahi.co.jp/kietahatsukoi/news/0007/", "extra": "<h4>活动内容</h4><p>2021年10月6日，《消失的初恋》举行制作发表会。目黑莲与道枝骏佑在现场重现剧中的壁咚场景，福本莉子与铃木仁也参与相关环节，并模拟角色当时的内心反应。</p><h4>墙面纤维的小插曲</h4><p>道枝骏佑谈到拍摄壁咚场景时，拳头碰到墙面，感觉有纤维刺刺的。目黑莲也触摸墙面确认，并询问道枝骏佑「大丈夫？」（没事吧？）。</p><h4>事实边界</h4><p>壁咚是剧中角色的情节，现场重现是宣传活动安排；墙面触感及目黑莲的询问则是制作发表会报道记录的现场细节。两者应分别标注，不把剧中情节当成现实亲密行为。</p><h4>资料出处</h4><p><a href=\"https://www.tv-asahi.co.jp/kietahatsukoi/news/0007/\" target=\"_blank\" rel=\"noopener\">朝日电视台｜制作发表会报道</a>。</p><p><a href=\"https://post.tv-asahi.co.jp/post-166072/\" target=\"_blank\" rel=\"noopener\">TV Asahi POST｜制作发表会相关报道</a>。</p><p class=\"bio-caption\"><b>档案标注：</b>官方活动报道｜剧中场景宣传重现｜现场幕后细节。</p>"},
+{"id": 20211013, "kind": "timeline", "date": "2021-10-13", "phase": "phase-collab", "title": "《TVガイド》双人封面公开｜拍摄现场小细节", "category": "杂志幕后", "confidence": "TV Guide Web报道", "summary": "《TVガイド》10月29日号公开双人封面。报道记录两人拍摄时互相谦让取色铅笔、目黑莲伸长脖子看道枝骏佑画画，以及工作人员让两人在橡皮擦上写对方名字。", "analysis": "本条根据杂志编辑部公开的拍摄花絮记录；这些是工作现场的可见细节，不据此推断私人关系。", "source": "https://www.tvguide.or.jp/column/column-1137884/", "extra": "<h4>拍摄花絮</h4><p>《TVガイド》2021年10月29日号公开目黑莲与道枝骏佑的双人封面。TV Guide Web的报道记录了拍摄时的几个小细节：两人互相谦让取色铅笔；目黑莲伸长脖子看道枝骏佑画画；工作人员还让两人在橡皮擦上写下对方的名字。</p><h4>粉丝视角</h4><p>这些细节的价值在于它们来自公开的杂志拍摄花絮，而不是粉丝对静态照片的自行脑补。档案保留具体行为描述，但不将其扩大为未被报道的私下互动。</p><h4>资料出处</h4><p><a href=\"https://www.tvguide.or.jp/column/column-1137884/\" target=\"_blank\" rel=\"noopener\">TV Guide Web｜《TVガイド》双人封面拍摄花絮</a>。</p><p class=\"bio-caption\"><b>档案标注：</b>媒体拍摄花絮｜具体细节有文字报道｜非私人场合记录。</p>"},
+{"id": 20211016, "kind": "timeline", "date": "2021-10-16", "phase": "phase-collab", "title": "综艺谈生日礼物｜目黑莲为道枝骏佑挑选礼物", "category": "综艺采访", "confidence": "节目内容及媒体报道可查", "summary": "在《あざとくて何が悪いの？》相关内容中，道枝骏佑透露目黑莲曾在采访时送给自己生日礼物；目黑莲现场复现了送礼时的说法。礼物具体内容没有公开。", "analysis": "可以确认的是道枝骏佑在节目中谈及收到生日礼物，以及目黑莲复现送礼表达；礼物品类、价格和私人送礼场景细节没有公开，不作补充。", "source": "https://news.livedoor.com/article/detail/21048758/", "extra": "<h4>节目内容</h4><p>2021年10月16日播出的《あざとくて何が悪いの？》相关内容中，道枝骏佑谈到目黑莲曾在采访时送给自己生日礼物，而且事先没有特别预告，送礼方式让他觉得自然。</p><h4>目黑莲现场复现的说法</h4><blockquote>「ちょっと道枝くんのために選んできたんだけど、あげるよ。」</blockquote><p><b>中文译意：</b>“我特意为道枝君挑了这个，送给你。”</p><h4>证据边界</h4><p>节目报道没有公开礼物具体是什么，也没有提供完整私人送礼过程。本档案只记录节目中双方公开谈到的内容，不推测礼物品牌、价值或送礼时的私人场景。</p><h4>资料出处</h4><p><a href=\"https://news.livedoor.com/article/detail/21048758/\" target=\"_blank\" rel=\"noopener\">Livedoor News｜节目相关报道</a>。</p><p><a href=\"https://mantan-web.jp/article/20211016dog00m200006000c.html\" target=\"_blank\" rel=\"noopener\">MANTANWEB｜节目预告及相关报道</a>。</p><p class=\"bio-caption\"><b>档案标注：</b>综艺公开谈话｜生日礼物由道枝骏佑提及｜礼物具体内容未公开。</p>"},
+{"id": 20211020, "kind": "timeline", "date": "2021-10-20", "phase": "phase-collab", "title": "《non-no》12月号特别版发售｜双人专题「触れ合い」", "category": "杂志记录", "confidence": "non-no官方报道", "summary": "《non-no》2021年12月号特别版于10月20日发售，收录目黑莲与道枝骏佑双人封面及8页专题，主题为「触れ合い」。", "analysis": "10月13日是网络封面公开日，10月20日才是杂志发售日；本条按正式发售日记录。", "source": "https://nonno.hpplus.jp/lifestyle/post/97226/", "extra": "<h4>刊物信息</h4><p>《non-no》2021年12月号特别版于2021年10月20日发售，目黑莲与道枝骏佑登上特别版封面，并收录8页双人专题，主题为「触れ合い」。</p><h4>时间说明</h4><p>non-no于10月13日提前公开封面信息；10月20日为纸本杂志发售日，二者不是两次不同的双人企划。</p><h4>资料出处</h4><p><a href=\"https://nonno.hpplus.jp/lifestyle/post/97226/\" target=\"_blank\" rel=\"noopener\">non-no｜12月号特别版封面及专题介绍</a>。</p><p class=\"bio-caption\"><b>档案标注：</b>杂志发售｜双人封面与专题｜宣传企划记录。</p>"},
+{"id": 20211027, "kind": "timeline", "date": "2021-10-27", "phase": "phase-collab", "title": "《anan》2272号｜双人封面与专题", "category": "杂志记录", "confidence": "anan官方目录", "summary": "《anan》2272号刊载目黑莲与道枝骏佑双人封面及写真企划，是《消失的初恋》播出期的双人杂志宣传内容。", "analysis": "杂志封面与写真属于正式拍摄企划，不将画面中的姿势或构图解释为现实私人行为。", "source": "https://magazineworld.jp/anan/anan-2272/", "extra": "<h4>刊物信息</h4><p>《anan》2272号于2021年10月27日发售，目黑莲与道枝骏佑共同登上封面，并参与双人写真与专题企划。</p><h4>档案说明</h4><p>本条作为正式出版记录收录。写真画面属于杂志拍摄，不应被当作演员现实相处的直接证据。</p><h4>资料出处</h4><p><a href=\"https://magazineworld.jp/anan/anan-2272/\" target=\"_blank\" rel=\"noopener\">anan｜2272号官方目录</a>。</p><p class=\"bio-caption\"><b>档案标注：</b>杂志发行信息｜双人封面｜官方出版记录。</p>"},
+{"id": 20211115, "kind": "timeline", "date": "2021-11-15", "phase": "phase-collab", "title": "non-no「秘密的道枝目黑」｜彼此心动的瞬间", "category": "双人采访", "confidence": "non-no采访原文可查", "summary": "在non-no双人采访中，道枝骏佑说目黑莲会对自己无关紧要的话露出温柔笑容；目黑莲回应，听到道枝骏佑这样说让自己有些心动。", "analysis": "这是双方在公开采访中的表达，属于当事人公开谈话；不将「心动」脱离采访语境解释为现实恋爱情感。", "source": "https://nonno.hpplus.jp/entertainment/post/97580/", "extra": "<h4>道枝骏佑的回答</h4><blockquote>「僕の他愛もない話にも、くしゃっとした優しい笑顔を見せてくれるんですよね。」</blockquote><p><b>中文译意：</b>“即使我说的只是些无关紧要的话，目黑莲也会对我露出那种舒展开来的温柔笑容。”</p><h4>目黑莲的回应</h4><blockquote>「今、それを言ってくれたことにちょっときゅんとした。」</blockquote><p><b>中文译意：</b>“你现在能把这件事说出来，倒是让我有点心动。”</p><h4>粉丝视角</h4><p>这段对谈的亮点在于两人的回答形成了即时回应：道枝骏佑描述目黑莲平时对自己说话时的表情，目黑莲则回应自己听到这番描述时的感受。档案保留采访原意，不将节目语境中的「きゅん」直接等同于现实恋爱表白。</p><h4>资料出处</h4><p><a href=\"https://nonno.hpplus.jp/entertainment/post/97580/\" target=\"_blank\" rel=\"noopener\">non-no｜目黑莲与道枝骏佑谈彼此心动的瞬间</a>。</p><p class=\"bio-caption\"><b>档案标注：</b>当事人双人采访｜双方公开回答｜日文短摘与中文译意。</p>"},
+{"id": 20211116, "kind": "timeline", "date": "2021-11-16", "phase": "phase-collab", "title": "non-no双人访谈｜聊起各自的爱犬", "category": "双人采访", "confidence": "non-no采访原文可查", "summary": "目黑莲与道枝骏佑在non-no专题中聊到各自的狗狗；道枝骏佑分享狗狗陪自己玩捉迷藏的经历，目黑莲继续追问细节。", "analysis": "这是公开采访中的生活话题交流。它能说明两人在采访中围绕宠物展开对话，不代表可以推断未公开的私人生活细节。", "source": "https://nonno.hpplus.jp/entertainment/post/97678/", "extra": "<h4>采访内容</h4><p>在non-no双人专题中，目黑莲与道枝骏佑聊到各自的爱犬。道枝骏佑分享了狗狗陪自己玩捉迷藏的经历，目黑莲对相关细节继续提问。</p><h4>粉丝视角</h4><p>这段内容的看点是采访对话本身：道枝骏佑分享生活话题，目黑莲顺着内容追问。档案仅整理公开采访中出现的交流，不延伸到未公开的私人生活。</p><h4>资料出处</h4><p><a href=\"https://nonno.hpplus.jp/entertainment/post/97678/\" target=\"_blank\" rel=\"noopener\">non-no｜双人爱犬话题采访</a>。</p><p class=\"bio-caption\"><b>档案标注：</b>当事人双人采访｜生活话题｜公开内容整理。</p>"},
+{"id": 20211212, "kind": "timeline", "date": "2021-12-12", "phase": "phase-collab", "title": "官方未公开自拍视频｜青木与井田的初次约会", "category": "官方宣传素材", "confidence": "朝日电视台官网更新记录", "summary": "朝日电视台官网公开标题为「青木と井田の初デート！未公開！近すぎるドキドキ自撮り動画」的未公开宣传视频，内容以青木与井田的角色关系为主题。", "analysis": "该视频属于电视剧角色宣传素材，不是目黑莲与道枝骏佑的私人自拍视频。", "source": "https://www.tv-asahi.co.jp/kietahatsukoi/", "extra": "<h4>官方素材</h4><p>朝日电视台官网于2021年12月12日前后更新了标题为「青木と井田の初デート！未公開！近すぎるドキドキ自撮り動画」的宣传内容。</p><h4>档案说明</h4><p>标题中的青木与井田是剧中角色。该内容属于官方发布的电视剧宣传素材，不应标记为两位演员的私人自拍视频。</p><h4>资料出处</h4><p><a href=\"https://www.tv-asahi.co.jp/kietahatsukoi/\" target=\"_blank\" rel=\"noopener\">朝日电视台｜《消失的初恋》官方网站</a>。</p><p class=\"bio-caption\"><b>档案标注：</b>官方宣传素材｜角色内容｜非私人影像。</p>"},
+{"id": 20211218, "kind": "timeline", "date": "2021-12-18", "phase": "phase-collab", "title": "《消失的初恋》最终回｜公开杀青感言与合作回顾", "category": "作品收官采访", "confidence": "ORICON／TV LIFE报道可查", "summary": "《消失的初恋》最终回播出。道枝骏佑感谢目黑莲及剧组成员，表示拍摄期间每天都很开心；目黑莲则谈到从道枝骏佑及全体剧组身上感受到对作品的热情，并称这是收获很多的经历。", "analysis": "12月18日是最终回播出及相关感言公开的日期，不据此断言两人当天完成最后一场拍摄。", "source": "https://www.oricon.co.jp/news/2218158/full/", "extra": "<h4>道枝骏佑的感言</h4><p>道枝骏佑在最终回相关感言中感谢目黑莲、福本莉子、铃木仁及工作人员，表示多亏大家，自己每天都很开心地参与拍摄，也希望今后还能再次合作。</p><h4>目黑莲的感言</h4><p>目黑莲谈到每次拍摄都能感受到道枝骏佑及全体演员、工作人员对作品的热情，并表示这是一次学到很多的经历。</p><h4>时间说明</h4><p>本条记录的是最终回播出及公开的收官感言。不能仅凭感言发布日期推断两人最后一场戏或最后一次拍摄的具体日期。</p><h4>资料出处</h4><p><a href=\"https://www.oricon.co.jp/news/2218158/full/\" target=\"_blank\" rel=\"noopener\">ORICON NEWS｜《消失的初恋》最终回相关报道</a>。</p><p><a href=\"https://www.tvlife.jp/drama/437827\" target=\"_blank\" rel=\"noopener\">TV LIFE｜最终回及演员感言</a>。</p><p class=\"bio-caption\"><b>档案标注：</b>最终回播出｜公开收官感言｜不等同于最后拍摄日期。</p>"}
+];
+
+const archive2022_2024 = [{"id":220101,"kind":"timeline","date":"2022-01-01","title":"《消失的初恋》新春初キュンSP｜双人采访与初公开幕后","category":"采访记录","confidence":"公开可核实","summary":"新春特别节目播出，包含目黑莲与道枝骏佑谈拍摄幕后、最开心的拍摄场景，以及首次公开的双人幕后影像。","analysis":"这不是单纯重播，而是为作品安排的特别节目。节目预告明确提到双人采访与初公开拍摄花絮，因此符合共同采访／共同幕后收录标准。具体互动以实际节目影像为准。","source":"https://news.mynavi.jp/article/20211224-2238473/","extra":"<h4>事件背景</h4><p>《消失的初恋 朝まで一緒にキュンしよう 新春初キュンSP》于2022年1月1日播出。节目除正片外，还安排目黑莲与道枝骏佑回顾拍摄幕后、谈论最开心的拍摄场景，并公开初出し幕后影像。</p><h4>值得查看的内容</h4><ul><li>两位主演共同接受采访。</li><li>回顾拍摄现场与印象深刻的场景。</li><li>初公开的拍摄花絮。</li></ul><p>本卡记录节目内容及官方预告所确认的构成，不把剧中角色约会当成演员现实约会。</p><h4>资料出处</h4><p><a href=\"https://news.mynavi.jp/article/20211224-2238473/\" target=\"_blank\" rel=\"noopener\">マイナビニュース｜道枝骏佑×目黑莲《消失的初恋》新春特别节目决定</a>（2021年12月24日公布，2022年1月1日播出）。</p>","phase":"phase-archive"},{"id":220102,"kind":"timeline","date":"2022-01-02","title":"《Johnny’s Festival》线上配信｜Snow Man与浪花男子共同出演","category":"合作作品","confidence":"公开可核实","summary":"现场演出于2021年12月30日举行，线上配信自2022年1月2日起。Snow Man与浪花男子共同出演。","analysis":"属于同场共同出演记录，没有可确认的两人直接对话，不标记为双人互动。","source":"","extra":"<h4>事件内容</h4><p>《Johnny’s Festival ～Thank you 2021 Hello 2022～》现场演出日期为2021年12月30日，线上配信从2022年1月2日起。Snow Man与浪花男子均参与演出。</p><h4>收录说明</h4><p>两人所属团体共同出演，按共同出演记录收录；目前没有逐字对话或直接互动材料。</p>","phase":"phase-archive"},{"id":220208,"kind":"timeline","date":"2022-02-08","title":"浪花男子YouTube｜道枝骏佑回答「觉得很好的杰家人」是目黑莲","category":"公开互动","confidence":"待补充来源","summary":"道枝骏佑在提问环节点名目黑莲，并提到即使工作忙碌或频繁见面时，两人也会发消息。","analysis":"重点在于道枝骏佑主动点名目黑莲，并谈到两人通过消息保持联系。现有依据为字幕组中文翻译，日语逐字原文与原始视频链接待补。","source":"","extra":"<h4>事件内容</h4><p>浪花男子YouTube视频中，道枝骏佑被问到「觉得很好的杰尼斯家人是？」时回答目黑君，并提及即使频繁见面、工作忙碌时也会发消息。</p><h4>磕点记录</h4><ol><li>道枝骏佑在团体视频中主动点名目黑莲。</li><li>回答不止停留在前辈评价，还提到两人会互相发消息。</li></ol><p><b>原文状态：</b>未取得日语逐字原文；当前为字幕组中文转述，需回看原视频核对上下文。</p>","phase":"phase-archive"},{"id":220302,"kind":"timeline","date":"2022-03-02","title":"《TV LIFE》No.5｜「什么都可以跟我说」与睡颜话题","category":"采访记录","confidence":"待补充来源","summary":"双人封面与采访。目黑莲对道枝骏佑说，辛苦时团体的事情也好，什么都可以告诉自己；采访还涉及一起散步、吃饭及睡颜等话题。","analysis":"这是2022年最重要的双人采访之一。将你提供的采访要点完整保留；其中部分句子目前只有中文转述，日语原刊页码和逐字原文仍需补核。","source":"https://www.tvlife.jp/latest/455997","extra":"<h4>事件背景</h4><p>《TV LIFE》No.5（2022年3月18日号）刊载目黑莲与道枝骏佑双人封面及采访。作品《消失的初恋》获得年度电视剧大奖多项奖项，两位主演在采访中回顾作品及彼此相处。</p><h4>日语原文摘录</h4><blockquote>「大変だったら、グループのこととか何でも言ってきてね」</blockquote><p><b>中文译意：</b>「如果辛苦的话，团体的事情也好，什么都可以跟我说。」</p><h4>你提供的其他采访要点</h4><ul><li>目黑莲表示想和道枝骏佑一起散步、吃饭。</li><li>目黑莲提到「道枝君的睡颜是我的宝物」。</li><li>目黑莲谈到《Secret Touch》和《消失的初恋》在自己心中已经紧密联系。</li><li>目黑莲表示会以120%的热情唱跳《初心LOVE》。</li><li>道枝骏佑评价目黑莲很温柔。</li></ul><p><b>原文状态：</b>上述其余句子暂按用户提供的中文采访整理保留，日语原句及页码待补，不将中文转述标作逐字引文。</p><h4>磕点分析</h4><ol><li>目黑莲明确表示道枝骏佑遇到困难时可以向自己倾诉，且把团体相关问题也包括在内。</li><li>一起散步、吃饭属于对日常共同活动的期待，不是剧中角色行为。</li><li>睡颜话题后来在年末采访中再次出现，形成跨采访呼应。</li><li>将两首主题曲与作品联系起来，是目黑莲对合作经历的回顾。</li></ol><h4>资料出处</h4><p><a href=\"https://www.tvlife.jp/latest/455997\" target=\"_blank\" rel=\"noopener\">TV LIFE官方发售介绍</a>。具体采访原刊内容建议以杂志实物核对。</p>","phase":"phase-archive"},{"id":220523,"kind":"timeline","date":"2022-05-23","title":"两人同日更新Johnny’s web｜不同版本合照与「还没有跟我生分」","category":"公开互动","confidence":"待补充来源","summary":"道枝骏佑与目黑莲同日更新博客，分别提到碰面、合照及彼此相处；道枝提示读者去看目黑博客的不同版本。","analysis":"两篇博客均涉及对方，并出现不同版本合照。是否事先商量好同日更新，没有证据，不作为事实。","source":"https://twisoku.ldblog.jp/archives/59345037.html","extra":"<h4>道枝骏佑的博客内容（中文转述）</h4><ul><li>录制《少年俱乐部》时与目黑莲碰面。</li><li>久违地拍了照片。</li><li>附上与目黑莲的合照。</li><li>提示读者去目黑莲的博客，可以看到不同版本。</li></ul><h4>目黑莲的博客内容（中文转述）</h4><ul><li>前阵子与道枝骏佑碰面，聊了工作和彼此的电影。</li><li>回忆浪花男子与Snow Man刚开始打招呼时，道枝骏佑一边鞠躬一边悄悄向自己挥手。</li><li>目黑莲觉得这个动作很可爱、很有意思。</li><li>目黑莲写到「还没有跟我生分，安心了（笑）」。</li><li>照片使用道枝骏佑的手机拍摄。</li></ul><h4>磕点分析</h4><ol><li>同日博客分别提及对方。</li><li>双方展示不同版本的合照，道枝骏佑还主动引导读者去看目黑莲的博客。</li><li>目黑莲记得道枝骏佑早期悄悄挥手的动作，并在博客中复述。</li><li>「还没有跟我生分」是目黑莲对两人相处状态的直接描述。</li></ol><p><b>原文状态：</b>现有为中文整理，未取得两篇博客完整日语逐字原文。</p><p><b>资料出处：</b><a href=\"https://twisoku.ldblog.jp/archives/59345037.html\" target=\"_blank\" rel=\"noopener\">查看原始出处</a></p>","phase":"phase-archive"},{"id":220702,"kind":"timeline","date":"2022-07-02","title":"《THE MUSIC DAY 2022》｜两人分别参加Shuffle Medley","category":"合作作品","confidence":"公开可核实","summary":"道枝骏佑与拉乌卢表演《ガラスの十代》；目黑莲与永濑廉表演《青春アミーゴ》。两人同场但分属不同组合。","analysis":"按共同出演收录，不写成两人共同表演。","source":"https://www.oricon.co.jp/news/2240584/full/","extra":"<h4>事件内容</h4><ul><li>道枝骏佑与拉乌卢：《ガラスの十代》。</li><li>目黑莲与永濑廉：《青春アミーゴ》。</li></ul><h4>收录说明</h4><p>两人出现在同一节目，但不是同一组Shuffle Medley表演。无已确认的双人对话。</p><p><a href=\"https://www.oricon.co.jp/news/2240584/full/\" target=\"_blank\" rel=\"noopener\">ORICON NEWS节目报道</a></p><p><b>资料出处：</b><a href=\"https://www.oricon.co.jp/news/2240584/full/\" target=\"_blank\" rel=\"noopener\">查看原始出处</a></p>","phase":"phase-archive"},{"id":220723,"kind":"timeline","date":"2022-07-23","title":"《Ray》2022年9月号｜道枝骏佑回忆目黑莲的关心","category":"采访记录","confidence":"待补充来源","summary":"道枝骏佑回忆目黑莲曾对他说，精神上不安定时可以告诉自己，因为自己知道调整的方法。","analysis":"这是道枝骏佑在个人采访中明确提及目黑莲的内容，重点是道枝记住了目黑莲曾给予的关心。","source":"","extra":"<h4>日语原文</h4><blockquote>「精神的に不安定になったら言ってね。直す方法を知ってるから」</blockquote><p><b>中文翻译：</b>「如果精神上感觉不安定的话要跟我说哦，我知道调整的方法。」</p><h4>磕点分析</h4><p>道枝骏佑在杂志采访中主动回忆这句话，并将其作为目黑莲会照顾人的例子。与2022年3月目黑莲表示「什么都可以跟我说」的采访内容，可以作为同年度的前后呼应。</p><p><b>出处状态：</b>用户提供了日语原文，杂志原刊页码与公开链接待补。</p>","phase":"phase-archive"},{"id":220728,"kind":"timeline","date":"2022-07-28","title":"《週刊女性》采访｜道枝骏佑谈与目黑莲一起看电影","category":"采访记录","confidence":"公开可核实","summary":"谈到主演电影时，道枝骏佑表示，如果邀请目黑莲，对方应该会答应；两个人一起看自己出演的电影会不好意思，也会在意目黑莲的反应。","analysis":"这是道枝骏佑在个人采访中明确提及目黑莲，并设想两人共同观影的内容。没有说两人已经约好看电影。","source":"https://www.jprime.jp/articles/-/24631?page=2","extra":"<h4>事件背景</h4><p>采访围绕道枝骏佑主演电影《今夜，即便这份恋情从世界上消失》展开。记者问到他有没有和曾共同出演《消失的初恋》的目黑莲聊过这部电影。</p><h4>日语原文摘录</h4><blockquote>「目黒くんの反応が気になっちゃうし（笑）。」</blockquote><p><b>中文翻译：</b>「而且会很在意目黑君的反应（笑）。」</p><h4>采访内容</h4><p>道枝骏佑表示，虽然曾在音乐节目与目黑莲碰面，但似乎没有聊过这部电影。他觉得如果自己邀请目黑莲看电影，对方应该会答应。谈到两个人一起看时，他表示自己出演的电影和别人一起看会不好意思，而且会在意目黑莲的反应。</p><h4>磕点分析</h4><ol><li>道枝骏佑主动将目黑莲带入新电影的话题。</li><li>他觉得目黑莲可能会答应自己的观影邀请。</li><li>他设想两个人一起看电影的场景。</li><li>「会在意目黑君的反应」是这段采访最值得摘录的表达。</li></ol><p><a href=\"https://www.jprime.jp/articles/-/24631?page=2\" target=\"_blank\" rel=\"noopener\">週刊女性PRIME｜2022年7月28日采访</a></p><p><b>资料出处：</b><a href=\"https://www.jprime.jp/articles/-/24631?page=2\" target=\"_blank\" rel=\"noopener\">查看原始出处</a></p>","phase":"phase-archive"},{"id":221125,"kind":"timeline","date":"2022-11-25","title":"《少年俱乐部》｜目黑莲与道枝骏佑共同担任MC","category":"公开互动","confidence":"待补充来源","summary":"目黑莲与道枝骏佑共同担任节目MC。完整对话台本及逐字互动尚待补充。","analysis":"这是两人以各自团体成员身份共同主持节目的记录。后续可从节目影像补充接话、互相回应及镜头细节。","source":"https://thetv.jp/program/0000813125/356/","extra":"<h4>事件内容</h4><p>目黑莲与道枝骏佑共同担任《少年俱乐部》MC。</p><h4>磕点记录方向</h4><p>共同主持包含节目介绍、接话与流程配合。当前档案确认共同MC这一事实，不编造尚未核实的逐字对话；可在取得完整节目影像后补充具体互动。</p><p><a href=\"https://thetv.jp/program/0000813125/356/\" target=\"_blank\" rel=\"noopener\">ザテレビジョン节目资料</a></p><p><b>资料出处：</b><a href=\"https://thetv.jp/program/0000813125/356/\" target=\"_blank\" rel=\"noopener\">查看原始出处</a></p>","phase":"phase-archive"},{"id":221207,"kind":"timeline","date":"2022-12-07","title":"FNS歌謡祭 第1夜｜Snow Man与浪花男子共同出演","category":"合作作品","confidence":"公开可核实","summary":"Snow Man演唱《JUICY》《勝手にしやがれ》，浪花男子演唱《サチアレ》。两团同场出演。","analysis":"共同出演记录，无已确认的双人互动。","source":"","extra":"<h4>事件内容</h4><ul><li>Snow Man：《JUICY》《勝手にしやがれ》。</li><li>浪花男子：《サチアレ》。</li></ul><p>两团同场出演，目前没有直接对话记录，因此仅标注共同出演。</p>","phase":"phase-archive"},{"id":221220,"kind":"timeline","date":"2022-12","title":"新春Dream Match采访｜目黑莲谈相处、睡颜视频与持续联系","category":"采访记录","confidence":"待补充来源","summary":"目黑莲形容两人合得来、相处舒服；提到保存道枝骏佑的睡颜视频、两人仍保持联系，以及道枝发送《silent》感想视频。","analysis":"这组采访内容是2022年末重要节点。具体刊物名称、日语逐字原文及原刊页码待补；睡颜视频的细节按用户提供的采访转述保留，不额外扩写。","source":"","extra":"<h4>目黑莲的采访内容（中文整理）</h4><ul><li>「很合得来，在一起特别舒服。」</li><li>「那道可爱的睡颜，我现在还保存着呢。」</li><li>共演《消失的初恋》之前没有交集，开拍前通过向井康二取得联系方式。</li><li>聊起来很轻松，可以自然地待在一起。</li><li>现在仍保持联系。</li><li>最近道枝骏佑还给自己发送了《silent》的感想视频。</li></ul><h4>睡颜视频的补充叙述</h4><p>根据你提供的采访整理，道枝骏佑在拍摄现场睡着，目黑莲拍下视频，等道枝骏佑醒来后给他看；道枝骏佑笑得很厉害，目黑莲觉得视频可爱，因此保存至今。该细节尚待原刊逐字核实。</p><h4>磕点分析</h4><ol><li>目黑莲直接评价两人相处合拍、舒服。</li><li>睡颜话题从年初采访延续到年末，并出现视频保存的描述。</li><li>目黑莲明确表示两人仍保持联系。</li><li>道枝骏佑主动发送《silent》感想视频，是作品之外的联系记录。</li></ol><p><b>资料状态：</b>采访刊物、原始日语原文及页码待补；以上按用户提供的中文采访整理保留。</p>","phase":"phase-archive"},{"id":221231,"kind":"timeline","date":"2022-12-31","title":"Johnny’s Countdown 2022→2023｜跨年共同出演","category":"合作作品","confidence":"公开可核实","summary":"Snow Man与浪花男子共同参加东京巨蛋跨年演唱会。","analysis":"作为2022年末共同出演记录。没有确认的双人对话或互动，不作额外推断。","source":"","extra":"<h4>事件内容</h4><p>作为2022年末共同出演记录。没有确认的双人对话或互动，不作额外推断。</p><h4>粉丝视角</h4><p>此处只记录公开内容所能支持的观察，不将粉丝解读写成当事人的真实想法。</p><p><b>资料出处：</b>原始页面／逐字资料待补。该条按现有整理保留，未将中文转述伪装成日语原文。</p>","phase":"phase-archive"},{"id":230228,"kind":"timeline","date":"2023-02-28","title":"《CDTVライブ！ライブ！2時間SP》｜两团共同为节目开场","category":"合作作品","confidence":"公开可核实","summary":"节目官方介绍称开场由Snow Man与浪花男子担任；Snow Man演唱《NO SURRENDER!》，浪花男子演唱《ハッピーサプライズ》。","analysis":"两团共同参与节目开场，属于同场出演，不等同于两人直接互动。","source":"","extra":"<h4>日语原文</h4><blockquote>「オープニングを飾るのはSnow Manとなにわ男子！」</blockquote><p><b>中文翻译：</b>「为节目开场的是Snow Man和浪花男子！」</p><ul><li>Snow Man：《NO SURRENDER!》</li><li>浪花男子：《ハッピーサプライズ》</li></ul><p>官方稿件链接待补。</p>","phase":"phase-archive"},{"id":230611,"kind":"timeline","date":"2023-06-11—06-12","title":"道枝骏佑见学Snow Man「i DO ME」东京巨蛋公演｜Jweb提及与目黑莲握手","category":"公开互动","confidence":"待补充来源","summary":"道枝骏佑于6月11日观看Snow Man东京巨蛋演唱会，次日Jweb提到与目黑莲握手，并推荐歌曲《Julietta》。","analysis":"这是2023年重要的实际接触记录。见学和握手细节目前依据用户提供的现场与博客整理；原始Jweb日语内容及repo链接待补。","source":"","extra":"<h4>事件经过</h4><p>2023年6月11日，道枝骏佑前往观看Snow Man 1st DOME tour 2023「i DO ME」东京巨蛋公演。</p><p>6月12日，道枝骏佑更新Johnny’s web，提到自己去看了演唱会，并说「和目黑君是握手了！（笑）」，还推荐了Snow Man的《Julietta》。以上为现有中文转述，日语逐字原文待补。</p><h4>磕点分析</h4><ol><li>道枝骏佑亲自前往观看目黑莲所属团体的东京巨蛋公演。</li><li>道枝骏佑在次日博客中主动记录与目黑莲握手。</li><li>他还推荐Snow Man的歌曲《Julietta》。</li></ol><p><b>资料状态：</b>见学记录与Jweb原文链接待补；握手内容目前按用户提供的中文转述保留。</p>","phase":"phase-archive"},{"id":230701,"kind":"timeline","date":"2023-07-01","title":"《THE MUSIC DAY 2023》｜Snow Man与浪花男子共同出演","category":"合作作品","confidence":"公开可核实","summary":"两团参加同一场节目，用户整理的节目单显示均在20时台出演。","analysis":"同场出演记录，无已确认的双人互动；不推断后台碰面。","source":"","extra":"<h4>事件内容</h4><p>同场出演记录，无已确认的双人互动；不推断后台碰面。</p><h4>粉丝视角</h4><p>此处只记录公开内容所能支持的观察，不将粉丝解读写成当事人的真实想法。</p><p><b>资料出处：</b>原始页面／逐字资料待补。该条按现有整理保留，未将中文转述伪装成日语原文。</p>","phase":"phase-archive"},{"id":230715,"kind":"timeline","date":"2023-07-15","title":"《音楽の日2023》｜《初心LOVE》与Snow Man同场","category":"合作作品","confidence":"公开可核实","summary":"Snow Man傍晚时段出演；浪花男子演唱《ダイヤモンドスマイル》及爱之歌Medley中的《初心LOVE》。","analysis":"两团共同出演。《初心LOVE》同时是《消失的初恋》主题曲，适合作为共同作品关联记录，但不推断目黑莲在后台观看。","source":"","extra":"<h4>事件内容</h4><ul><li>Snow Man：傍晚时段出演。</li><li>浪花男子：《ダイヤモンドスマイル》及「愛のうたメドレー」中的《初心LOVE》。</li></ul><h4>关联点</h4><p>《初心LOVE》是电视剧《消失的初恋》的主题曲之一。浪花男子在同一场节目演唱这首歌，而目黑莲所属的Snow Man也参加节目。此处记录作品关联与共同出演，不推断目黑莲观看了道枝骏佑的表演。</p>","phase":"phase-archive"},{"id":230904,"kind":"timeline","date":"2023-09-04","title":"《CDTVライブ！ライブ！2時間SP》｜两团同场出演","category":"合作作品","confidence":"公开可核实","summary":"Snow Man演唱《Dangerholic》完整版本；浪花男子电视首披露《Missing》完整版本。","analysis":"同场出演记录，无直接互动材料。","source":"","extra":"<h4>事件内容</h4><p>同场出演记录，无直接互动材料。</p><h4>粉丝视角</h4><p>此处只记录公开内容所能支持的观察，不将粉丝解读写成当事人的真实想法。</p><p><b>资料出处：</b>原始页面／逐字资料待补。该条按现有整理保留，未将中文转述伪装成日语原文。</p>","phase":"phase-archive"},{"id":230922,"kind":"timeline","date":"2023-09-22","title":"目黑莲Johnny’s web｜提到道枝骏佑发送《一兆游戏》最终回感想","category":"公开互动","confidence":"待补充来源","summary":"目黑莲提到道枝骏佑一直说《一兆游戏》有趣，最终回也发来了感想，并表示期待道枝骏佑的新电视剧。","analysis":"目黑莲在个人博客中明确提及道枝骏佑对其作品的关注。与2022年道枝发送《silent》感想视频形成作品互相关注的呼应。","source":"","extra":"<h4>事件内容</h4><p>根据用户提供的中文整理，目黑莲提到《一兆游戏》完结，道枝骏佑一直说作品有趣，最终回也发送了感想；目黑莲随后表示期待道枝骏佑的电视剧。</p><h4>磕点分析</h4><ol><li>道枝骏佑持续关注目黑莲主演的《一兆游戏》。</li><li>道枝骏佑在最终回后发送感想。</li><li>目黑莲公开回应，并表示期待道枝骏佑的新剧。</li></ol><p><b>原文状态：</b>未取得Jweb日语逐字原文，现为用户提供的中文转述。</p>","phase":"phase-archive"},{"id":231024,"kind":"timeline","date":"2023-10-24","title":"目黑莲首次Instagram直播｜主动提及想看道枝骏佑的新剧","category":"公开互动","confidence":"粉丝观察／媒体引述","summary":"目黑莲直播中表示想在晚上10点看道枝骏佑出演的《マイ・セカンド・アオハル》，邀请观众一起看，并称道枝骏佑很努力。","analysis":"媒体标题引用了「道枝くんのドラマ見たいから」，更完整口播来自粉丝现场记录，并非官方逐字稿。","source":"","extra":"<h4>日语现场记录摘录</h4><blockquote>「俺、10時から道枝くんのドラマ見たいから」</blockquote><p>译：「我10点开始想看道枝君的电视剧。」</p><blockquote>「みんなで見に行こう！道枝くんのドラマ！道枝くん頑張っているよ」</blockquote><p>译：「大家一起去看吧！道枝君的电视剧！道枝君很努力哦。」</p><h4>事件内容</h4><p>目黑莲在Instagram直播中主动提到道枝骏佑出演的《マイ・セカンド・アオハル》，表示想在晚上10点观看，并邀请观众一起看。随后提前结束直播去看剧的细节来自粉丝现场记录。</p><h4>磕点分析</h4><ol><li>不是被提问后才回答，而是目黑莲主动提到道枝骏佑的新剧。</li><li>他邀请直播观众一起观看。</li><li>他还评价道枝骏佑很努力。</li></ol><p><b>资料状态：</b>完整口播为粉丝现场记录，媒体标题可作辅助佐证；不是官方逐字稿。</p>","phase":"phase-archive"},{"id":231202,"kind":"timeline","date":"2023-12-02","title":"《ベストアーティスト2023》｜两团共同出演","category":"合作作品","confidence":"公开可核实","summary":"浪花男子在19时台出演，Snow Man在22时台出演。","analysis":"同场年末音乐节目记录，出演时间不同，没有直接互动证据。","source":"","extra":"<h4>事件内容</h4><p>同场年末音乐节目记录，出演时间不同，没有直接互动证据。</p><h4>粉丝视角</h4><p>此处只记录公开内容所能支持的观察，不将粉丝解读写成当事人的真实想法。</p><p><b>资料出处：</b>原始页面／逐字资料待补。该条按现有整理保留，未将中文转述伪装成日语原文。</p>","phase":"phase-archive"},{"id":231218,"kind":"timeline","date":"2023-12-18","title":"《CDTVライブ！ライブ！クリスマスSP》｜两团共同出演","category":"合作作品","confidence":"公开可核实","summary":"Snow Man演唱《タペストリー》《Dangerholic》，浪花男子也参加当晚节目。","analysis":"作为2023年末共同出演记录。没有确认的双人互动。","source":"","extra":"<h4>事件内容</h4><p>作为2023年末共同出演记录。没有确认的双人互动。</p><h4>粉丝视角</h4><p>此处只记录公开内容所能支持的观察，不将粉丝解读写成当事人的真实想法。</p><p><b>资料出处：</b>原始页面／逐字资料待补。该条按现有整理保留，未将中文转述伪装成日语原文。</p>","phase":"phase-archive"},{"id":2401,"kind":"timeline","date":"2024-01","title":"FCweb匿名留言与目黑莲Jweb回应｜「想去目黑家」与大米梗","category":"公开互动","confidence":"待补充来源","summary":"道枝骏佑匿名留言表示想去目黑莲家；目黑莲起初没有认出留言者，后来得知是道枝骏佑后在Jweb回应可以空手来。","analysis":"事件按用户提供的过程保留。具体FCweb企划日期、完整日语原文及博客链接待补；「下飞机后急忙回应」等情绪判断只作为粉丝视角，不作为事实。","source":"","extra":"<h4>事件经过</h4><ol><li>FCweb匿名企划中，道枝骏佑留言「想去目黑家」。</li><li>目黑莲最初没有认出留言者，开玩笑说如果是别人来，需要带5公斤大米。</li><li>后来公布留言者是道枝骏佑。</li><li>目黑莲看到后更新Jweb回应，表示如果是道枝骏佑，今天或随时都能来，空手来就行。</li><li>用户提供的记录还提到，这次回应没有使用目黑莲平时博客常见的颜文字。</li></ol><h4>日语转述摘录</h4><blockquote>「他人やったら米5キロ持ってきて」</blockquote><blockquote>「道枝くんやったら、今日なら来れるよ」</blockquote><p>以上为现有转述，尚未核实逐字原文。</p><h4>磕点分析</h4><p>匿名留言、最初的「5公斤大米」玩笑，以及知道留言者是道枝骏佑后改变说法，构成这条记录的完整趣味点。是否「慌了」或「不是营业」属于粉丝解读，不写成事实。</p><p><b>资料状态：</b>FCweb原始企划、目黑莲Jweb原文及准确日期待补。</p>","phase":"phase-archive"},{"id":240207,"kind":"timeline","date":"2024-02-07","title":"POTATO 2024年3月号｜P-1「希望再度共演pair」读者票选第一","category":"采访记录","confidence":"待补充来源","summary":"读者票选中，目黑莲与道枝骏佑获得出道组「希望再度共演pair」第一名；目黑莲感言提到再次惊讶于《消失的初恋》的影响力。","analysis":"这是读者票选与目黑莲感言，不是两人当场互动。日语逐字原文与原刊页码待补。","source":"","extra":"<h4>事件内容</h4><p>POTATO 2024年3月号于2024年2月7日发售。读者投票企划「希望再度共演pair」中，目黑莲与道枝骏佑获得出道组第一名。</p><p>目黑莲的感言中文转述为：对获得票选结果感到惊喜，再次被《消失的初恋》的影响力之大惊到。</p><h4>磕点分析</h4><ol><li>读者仍然希望两人再次合作。</li><li>目黑莲在回应中主动联系到《消失的初恋》的影响力。</li></ol><p><b>原文状态：</b>日语逐字原文及原刊页码待补。</p>","phase":"phase-archive"},{"id":240410,"kind":"timeline","date":"2024-04-10","title":"STARTO for you慈善单曲《WE ARE》配信｜两人参与同一首作品","category":"合作作品","confidence":"公开可核实","summary":"STARTO for you联合慈善单曲数字配信，Snow Man与浪花男子均参与；目黑莲与道枝骏佑各有演唱段落。","analysis":"共同作品记录，不是双人合唱。歌词仅保留用户提供的极短识别片段，不转载完整歌词。","source":"","extra":"<h4>事件内容</h4><p>《WE ARE》于2024年4月10日数字配信，CD于7月24日发行。共有14组、75名艺人参与，Snow Man与浪花男子均在其中。</p><h4>歌割记录</h4><p><b>目黑莲：</b>「大事なものはいつも…」</p><p><b>道枝骏佑：</b>与西畑大吾、高桥恭平共同演唱对应段落。</p><p>歌词只保留必要的短摘，不在档案中复制整段歌词。</p><h4>收录说明</h4><p>两人参与同一首联合慈善单曲，属于共同作品；不是双人合唱，也不是同一段落。</p>","phase":"phase-archive"},{"id":240429,"kind":"timeline","date":"2024-04-10／05-29—30","title":"《WE ARE! Let’s get the party STARTO!!》｜后台双人互动影像","category":"公开互动","confidence":"待补充来源","summary":"东京巨蛋4月10日、大阪5月29—30日公演期间，两团共同出演。用户提供的官方幕后影像描述中，目黑莲从后搂着道枝骏佑的腰聊天，两人笑得很开心。","analysis":"后台动作细节目前依据用户提供的官方影像线索，正式入档前仍需补充具体FAMILY CLUB web视频标题／时间戳。","source":"","extra":"<h4>事件背景</h4><p>《WE ARE! Let’s get the party STARTO!!》东京巨蛋公演于4月10日举行，大阪公演于5月29—30日举行，Snow Man与浪花男子均参与。</p><h4>影像记录</h4><p>根据你提供的官方幕后影像描述，目黑莲从后搂着道枝骏佑的腰聊天，两人都笑得很开心。</p><h4>磕点分析</h4><p>这条的重点是后台画面中的直接互动，而不是舞台编排。正式公开前需要补齐官方视频的具体标题、发布时间或时间戳；当前保留为待补来源的影像记录。</p>","phase":"phase-archive"},{"id":240521,"kind":"timeline","date":"2024-05-21—05-31","title":"道枝骏佑开设Instagram｜目黑莲关注并发布双人合照","category":"公开互动","confidence":"公开可核实／原帖待补","summary":"道枝骏佑开设个人Instagram后，目黑莲关注其账号；5月30日目黑莲发布Story，5月31日道枝骏佑发布与目黑莲的合照。","analysis":"上一版把两次发布都记在5月31日，现拆分为5月30日目黑莲Story、5月31日道枝骏佑帖子。原帖链接仍需归档。","source":"https://www.thefirsttimes.jp/news/0000432304/","extra":"<h4>事件经过</h4><p><b>5月21日：</b>道枝骏佑开设个人Instagram，目黑莲关注其账号（关注时间以现有粉丝记录为准）。</p><p><b>5月30日：</b>目黑莲发布与道枝骏佑的Instagram Story，文字包含「道枝くんまた背伸びてる！」以及「俺のだーいすきな道枝くん😆」。</p><p><b>5月31日：</b>道枝骏佑发布与目黑莲的双人合照，并以「ドラマ、消えた初恋で共演した目黒くん！」介绍对方。</p><h4>中文翻译</h4><ul><li>「道枝君又长高了！」</li><li>「我最——喜欢的道枝君😆」</li><li>「电视剧《消失的初恋》中合作过的目黑君！」</li></ul><h4>磕点分析</h4><ol><li>目黑莲在Story中先提到道枝骏佑长高。</li><li>同一Story使用「大好きな道枝くん」表达。</li><li>次日道枝骏佑发布双人合照并点名目黑莲。</li><li>照片与WE ARE大阪公演时间相近。</li></ol><p><a href=\"https://www.thefirsttimes.jp/news/0000432304/\" target=\"_blank\" rel=\"noopener\">THE FIRST TIMES｜2024年6月1日报道</a></p><p><b>原帖状态：</b>Story与Instagram原帖建议另存截图；媒体报道可辅助核对。</p><p><b>资料出处：</b><a href=\"https://www.thefirsttimes.jp/news/0000432304/\" target=\"_blank\" rel=\"noopener\">查看原始出处</a></p>","phase":"phase-archive"},{"id":240725,"kind":"timeline","date":"2024-07-25","title":"道枝骏佑22岁生日直播｜主动提及目黑莲联系自己","category":"公开互动","confidence":"公开可核实","summary":"道枝骏佑在微博与Instagram生日直播中，提到目黑莲和向井康二也联系了自己，并表达收到大家联系很开心。","analysis":"报道确认目黑莲联系了道枝骏佑，但不能据此断言目黑莲是最先祝贺的人，也不能确定联系的准确时间。","source":"","extra":"<h4>事件内容</h4><p>道枝骏佑在22岁生日直播中被问及生日祝福。除了成员和亲友的联系，他主动补充提到《消失的初恋》双主演目黑莲，以及向井康二也联系了自己。</p><h4>日语原文</h4><blockquote>「またそのほか、オシドラサタデー『消えた初恋』（テレビ朝日、2021）でW主演を務めたSnow Manの目黒蓮や、関西ジュニア時代から親しい向井康二からも連絡が来たことを明かし、『皆さんから連絡をいただいてすっごく嬉しかったなぁ。ありがとうございます』と笑顔で話していた。」</blockquote><p><b>中文翻译：</b>此外还透露，《消失的初恋》双主演目黑莲，以及从关西Jr时期就亲近的向井康二也联系了他。他笑着说，收到大家的联系真的非常开心，谢谢大家。</p><h4>磕点分析</h4><p>道枝骏佑在生日直播中主动点名目黑莲，公开确认对方有联系自己。报道只确认「联系」，不把它改写成零点祝福或最早祝福。</p><p><b>来源状态：</b>用户提供的MANTANWEB报道原文，具体链接待补。</p>","phase":"phase-archive"},{"id":240706,"kind":"timeline","date":"2024-07-06","title":"《THE MUSIC DAY 2024》｜Snow Man与浪花男子共同出演","category":"合作作品","confidence":"公开可核实","summary":"两团参加同一场音乐节目，浪花男子在20时台出演。","analysis":"共同出演记录，无已确认直接互动。","source":"","extra":"<h4>事件内容</h4><p>共同出演记录，无已确认直接互动。</p><h4>粉丝视角</h4><p>此处只记录公开内容所能支持的观察，不将粉丝解读写成当事人的真实想法。</p><p><b>资料出处：</b>原始页面／逐字资料待补。该条按现有整理保留，未将中文转述伪装成日语原文。</p>","phase":"phase-archive"},{"id":240713,"kind":"timeline","date":"2024-07-13","title":"《音楽の日2024》｜两团相邻时段出演","category":"合作作品","confidence":"公开可核实","summary":"浪花男子在18时台出演，Snow Man在19时台出演。","analysis":"共同出演记录，出演时段相邻，不据此推断后台碰面。","source":"","extra":"<h4>事件内容</h4><p>共同出演记录，出演时段相邻，不据此推断后台碰面。</p><h4>粉丝视角</h4><p>此处只记录公开内容所能支持的观察，不将粉丝解读写成当事人的真实想法。</p><p><b>资料出处：</b>原始页面／逐字资料待补。该条按现有整理保留，未将中文转述伪装成日语原文。</p>","phase":"phase-archive"},{"id":241130,"kind":"timeline","date":"2024-11-30","title":"《ベストアーティスト2024》｜两团共同出演","category":"合作作品","confidence":"公开可核实","summary":"浪花男子演唱《Poppin’ Hoppin’ Lovin’》，Snow Man演唱《EMPIRE》。","analysis":"年末共同出演记录，无直接互动材料。","source":"","extra":"<h4>事件内容</h4><p>年末共同出演记录，无直接互动材料。</p><h4>粉丝视角</h4><p>此处只记录公开内容所能支持的观察，不将粉丝解读写成当事人的真实想法。</p><p><b>资料出处：</b>原始页面／逐字资料待补。该条按现有整理保留，未将中文转述伪装成日语原文。</p>","phase":"phase-archive"},{"id":241218,"kind":"timeline","date":"2024-12-18","title":"道枝骏佑见学Snow Man「RAYS」东京巨蛋公演","category":"公开互动","confidence":"粉丝观察／现场repo","summary":"道枝骏佑前往观看Snow Man东京巨蛋公演。粉丝repo称他向向井康二和目黑莲乘坐的花车挥手、举手拍掌，并跟唱《Party! Party! Party!》。","analysis":"动作细节来自粉丝现场repo，不是官方逐字记录；按粉丝观察标注。","source":"","extra":"<h4>事件内容</h4><p>2024年12月18日，道枝骏佑前往观看Snow Man DOME TOUR「RAYS」东京巨蛋公演。</p><h4>粉丝现场repo整理</h4><ul><li>道枝骏佑穿黑色上衣。</li><li>向向井康二与目黑莲乘坐的花车全力挥手。</li><li>双手举过头顶拍手。</li><li>在《Party! Party! Party!》时跟唱。</li><li>看到向井康二、深泽辰哉相关环节时笑得很开心。</li></ul><h4>收录说明</h4><p>上述动作属于粉丝现场观察，不标成官方确认的舞台互动，也不推断目黑莲是否看见或回应。</p><p><b>来源状态：</b>粉丝repo原帖链接待补。</p>","phase":"phase-archive"}];
+
+
+// 2025–2026 timeline records: append missing archive entries without overwriting user-created records.
+const archive2025_2026 = [
+  {
+    "id": 20250105,
+    "kind": "timeline",
+    "date": "2025-01-05",
+    "phase": "phase-2025",
+    "title": "《初心LOVE》翻跳后的直播回应｜道枝骏佑感谢目黑莲",
+    "category": "本人直播提及",
+    "confidence": "道枝本人直播转述／粉丝文字记录",
+    "summary": "目黑莲在2024年末直播中翻跳浪花男子《初心LOVE》，并说出「ねぇ、今もだよ」。2025年1月5日，道枝骏佑在Instagram直播中说自己看了表演并向目黑莲发消息；目黑莲回复「ダンスいっぱい練習した」。",
+    "analysis": "这条由跨年表演与新年直播回应组成：目黑莲翻跳《初心LOVE》→道枝骏佑观看→道枝骏佑发消息→目黑莲回复练习了很多遍。道枝的直播内容属于本人转述，不能误写成目黑莲在公开直播中亲自讲述私信。",
+    "source": "https://www.wacoca.com/videos/2498400/johnnys-junior/",
+    "extra": "<h4>事件经过</h4><p><b>2024年12月31日：</b>目黑莲在Snow Man「Special Live～みんなと楽しむ大晦日！2024-2025～」中翻跳浪花男子《初心LOVE》，并说出「ねぇ、今もだよ」。</p><p><b>2025年1月5日：</b>道枝骏佑Instagram直播中，粉丝问最近与目黑莲有什么故事。道枝说自己看了Snow Man大晦日直播，对目黑莲表演《初心LOVE》表示感谢，并给目黑莲发了消息。目黑莲回复：「ダンスいっぱい練習した」（舞蹈练习了很多遍）。</p><h4>糖点分析</h4><p>重点不只是目黑莲翻跳了浪花男子的歌曲，而是道枝骏佑随后公开讲述了自己观看、发消息以及收到回复的过程。两件事构成一条完整的跨年互动记录。</p><h4>资料出处与状态</h4><p><a href=\"https://blogtag.ameba.jp/news/めめみち\" target=\"_blank\" rel=\"noopener\">Ameba粉丝直播记录</a>；<a href=\"https://www.wacoca.com/videos/2498400/johnnys-junior/\" target=\"_blank\" rel=\"noopener\">直播视频存档</a>。2024年末表演日期为2024-12-31，回应日期为2025-01-05。</p><p class=\"bio-caption\"><b>档案标注：</b>本人直播转述｜跨年关联｜私信内容为道枝骏佑公开转述。</p>"
+  },
+  {
+    "id": 20250607,
+    "kind": "timeline",
+    "date": "2025-06-07",
+    "phase": "phase-2025",
+    "title": "道枝骏佑见学 Snow Man「Snow World」日产体育场演唱会",
+    "category": "现场见学",
+    "confidence": "粉丝现场repo／动作观察",
+    "summary": "道枝骏佑前往观看Snow Man「Snow World」日产体育场演唱会。粉丝repo称，他在目黑莲所在的花车方向挥手，随后走近、似乎思考片刻，笑着比出数字「2」，之后有些害羞地离开。",
+    "analysis": "这条可与2024年12月道枝骏佑见学「RAYS」演唱会连成连续的见学记录。比出数字「2」的含义目前没有可靠解释，因此只保留现场动作，不推断其具体意思，也不推断目黑莲是否看见或回应。",
+    "source": "",
+    "extra": "<h4>现场repo整理</h4><ul><li>道枝骏佑前往日产体育场观看Snow Man「Snow World」。</li><li>粉丝repo称他在目黑莲所在的花车方向挥手。</li><li>随后走过去，似乎认真思考了一下，笑着比出数字「2」，之后离开。</li></ul><h4>档案说明</h4><p>以上均为粉丝现场观察，尚未取得原始视频。数字「2」的含义不作推断。</p><h4>资料出处与状态</h4><p>来源：豆瓣粉丝repo「道枝骏佑今天又去看目黑莲的演唱会了……2025.6.7 又去了。」原始公开链接及视频待补。</p><p class=\"bio-caption\"><b>档案标注：</b>粉丝现场观察｜原始视频待补。</p>"
+  },
+  {
+    "id": 20250725,
+    "kind": "timeline",
+    "date": "2025-07-25",
+    "phase": "phase-2025",
+    "title": "VANILLABEANS重新公开《消失的初恋》拍摄旧照",
+    "category": "官方旧档案再公开",
+    "confidence": "品牌官方发布／媒体报道",
+    "summary": "道枝骏佑生日当天，VANILLABEANS官方重新公开两张目黑莲与道枝骏佑在《消失的初恋》拍摄期间到访横滨HAMMERHEAD店铺的旧照片。",
+    "analysis": "这是旧影像在2025年重新公开，不是2025年发生的新互动。照片中道枝骏佑向目黑莲展示手机，目黑莲拿着饮料看向道枝；另一张为两人并排面对镜头。",
+    "source": "",
+    "extra": "<h4>官方配文</h4><blockquote>「横浜ハンマーヘッドの店舗に撮影でいらっしゃったのがもう4年前」</blockquote><p>译：两位来横滨HAMMERHEAD店铺拍摄，已经是四年前了。</p><h4>照片内容</h4><p>第一张：道枝骏佑笑着向目黑莲展示手机，目黑莲拿着饮料看向道枝骏佑。第二张：两人并排面对镜头微笑。</p><h4>收录说明</h4><p>作为《消失的初恋》拍摄期间的历史影像再公开收录，不计作2025年新互动。</p><h4>资料出处与状态</h4><p><a href=\"https://www.thefirsttimes.jp/news/0000659045/\" target=\"_blank\" rel=\"noopener\">THE FIRST TIMES报道</a>；<a href=\"https://news.livedoor.com/article/detail/29239163/\" target=\"_blank\" rel=\"noopener\">LiveDoor报道</a>。</p><p class=\"bio-caption\"><b>档案标注：</b>官方旧照片再公开｜非2025年新互动。</p>"
+  },
+  {
+    "id": 202507251,
+    "kind": "timeline",
+    "date": "2025-07-25",
+    "phase": "phase-2025",
+    "title": "道枝骏佑生日直播谈到最近与目黑莲见面",
+    "category": "本人直播提及",
+    "confidence": "本人直播／粉丝文字记录",
+    "summary": "道枝骏佑在23岁生日微博及Instagram直播中，被问到最近是否见过目黑莲。他回答在《THE MUSIC DAY》见过，两人聊了很多。",
+    "analysis": "这条说的是工作场合见面，不是私下约见。应与次日演唱会中提到目黑莲生日祝福的内容分开记录。",
+    "source": "",
+    "extra": "<h4>直播内容</h4><p>粉丝询问最近有没有见到目黑莲。道枝骏佑回答：在《THE MUSIC DAY》见到了，并且两个人聊了很多。</p><h4>事实边界</h4><p>这里指《THE MUSIC DAY》工作场合的碰面与交流，不代表两人私下见面。</p><h4>资料出处与状态</h4><p><a href=\"https://blogtag.ameba.jp/news/めめみち\" target=\"_blank\" rel=\"noopener\">Ameba粉丝直播记录</a>（条目标题含「道枝駿佑くんお誕生日 weibo生配信で目黒蓮くんの話」）。</p><p class=\"bio-caption\"><b>档案标注：</b>道枝骏佑本人直播回答｜工作场合见面。</p>"
+  },
+  {
+    "id": 20250726,
+    "kind": "timeline",
+    "date": "2025-07-26",
+    "phase": "phase-2025",
+    "title": "道枝骏佑提到目黑莲的生日祝福｜队友调侃称呼",
+    "category": "本人现场发言",
+    "confidence": "本人现场发言／粉丝repo",
+    "summary": "浪花男子横滨公演中，队友问道枝骏佑除了团员之外还收到谁的生日祝福。道枝回答「目黒くん」，并复述祝福「道枝君生日快乐」。藤原丈一郎随后围绕目黑莲称呼道枝骏佑的方式开玩笑。",
+    "analysis": "这条分为两部分：道枝骏佑公开提及目黑莲的生日祝福，以及队友注意到目黑莲称呼道枝骏佑时使用「道枝君」并继续调侃。队友的玩笑作为现场气氛记录，不延伸为关系证明。",
+    "source": "",
+    "extra": "<h4>现场内容</h4><p>队友询问道枝骏佑除了浪花男子成员之外，还有谁给他发送生日祝福。道枝回答：「目黒くん。」被追问祝福内容时，他回答：「道枝君生日快乐。」</p><p>藤原丈一郎随后调侃：「那我们也要叫道枝君」「因为meme都叫道枝君……」接着提议叫「骏佑君」。道枝骏佑马上回答：「才不要叫骏佑君！」队友还开玩笑提出「memejo」「jomeme」等组合称呼。</p><h4>糖点分析</h4><p>道枝骏佑记得并在公开场合提到目黑莲的生日祝福内容；队友则注意到了目黑莲的称呼习惯。两部分均按现场发言记录。</p><h4>资料出处与状态</h4><p><a href=\"https://www.sina.cn/media/7812533678\" target=\"_blank\" rel=\"noopener\">微博现场repo</a>；另有用户提供的小红书现场记录。</p><p class=\"bio-caption\"><b>档案标注：</b>本人现场发言转述｜队友调侃为现场repo。</p>"
+  },
+  {
+    "id": 20250817,
+    "kind": "timeline",
+    "date": "2025-08-17",
+    "phase": "phase-2025",
+    "title": "「想和谁去咖啡馆」｜道枝骏佑选择目黑君",
+    "category": "本人现场发言",
+    "confidence": "粉丝现场repo",
+    "summary": "粉丝询问道枝骏佑想和谁去咖啡馆，选项一是目黑君，选项二是井田（《消失的初恋》中目黑莲饰演的角色）。道枝意识到两个选项都是目黑莲，笑着说「这不都是目黑君吗？」，最后仍选择一。",
+    "analysis": "提问将现实中的目黑莲与《消失的初恋》中的井田分成两个选项，道枝骏佑注意到两者实际指向同一个人，并直接指出这一点。原始日语和视频尚待补充。",
+    "source": "",
+    "extra": "<h4>现场repo内容</h4><p>粉丝询问想和谁去咖啡馆。选项一为「目黑君」，选项二为「井田」（目黑莲在《消失的初恋》中饰演的角色）。道枝骏佑发现两个选项都指向目黑莲，笑着说：「这不都是目黑君吗？」最后仍然选择选项一。</p><h4>来源状态</h4><p>目前依据粉丝现场repo，尚未取得原始日语逐字稿或视频。</p><h4>资料出处与状态</h4><p>用户提供的现场repo，原始公开链接及视频待补。</p><p class=\"bio-caption\"><b>档案标注：</b>本人现场发言转述｜粉丝repo，原视频待补。</p>"
+  },
+  {
+    "id": 20250822,
+    "kind": "timeline",
+    "date": "2025-09-22",
+    "phase": "phase-2025",
+    "title": "大阪店访问节目｜「meme就在眼前」相关片段",
+    "category": "节目线索",
+    "confidence": "粉丝cut／原话待核",
+    "summary": "2025年8月22日录制、9月22日公开的大阪店访问节目中，粉丝cut以「meme就在眼前」标记相关片段。目前无法确认这是道枝骏佑本人原话，还是粉丝对画面的概括。",
+    "analysis": "暂作为待核资料保留，不将「meme就在眼前」写成道枝骏佑的确定原话。需要节目原始片段、时间戳和上下文后再更新证据等级。",
+    "source": "",
+    "extra": "<h4>资料状态</h4><p>节目录制日期为2025年8月22日，公开日期为2025年9月22日。现有粉丝cut标题或标记为「meme就在眼前」，但尚不能判断该文字是否来自节目本人发言。</p><h4>后续核对</h4><p>需要补充节目原始页面、完整片段与时间戳，再判断应归为本人发言还是粉丝概括。</p><h4>资料出处与状态</h4><p>粉丝cut线索，原始节目页面与视频待补。</p><p class=\"bio-caption\"><b>档案标注：</b>待核｜不得作为本人原话引用。</p>"
+  },
+  {
+    "id": 20250823,
+    "kind": "timeline",
+    "date": "2025-08-23",
+    "phase": "phase-2025",
+    "title": "「去目黑君家带多少公斤大米」｜2024年梗的现场callback",
+    "category": "本人现场反应",
+    "confidence": "粉丝现场repo",
+    "summary": "粉丝询问道枝骏佑，如果去目黑莲家应该带5kg、10kg还是空手。道枝认真看了几秒，似乎不知道选哪个，做出动作和表情后仍然犹豫。",
+    "analysis": "这条呼应2024年初目黑莲在Jweb中关于「道枝的话随时来，空手来就行；其他人来要带5公斤大米」的玩笑。保留道枝骏佑当时的犹豫反应，不推断他是否真的去过目黑莲家。",
+    "source": "",
+    "extra": "<h4>现场repo内容</h4><p>粉丝提问：如果去目黑莲家，应该带多少公斤大米？选项为5kg、10kg、空手。道枝骏佑认真看了几秒，似乎不知道该选哪个，做出动作和表情后仍然犹豫。</p><h4>前情关联</h4><p>2024年初，目黑莲曾在Jweb回应道枝骏佑关于去家里的玩笑：道枝骏佑的话随时都可以来，空手来也没关系；其他人来则需要带5公斤大米。</p><h4>事实边界</h4><p>这是对旧梗的callback，不代表道枝骏佑已经去过目黑莲家。</p><h4>资料出处与状态</h4><p>用户提供的2025年8月23日大阪公演现场repo；2024年初Jweb原文链接待补。</p><p class=\"bio-caption\"><b>档案标注：</b>粉丝现场repo｜历史梗呼应｜不推断实际到访。</p>"
+  },
+  {
+    "id": 202508231,
+    "kind": "timeline",
+    "date": "2025-08-23",
+    "phase": "phase-2025",
+    "title": "大阪夜场｜道枝骏佑回应Meme主题扇子",
+    "category": "现场互动",
+    "confidence": "粉丝现场观察",
+    "summary": "粉丝扇子写着「觉得自己是Meme的人的话嘘🤫」。道枝骏佑盯着扇子几秒后做出动作；花车离开一段距离后仍与粉丝对视，看到粉丝反应后笑了。",
+    "analysis": "这是一条粉丝设计的现场互动。可以记录道枝骏佑看到扇子后的动作和反应，但不能将动作解释为对两人关系的确认。",
+    "source": "",
+    "extra": "<h4>现场观察</h4><p>粉丝扇子内容为「觉得自己是Meme的人的话嘘🤫」。道枝骏佑盯着扇子几秒后做出相应动作；花车离开一段距离后仍对视，看到粉丝反应后笑了。</p><h4>档案说明</h4><p>只记录可见动作，不将其解读为关系承认。</p><h4>资料出处与状态</h4><p>用户提供的2025年8月23日大阪夜场粉丝repo，原始视频待补。</p><p class=\"bio-caption\"><b>档案标注：</b>粉丝现场观察｜原始视频待补。</p>"
+  },
+  {
+    "id": 20250831,
+    "kind": "timeline",
+    "date": "2025-08-31",
+    "phase": "phase-2025",
+    "title": "宫城昼场｜道枝骏佑回应是否看了目黑莲的韩国打歌舞台",
+    "category": "本人现场回应",
+    "confidence": "粉丝现场repo",
+    "summary": "粉丝问道枝骏佑有没有看Meme的韩国打歌舞台，选项为「看了」和「还没有」。repo称道枝经过时看了一眼，毫不犹豫地比出「看了」。",
+    "analysis": "这是明确指向目黑莲的现场提问，道枝骏佑给出了肯定回应。由于目前依据为粉丝repo，仍需原始视频补强。",
+    "source": "",
+    "extra": "<h4>现场repo内容</h4><p>粉丝提问：「有没有看Meme的韩国打歌舞台？」选项为①看了、②还没有。道枝骏佑经过时看了一眼，随后毫不犹豫比出①。</p><h4>档案说明</h4><p>按粉丝现场记录保留，不扩写为对舞台内容的具体评价。</p><h4>资料出处与状态</h4><p>用户提供的2025年8月31日宫城昼场粉丝repo，原始视频待补。</p><p class=\"bio-caption\"><b>档案标注：</b>本人现场回应转述｜粉丝repo。</p>"
+  },
+  {
+    "id": 202508312,
+    "kind": "timeline",
+    "date": "2025-08-31",
+    "phase": "phase-2025",
+    "title": "宫城昼场｜饮料问题后疑似小声说「meme」",
+    "category": "疑似本人发言",
+    "confidence": "粉丝听辨／原音待核",
+    "summary": "饮料问题中，道枝骏佑回答喜欢「午后红茶柠檬茶」。队友提醒不要说品牌，repo记录他随后小声说「meme呐……meme」。",
+    "analysis": "原音尚未核对，无法确认听辨是否准确，也无法确定该词在当时语境中的指向。作为待核粉丝记录保留，不引用为确定原话。",
+    "source": "",
+    "extra": "<h4>现场repo内容</h4><p>粉丝询问最喜欢的饮料，道枝骏佑回答「午后红茶柠檬茶」。队友提醒不要说品牌，repo记录道枝随后小声说「meme呐……meme」。</p><h4>核验说明</h4><p>需要原始视频核对听辨及上下文；在核实前不把「meme」作为确定原话。</p><h4>资料出处与状态</h4><p>用户提供的2025年8月31日宫城昼场repo，原始视频待补。</p><p class=\"bio-caption\"><b>档案标注：</b>待核｜粉丝听辨，不能作为确定原文。</p>"
+  },
+  {
+    "id": 20251025,
+    "kind": "timeline",
+    "date": "2025-10-25",
+    "phase": "phase-2025",
+    "title": "札幌昼场｜《CHARISMAX》挑战与めめみち关系问答",
+    "category": "本人现场表现／粉丝提问",
+    "confidence": "粉丝现场repo",
+    "summary": "Doki it挑战中，队友喊「我们今天是Snow Man！」后，道枝骏佑跳了两遍《CHARISMAX》动作。另有粉丝问「めめみち现在的关系是？①初心LOVE②Sexy Love」，道枝认真看了一会儿，最后选择①。",
+    "analysis": "建议将歌曲挑战与明确的めめみち提问分开理解：前者是模仿Snow Man舞蹈的现场表现，后者是道枝骏佑面对粉丝CP相关问题作出的选项回应。两者均以现场repo为依据。",
+    "source": "",
+    "extra": "<h4>事件一｜《CHARISMAX》</h4><p>Doki it挑战环节中，队友喊「我们今天是Snow Man！」道枝骏佑随后跳了两遍Snow Man《CHARISMAX》的动作。</p><h4>事件二｜めめみち关系问答</h4><p>粉丝问：「めめみち现在的关系是？」选项为①《初心LOVE》、②《Sexy Love》。道枝骏佑认真看了一会儿，最后选择①。</p><h4>档案说明</h4><p>两项内容分开记录；选择歌曲不作为现实关系的确认。</p><h4>资料出处与状态</h4><p>用户提供的2025年10月25日札幌昼场粉丝repo，原始视频待补。</p><p class=\"bio-caption\"><b>档案标注：</b>本人现场表现与粉丝提问｜粉丝repo。</p>"
+  },
+  {
+    "id": 202510251,
+    "kind": "timeline",
+    "date": "2025-10-25",
+    "phase": "phase-2025",
+    "title": "札幌夜场｜「和Meme的关系是秘密的话请嘘」",
+    "category": "现场互动",
+    "confidence": "粉丝现场观察",
+    "summary": "粉丝扇子写着「和Meme的关系是秘密的话……嘘🤫」。道枝骏佑看清后，食指点在下巴处并歪头。",
+    "analysis": "这条与8月23日大阪夜场的Meme主题扇子属于同类粉丝互动。只记录道枝骏佑的动作，不推断为关系承认。",
+    "source": "",
+    "extra": "<h4>现场观察</h4><p>粉丝扇子内容为「和Meme的关系是秘密的话……嘘🤫」。道枝骏佑看清后，食指点下巴并歪头。</p><h4>档案说明</h4><p>动作本身可作为现场观察记录，不代表对两人关系的确认。</p><h4>资料出处与状态</h4><p>用户提供的2025年10月25日札幌夜场粉丝repo，原始视频待补。</p><p class=\"bio-caption\"><b>档案标注：</b>粉丝现场观察｜原始视频待补。</p>"
+  },
+  {
+    "id": 20251122,
+    "kind": "timeline",
+    "date": "2025-11-22",
+    "phase": "phase-2025",
+    "title": "目黑莲 Instagram 直播提及道枝骏佑",
+    "category": "本人直播提及",
+    "confidence": "本人直播／用户确认原视频",
+    "summary": "目黑莲在Instagram直播接近结束时提及道枝骏佑，并出现「道枝君、見てるの？」（道枝君在看吗？）这一句。道枝当时是否正在观看，尚无确认依据。",
+    "analysis": "按档案整理者对原直播的确认，本条作为目黑莲本人直播提及道枝骏佑收录。此前自动转录有识别错误，因此不以错误转录作为逐字稿；也不推断道枝当时在线，更不写成提及后立即下播。",
+    "source": "",
+    "extra": "<h4>直播背景</h4><p>目黑莲于2025年11月22日进行Instagram直播，主题主要围绕宝格丽品牌大使相关内容及个人物品展示。直播接近结束时提及道枝骏佑。</p><h4>关键内容</h4><blockquote>「道枝君、見てるの？」</blockquote><p>译：「道枝君在看吗？」</p><h4>事实边界</h4><p>目黑莲在直播中提及道枝骏佑，按整理者确认原视频处理。道枝骏佑当时是否正在观看没有确认依据；不写成目黑莲提及后立刻下播。</p><h4>资料出处与状态</h4><p><a href=\"https://www.magmoe.com/2686145/entertainer/2025-11-22/\" target=\"_blank\" rel=\"noopener\">MAGMOE直播文字记录</a>；<a href=\"https://blogtag.ameba.jp/news/めめみち\" target=\"_blank\" rel=\"noopener\">Ameba粉丝记录</a>。文字转录存在识别误差，原始直播以视频为准。</p><p class=\"bio-caption\"><b>档案标注：</b>本人直播提及｜按整理者确认收录｜道枝是否观看不明。</p>"
+  },
+  {
+    "id": 20251219,
+    "kind": "timeline",
+    "date": "2025-12-19",
+    "phase": "phase-2025",
+    "title": "《浪花男子的逆转男子》1小时特别篇｜目黑莲作为特别嘉宾登场",
+    "category": "共同节目关联",
+    "confidence": "朝日电视台节目资料／媒体报道",
+    "summary": "《浪花男子的逆转男子》首次1小时特别篇中，目黑莲以特别嘉宾身份登场，并为先辈歌曲副歌舞蹈挑战指定Snow Man《ブラザービート》。目黑莲表示会实时收看节目播出。",
+    "analysis": "这条属于目黑莲与道枝骏佑所在节目之间的公开关联：目黑莲作为特别嘉宾登上《浪花男子的逆转男子》，而道枝骏佑是节目常规成员。现有资料可确认两人参与同一期节目，但不能据此断言录制现场有面对面互动。",
+    "source": "https://www.tv-asahi.co.jp/mada_update/backnumber/0110/index.html",
+    "extra": "<h4>节目内容</h4><p>2025年12月19日，朝日电视台播出《浪花男子的逆转男子》1小时特别篇，内容包括「正確に踊れ！先輩曲のサビダンスバトル」等环节。目黑莲以特别嘉宾身份参与。</p><h4>目黑莲指定歌曲</h4><p>目黑莲为舞蹈挑战指定Snow Man的《ブラザービート》。节目中，他还表示：「オンエアは絶対にリアタイします。」译：「节目播出时我一定会实时收看。」随后由大西流星与那须雄登进行《ブラザービート》舞蹈对决。</p><h4>档案边界</h4><p>道枝骏佑是《浪花男子的逆转男子》常规成员，因此这条记录两人出现在同一期节目中。但目前资料不足以证明两人在录制现场直接见面或有面对面互动，故归类为「共同节目关联」，不标为双人互动。</p><h4>资料出处</h4><p><a href=\"https://www.tv-asahi.co.jp/mada_update/backnumber/0110/index.html\" target=\"_blank\" rel=\"noopener\">朝日电视台官方节目档案</a>；<a href=\"https://www.tvguide.or.jp/news/news-4213801/\" target=\"_blank\" rel=\"noopener\">TVガイドWeb报道</a>；<a href=\"https://datazoo.jp/tv/%E3%81%AA%E3%81%AB%E3%82%8F%E7%94%B7%E5%AD%90%E3%81%AE%E9%80%86%E8%BB%A2%E7%94%B7%E5%AD%90/1836995\" target=\"_blank\" rel=\"noopener\">节目内容记录</a>。</p><p class=\"bio-caption\"><b>档案标注：</b>同一期节目关联｜目黑莲特别嘉宾｜不等同于现场直接互动。</p",
+  },
+  {
+    "id": 20260318,
+    "kind": "timeline",
+    "date": "2026-03-18",
+    "phase": "phase-2026",
+    "title": "道枝骏佑提到与目黑莲约好忙完一起看樱花",
+    "category": "本人发言",
+    "confidence": "粉丝repo／原始内容待补",
+    "summary": "粉丝repo称，道枝骏佑提到自己与目黑莲约定，等忙完之后一起去看樱花。",
+    "analysis": "如果原始内容核实，这是一条涉及两人共同约定未来活动的记录。目前尚未取得一手直播或采访原文，保留具体说法并明确标记为粉丝repo。",
+    "source": "",
+    "extra": "<h4>事件内容</h4><p>粉丝repo称，道枝骏佑说自己与目黑莲约定，等忙完之后一起去看樱花。</p><h4>来源状态</h4><p>目前依据豆瓣粉丝repo，尚未取得一手直播或采访逐字稿。保留为待补来源记录，不补写未确认的具体场景。</p><h4>资料出处与状态</h4><p>豆瓣粉丝repo「道小倩和莲采臣」，2026年3月18日；原帖及原始视频待补。</p><p class=\"bio-caption\"><b>档案标注：</b>粉丝repo｜一手原文待补。</p>"
+  },
+  {
+    "id": 20260425,
+    "kind": "timeline",
+    "date": "2026-04-25",
+    "phase": "phase-2026",
+    "title": "《浪花男子的逆转男子》｜道枝骏佑休假时去看目黑莲出演的电影",
+    "category": "官方节目明确提及",
+    "confidence": "朝日电视台官方节目页面",
+    "summary": "节目官方介绍写明，道枝骏佑因为想看目黑莲出演的电影而前往六本木电影院，观看电影《ほどなく、お別れです》。道枝与工作人员一起观看，并非与目黑莲同行。",
+    "analysis": "这条的核心事实是官方节目明确把道枝骏佑选择观影与目黑莲联系起来。电影观看之后的目黑川散步、串炸店、咖啡店及陶艺行程与目黑莲无关，不作为糖点扩写。",
+    "source": "",
+    "extra": "<h4>官方节目内容</h4><blockquote>「目黒蓮出演の映画が観たいと六本木の映画館へ。」</blockquote><p>译：因为想看目黑莲出演的电影，所以前往六本木的电影院。</p><p>观看作品为电影《ほどなく、お別れです》。道枝骏佑与工作人员一起观看，不是与目黑莲一起。</p><h4>收录边界</h4><p>节目后续的目黑川散步、串炸店、咖啡店和陶艺教室等休假行程与目黑莲无关，不纳入本条糖点。</p><h4>资料出处与状态</h4><p><a href=\"https://www.tv-asahi.co.jp/mada_update/backnumber/0127/index.html\" target=\"_blank\" rel=\"noopener\">朝日电视台官方节目页面</a>；<a href=\"https://www.telasa.jp/videos/249878\" target=\"_blank\" rel=\"noopener\">TELASA节目视频</a>；<a href=\"https://datazoo.jp/tv/%E3%81%AA%E3%81%AB%E3%82%8F%E7%94%B7%E5%AD%90%E3%81%AE%E9%80%86%E8%BB%A2%E7%94%B7%E5%AD%90/1862928\" target=\"_blank\" rel=\"noopener\">TVでた蔵节目记录</a>。</p><p class=\"bio-caption\"><b>档案标注：</b>官方节目明确点名目黑莲｜道枝骏佑与工作人员观影。</p>"
+  },
+  {
+    "id": 20260516,
+    "kind": "timeline",
+    "date": "2026-05-16",
+    "phase": "phase-2026",
+    "title": "《浪花男子的逆转男子》｜道枝骏佑模仿目黑莲造型",
+    "category": "官方节目关联",
+    "confidence": "节目内容／原始页面待补",
+    "summary": "节目「洗澡后发型造型对决」第一轮题目为Snow Man目黑莲。道枝骏佑、藤原丈一郎及COWCOW西村参与模仿目黑莲的造型。",
+    "analysis": "这是节目明确设置的目黑莲模仿题目，道枝骏佑亲自参与挑战。应记录为节目关联，不将粉丝中字cut标题「目黑君要联系我了」误当成节目原始标题。",
+    "source": "",
+    "extra": "<h4>节目内容</h4><p>「風呂上がりヘアセット対決」第一轮模仿题目为「Snow Man 目黒蓮」。道枝骏佑、藤原丈一郎、COWCOW西村参与模仿目黑莲的发型造型。</p><h4>档案说明</h4><p>粉丝中字cut的标题不是节目原始标题。节目页面及具体时间戳仍待补。</p><h4>资料出处与状态</h4><p>《浪花男子的逆转男子》2026年5月16日播出内容；官方节目页面与时间戳待补。</p><p class=\"bio-caption\"><b>档案标注：</b>节目明确以目黑莲为模仿对象｜原始页面待补。</p>"
+  },
+  {
+    "id": 20260724,
+    "kind": "timeline",
+    "date": "2026-07",
+    "phase": "phase-2026",
+    "title": "《Myojo》访谈｜道枝骏佑说目黑莲是自己想追赶的存在",
+    "category": "杂志采访",
+    "confidence": "用户提供原文／正式杂志页待补",
+    "summary": "道枝骏佑在《Myojo》2026年10月号访谈中谈到目黑莲：目黑莲是自己想要追赶的存在；《消失的初恋》合作时曾说精神上辛苦可以依靠他；之后虽少有共事机会，道枝仍从目黑莲活跃的身影中受到鼓舞。",
+    "analysis": "这是2026年道枝侧的重要记录。道枝不仅回忆了《消失的初恋》时期目黑莲给予的支持，也明确表达了对目黑莲工作的关注与敬佩。原文由整理者提供，正式杂志页和逐字校对仍待补。",
+    "source": "",
+    "extra": "<h4>日文原文摘录</h4><blockquote>「グループの中で自分の立ち位置が近いなと感じる目黒（蓮）くんは、追いつきたい存在です。」</blockquote><blockquote>「ドラマ『消えた初恋』で共演したとき、『精神的にしんどくなったら頼ってね』と言ってくれて、すごくうれしかったです。」</blockquote><blockquote>「それから一緒にお仕事する機会はあまりないんですけど、目黒くんが活躍している姿を見て、ずっと励まされています。」</blockquote><blockquote>「今はグループを離れて海外で頑張っていて、すごいなと思います。」</blockquote><h4>中文译文</h4><p>在团体中，我觉得定位与自己比较接近的目黑莲君，是我想要追赶上的存在。</p><p>合作电视剧《消失的初恋》时，他曾对我说：「精神上觉得辛苦的话，可以依靠我。」我对此非常开心。</p><p>那之后一起工作的机会并不多，但我一直看着目黑莲活跃的身影，并从中受到鼓舞。</p><p>现在他离开组合，在海外努力工作，我觉得他非常了不起。</p><h4>糖点分析</h4><p>① 道枝骏佑将目黑莲视为自己想追赶的对象。② 他仍记得《消失的初恋》时期目黑莲给予的支持。③ 即使共同工作机会减少，道枝仍持续关注目黑莲的工作，并从中获得鼓舞。</p><h4>来源状态</h4><p>用户提供的日文内容称来自《Myojo》2026年10月号，原页链接与逐字核验待补。<h4>资料出处与状态</h4><p>《Myojo》2026年10月号访谈；正式媒体页及原始杂志页码待补。</p><p class=\"bio-caption\"><b>档案标注：</b>道枝骏佑本人访谈内容｜原文由整理者提供，正式出处待补。</p>"
+  },
+  {
+    "id": 20260725,
+    "kind": "timeline",
+    "date": "2026-07-25",
+    "phase": "phase-2026",
+    "title": "道枝骏佑24岁生日直播｜目黑莲在直播开始前联系他",
+    "category": "本人直播提及",
+    "confidence": "本人直播转述／用户基本核实",
+    "summary": "道枝骏佑生日直播中提到，目黑莲恰好在微博直播开始前联系了他，发送生日祝福并问候「最近还好吗」。道枝回答自己很好，并补充目黑莲现在也在海外努力。",
+    "analysis": "这是2026年重要的联系记录。温哥华当地凌晨5点是粉丝根据时差推算，不作为确定发送时间。日文逐字稿尚未取得，当前以直播中字cut大意和用户核实内容整理。",
+    "source": "",
+    "extra": "<h4>直播内容</h4><p>道枝骏佑在微博／Instagram生日直播中读到有关目黑莲的弹幕后回应：目黑莲刚好在微博直播开始前联系了他，说「生日快乐」「最近还好吗」。道枝回答「我很好」。他还补充提到目黑莲现在也在海外努力。</p><h4>日语转述摘录</h4><blockquote>「目黒君が、ちょうどWeiboの配信が始まる直前に連絡をくれて、『お誕生日おめでとう』『元気にしてた？』って。『元気だよ』って返しました。」</blockquote><p>以上为中字cut大意转写，非已核对的完整官方逐字稿。</p><h4>事实边界</h4><p>粉丝按时差推算的温哥华当地凌晨5点不作为确定发送时间。</p><h4>资料出处与状态</h4><p><a href=\"https://blogtag.ameba.jp/news/めめみち\" target=\"_blank\" rel=\"noopener\">Ameba粉丝直播记录</a>；原始微博直播及中字cut待补。</p><p class=\"bio-caption\"><b>档案标注：</b>道枝骏佑本人直播转述｜用户称基本核实｜日文逐字稿待补。</p>"
+  },
+  {
+    "id": 20260728,
+    "kind": "timeline",
+    "date": "2026-07-28",
+    "phase": "phase-2026",
+    "title": "道枝骏佑直播提及目黑莲家｜「如果有一天能去就好了」",
+    "category": "本人直播提及",
+    "confidence": "粉丝repo／用户称已核实",
+    "summary": "道枝骏佑在直播中说自己还没有去过目黑莲家，如果有一天能去就好了。粉丝repo还称，当被问到最近有没有见到目黑莲时，道枝出现噘嘴反应。",
+    "analysis": "这条与2024年目黑莲的「空手来／5公斤大米」玩笑，以及2025年道枝骏佑被问去目黑莲家带多少公斤大米的现场callback形成前后呼应。不能写成道枝已经去过目黑莲家。",
+    "source": "",
+    "extra": "<h4>直播内容</h4><p>道枝骏佑提到自己还没有去过目黑莲家，「如果有一天能去就好了」。粉丝repo称，在被问到最近有没有见到目黑莲时，道枝出现噘嘴反应。</p><h4>历年关联</h4><p>2024年初目黑莲曾回应道枝骏佑关于去家里的玩笑，称道枝的话随时可以来、空手来也没关系；2025年8月23日，道枝又被问到去目黑莲家带多少公斤大米。</p><h4>事实边界</h4><p>道枝骏佑明确说自己还没有去过目黑莲家，不应将玩笑写成已经到访。</p><h4>资料出处与状态</h4><p>豆瓣粉丝repo「llz」（2026年7月28日）及「道小倩和莲采臣」（2026年9月29日更新）；原始直播片段待补。</p><p class=\"bio-caption\"><b>档案标注：</b>本人直播内容转述｜用户称已核实｜粉丝repo细节。</p>"
+  },
+  {
+    "id": 202607281,
+    "kind": "timeline",
+    "date": "2026-07",
+    "phase": "phase-2026",
+    "title": "目黑莲与山田凉介直播｜粉丝repo称直播中出现道枝相关话题",
+    "category": "本人直播／待核",
+    "confidence": "粉丝repo／原始片段待补",
+    "summary": "粉丝repo称，在目黑莲与山田凉介的直播中，有人提到目黑莲与道枝骏佑，目黑莲出现害羞傻笑或谦虚的反应。",
+    "analysis": "目前缺少完整原始直播片段、具体提问与上下文，无法准确还原目黑莲回应的内容。先保留为待核记录，不与道枝骏佑自己的直播混为同一事件。",
+    "source": "",
+    "extra": "<h4>现有记录</h4><p>粉丝repo称，直播中有人提及目黑莲与道枝骏佑，目黑莲出现害羞傻笑或谦虚反应。</p><h4>待核内容</h4><p>需要原始直播、具体提问、完整回应和时间戳，才能判断是否属于明确提及道枝骏佑。</p><h4>资料出处与状态</h4><p>用户提供的粉丝repo线索；原始直播片段与链接待补。</p><p class=\"bio-caption\"><b>档案标注：</b>待核｜不作为确定的本人提及原文。</p>"
+  },
+  {
+    "id": 20260926,
+    "kind": "timeline",
+    "date": "2026-09-26",
+    "phase": "phase-2026",
+    "title": "《浪花男子的逆转男子》｜道枝骏佑跳Snow Man出道曲《D.D.》",
+    "category": "官方节目／歌曲关联",
+    "confidence": "节目播出内容／用户确认",
+    "summary": "2026年9月26日播出的《浪花男子的逆转男子》中，道枝骏佑跳了Snow Man出道曲《D.D.》。",
+    "analysis": "这条记录道枝骏佑在节目中表演Snow Man出道曲《D.D.》的事实。它属于明确的歌曲与团体关联，不延伸推断为目黑莲本人在场或两人发生互动。",
+    "source": "",
+    "extra": "<h4>节目内容</h4><p>2026年9月26日，《浪花男子的逆转男子》节目中，道枝骏佑跳了Snow Man的出道曲《D.D.》。</p><h4>档案说明</h4><p>这是道枝骏佑在节目中表演Snow Man歌曲的记录。除非另有节目画面证明目黑莲参与，否则不将其写成两人同台或直接互动。</p><h4>资料出处与状态</h4><p>《浪花男子的逆转男子》2026年9月26日播出内容；节目原始页面、视频及时间戳待补。</p><p class=\"bio-caption\"><b>档案标注：</b>道枝骏佑节目表现｜Snow Man歌曲关联｜非双人互动。</p",
+  },
+  {
+    "id": 20260928,
+    "kind": "timeline",
+    "date": "2026-09-28",
+    "phase": "phase-2026",
+    "title": "宝格丽总监与目黑莲合拍Instagram Story｜《Secret Touch》电视剧钢琴版",
+    "category": "Instagram动态／音乐关联",
+    "confidence": "Story动态由用户确认／配乐推荐为粉丝推测",
+    "summary": "宝格丽总监发布与目黑莲合拍的Instagram Story，使用Snow Man《Secret Touch》的钢琴版本，且为电视剧《消失的初恋》制作使用的版本。随后目黑莲将该Story转发到自己的Instagram Story。",
+    "analysis": "这条的关键是配乐版本并非普通原曲，而是与《消失的初恋》直接关联的钢琴版。目黑莲此前曾提到听见《Secret Touch》就会想起《消失的初恋》，因此具有作品记忆呼应。粉丝推测可能由目黑莲向总监推荐配乐，但目前不能确认选曲者。发布日期按用户确认记录为2026年9月28日。",
+    "source": "",
+    "extra": "<h4>事件经过</h4><p>宝格丽总监发布与目黑莲合拍的Instagram Story，配乐使用Snow Man《Secret Touch》的钢琴版本。该版本是电视剧《消失的初恋》制作使用的钢琴版。随后目黑莲将这条Story转发到自己的Instagram Story。</p><h4>相关背景</h4><p>目黑莲此前曾提到，听见《Secret Touch》就会想起《消失的初恋》。因此这首歌对他而言也与电视剧拍摄记忆相连。</p><h4>粉丝视角解读</h4><p>粉丝推测，可能是目黑莲向宝格丽总监推荐了这一版本，所以总监在合拍Story中使用它。但目前没有证据确认配乐由谁选择，不能将「目黑莲推荐」写成事实。</p><h4>日期与来源说明</h4><p>Story发布日期按用户确认记录为2026年9月28日。宝格丽总监账号及原始Story截图或存档仍可补充。</p><h4>资料出处与状态</h4><p>原始Instagram Story截图／存档及总监账号待补；目黑莲此前关于《Secret Touch》与《消失的初恋》的采访出处待补。</p><p class=\"bio-caption\"><b>档案标注：</b>公开Story及转发｜配乐与作品关联｜推荐配乐属于粉丝推测。</p>"
+  }
+];
+
+// 数据迁移：以本版本内置档案为准，保留用户自行新增的条目，避免旧版 localStorage 导致时间线缺项。
+const seedRecords = [...demo, ...archive2022_2024, ...archive2025_2026];
+const seedIds = new Set(seedRecords.map(e => String(e.id)));
+let savedEntries = [];
+try { savedEntries = JSON.parse(localStorage.getItem("mm_archive_entries") || "[]"); } catch (_) { savedEntries = []; }
+if (!Array.isArray(savedEntries)) savedEntries = [];
+// 清理旧版误记：宝格丽总监《Secret Touch》Story 的正确日期为2026-09-28。
+// 若浏览器 localStorage 中残留2026年11月的旧条目，按标题/内容识别并丢弃，
+// 正确记录由本版本内置 seedRecords（id: 20260928）提供。
+const userEntries = savedEntries.filter(e => {
+  if (!e || seedIds.has(String(e.id))) return false;
+  const text = [e.title, e.summary, e.analysis, e.extra, e.date].filter(Boolean).join(" ");
+  const isBulgariSecretTouch = /宝格丽/.test(text) && /Secret\s*Touch/.test(text);
+  const isWrongNovemberDate = /2026[-/.年]11/.test(String(e.date || "")) || /2026年11月/.test(text);
+  return !(isBulgariSecretTouch && isWrongNovemberDate);
+});
+let entries = [...seedRecords, ...userEntries];
+try { localStorage.setItem("mm_archive_entries", JSON.stringify(entries)); } catch (_) {}
+function save(){localStorage.setItem("mm_archive_entries",JSON.stringify(entries));renderAll()}
+function esc(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function showPage(id){
+  const target=document.getElementById(id);
+  if(!target || !target.classList.contains("page")) return;
+  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p===target));
+  document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+  if(id==="profiles") backToProfiles();
+  if(id==="timeline") renderTimeline();
+  if(id==="magazines") loadMagazines();
+  if(id==="sweet") renderSweet();
+  if(id==="archive") renderArchive();
+  if(id==="stats") renderStats();
+  if(id==="admin") loadAdminQueue();
+  if(id==="community") loadMySubmissions();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function showProfile(who){showPage("profiles");document.getElementById("profilePicker").style.display="none";document.querySelectorAll(".profile-detail").forEach(p=>p.classList.remove("active"));document.getElementById(who+"Detail").classList.add("active");window.scrollTo({top:0,behavior:"smooth"})}
+function backToProfiles(){document.getElementById("profilePicker").style.display="grid";document.querySelectorAll(".profile-detail").forEach(p=>p.classList.remove("active"))}
+document.querySelectorAll("nav button[data-page]").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+function phaseForEntry(e){if(e.phase)return e.phase;const y=String(e.date||'').slice(0,4);if(y==='2021')return 'phase-collab';if(['2022','2023','2024'].includes(y))return 'phase-archive';if(y==='2025')return 'phase-2025';if(y==='2026')return 'phase-2026';return '';}
+function dateOrderValue(v){const d=String(v||'').replace(/\D/g,'');return Number((d+'00000000').slice(0,8))*100; }
+function eventHTML(e,i){return `<article class="event ${phaseForEntry(e)}"><small>${esc(e.date)}　/　${esc(e.category)}</small><h3>${esc(e.title)}</h3><p>${esc(e.summary)}</p><button class="text-link event-open" onclick="toggleDetail(${Number(e.id)})">展开详细档案 ＋</button><div class="detail" id="detail-${Number(e.id)}">${e.extra||`${esc(e.analysis||"暂无补充分析。")}<br><br>资料标注：${esc(e.confidence||"未标注")} ${e.source?`<br>来源：<a href="${esc(e.source)}" target="_blank" rel="noopener">查看原始出处</a>`:""}`}</div><button class="event-feedback" onclick="openTargetFeedback(${Number(e.id)}, decodeURIComponent('${encodeURIComponent(String(e.title))}'))">反馈这条记录／建议修改</button>${currentAuthRole==='admin'?`<div class="submission-actions"><button class="admin-edit-btn" onclick="editTimelineEntry('${String(e.id)}')">管理员编辑</button><button class="admin-delete-btn" onclick="deleteTimelineEntry('${String(e.id)}')">删除板块</button></div>`:''}</article>`}
+function toggleDetail(id){let el=document.getElementById("detail-"+id);if(el)el.style.display=el.style.display==="block"?"none":"block"}
+function renderTimeline(){
+  const q=(document.getElementById("timelineSearch")?.value||"").toLowerCase();
+  const y=document.getElementById("yearFilter")?.value||"";
+  const typeEl=document.getElementById("typeFilter");
+  const t=typeEl?.value||"";
+  const all=entries.filter(e=>e.kind==="timeline");
+  if(typeEl){const old=typeEl.value;const cats=[...new Set(all.map(e=>e.category).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"zh-CN"));typeEl.innerHTML='<option value="">全部分类</option>'+cats.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("");typeEl.value=cats.includes(old)?old:"";}
+  const a=all.filter(e=>(!q||(e.title+e.summary+e.analysis).toLowerCase().includes(q))&&(!y||e.date.startsWith(y))&&(!t||e.category===t)).sort((a,b)=>{const av=dateOrderValue(a.date),bv=dateOrderValue(b.date);return av-bv||a.date.localeCompare(b.date)||String(a.id).localeCompare(String(b.id));});
+  const count=document.getElementById("timelineCount");if(count)count.textContent=`当前显示 ${a.length} 条／档案共 ${all.length} 条${y?` · ${y}年`:""}${t?` · ${t}`:""}`;
+  document.getElementById("timelineList").innerHTML=a.length?a.map(eventHTML).join(""):"<p>暂时没有符合条件的记录。</p>";
+}
+function renderSweet(){let q=(document.getElementById("sweetSearch")?.value||"").toLowerCase(),c=document.getElementById("confidenceFilter")?.value||"";let a=entries.filter(e=>e.kind==="sweet"&&(!q||(e.title+e.summary+e.analysis).toLowerCase().includes(q))&&(!c||e.confidence===c));document.getElementById("sweetCards").innerHTML=a.length?a.map(e=>`<article class="card"><span class="tag">${esc(e.confidence)}</span><div class="date">${esc(e.date)}</div><h3>${esc(e.title)}</h3><p>${esc(e.summary)}</p><button class="text-link" onclick="toggleDetail(${e.id})">展开分析 ＋</button><div class="detail" id="detail-${e.id}">${esc(e.analysis)}${e.source?`<br><a href="${esc(e.source)}" target="_blank" rel="noopener">原始出处</a>`:""}</div></article>`).join(""):"<p>暂时没有糖点记录。</p>"}
+function renderArchive(){let q=(document.getElementById("archiveSearch")?.value||"").toLowerCase(),t=document.getElementById("archiveType")?.value||"";let a=entries.filter(e=>e.kind==="archive"&&(!q||(e.title+e.summary).toLowerCase().includes(q))&&(!t||e.category===t));document.getElementById("archiveList").innerHTML=a.length?a.map(e=>`<article class="archive-item"><span class="tag">${esc(e.category)}</span><div class="date">${esc(e.date)}</div><h3>${esc(e.title)}</h3><p>${esc(e.summary)}</p>${e.source?`<p><a href="${esc(e.source)}" target="_blank" rel="noopener">打开资料来源 →</a></p>`:""}</article>`).join(""):"<p>暂时没有资料条目。</p>"}
+function renderLatest(){let a=[...entries].sort((x,y)=>y.date.localeCompare(x.date)).slice(0,3);document.getElementById("latestCards").innerHTML=a.map(e=>`<article class="card"><span class="tag">${e.kind==="sweet"?"糖点分析":e.kind==="archive"?"资料收录":"时间线"}</span><div class="date">${esc(e.date)}</div><h3>${esc(e.title)}</h3><p>${esc(e.summary)}</p></article>`).join("")}
+function renderStats(){let n=entries.length,t=entries.filter(e=>e.kind==="timeline").length,s=entries.filter(e=>e.kind==="sweet").length,a=entries.filter(e=>e.kind==="archive").length;document.getElementById("statsGrid").innerHTML=`<div class="stat"><strong>${n}</strong><span>档案总数</span></div><div class="stat"><strong>${t}</strong><span>时间线事件</span></div><div class="stat"><strong>${s}</strong><span>糖点分析</span></div><div class="stat"><strong>${a}</strong><span>资料库条目</span></div><div class="stat"><strong>${entries.filter(e=>e.confidence==="公开可核实").length}</strong><span>已标注公开可核实</span></div><div class="stat"><strong>${entries.filter(e=>e.confidence==="待补充来源").length}</strong><span>待补充来源</span></div>`}
+function renderManage(){const box=document.getElementById("manageList");if(!box)return;box.innerHTML=entries.length?entries.map(e=>`<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding:10px 0;font-size:13px"><span>${esc(e.date)} · ${esc(e.title)} <small style="color:#9b6576">(${e.kind})</small></span><button class="danger" onclick="deleteEntry(${e.id})">删除</button></div>`).join(""):"<p>还没有记录。</p>"}
+function deleteEntry(id){if(confirm("确定删除这条记录吗？")){entries=entries.filter(e=>e.id!==id);save()}}
+function resetDemo(){if(confirm("这会清除当前本地记录并恢复演示数据，确定继续吗？")){entries=[...demo];save()}}
+document.getElementById("entryForm")?.addEventListener("submit",e=>{e.preventDefault();let f=new FormData(e.target);entries.unshift({id:Date.now(),kind:f.get("kind"),date:f.get("date"),title:f.get("title"),category:f.get("category"),confidence:f.get("confidence"),source:f.get("source"),summary:f.get("summary"),analysis:f.get("analysis")});save();e.target.reset();alert("已保存到当前浏览器。")});
+function renderAll(){let years=[...new Set(entries.filter(e=>e.kind==="timeline").map(e=>e.date.slice(0,4)))].sort().reverse();let yf=document.getElementById("yearFilter");let old=yf.value;yf.innerHTML='<option value="">全部年份</option>'+years.map(y=>`<option>${esc(y)}</option>`).join("");yf.value=years.includes(old)?old:"";renderTimeline();renderSweet();renderArchive();renderLatest();renderStats();renderManage()}
+renderAll();
+document.querySelectorAll('img').forEach(img=>{img.addEventListener('error',()=>{img.style.display='none';const box=img.parentElement;if(box&&!box.querySelector('.image-fallback')){const fallback=document.createElement('div');fallback.className='image-fallback';fallback.textContent='照片暂时无法载入';fallback.style.cssText='display:flex;align-items:center;justify-content:center;min-height:150px;background:#f1e9e8;color:#82797b;font-size:12px;padding:16px;text-align:center';box.appendChild(fallback);}});});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth-config.js"></script>
+
+<script>
+// Supabase身份系统：将 auth-config.js 中的项目URL与 anon key替换为自己的项目参数后启用。
+let authClient=null, currentAuthUser=null, currentAuthRole='guest', authMode='login';
+function authMessage(msg,isError=false){const el=document.getElementById('authMessage');if(el){el.textContent=msg;el.style.color=isError?'#a14c58':'#765767';}}
+function openAuthModal(){document.getElementById('authModal').classList.add('open');authMessage('');}
+function closeAuthModal(){document.getElementById('authModal').classList.remove('open');}
+function setAuthMode(mode){authMode=mode;document.getElementById('authLoginTab').classList.toggle('active',mode==='login');document.getElementById('authSignupTab').classList.toggle('active',mode==='signup');document.getElementById('authNameWrap').hidden=mode!=='signup';document.getElementById('authPassword').autocomplete=mode==='signup'?'new-password':'current-password';document.getElementById('authSubmit').textContent=mode==='signup'?'创建账号':'登录';document.getElementById('authTitle').textContent=mode==='signup'?'创建粉丝账号':'欢迎回来';authMessage('');}
+function updateAuthUI(){const label=document.getElementById('authUserLabel'),open=document.getElementById('authOpenBtn'),logout=document.getElementById('authLogoutBtn');if(currentAuthUser){label.hidden=false;label.textContent=(currentAuthUser.user_metadata?.display_name||currentAuthUser.email?.split('@')[0]||'已登录')+(currentAuthRole==='admin'?' · 管理员':'');open.hidden=true;logout.hidden=false;logout.title=currentAuthRole==='admin'?'管理员账号':'普通粉丝账号';document.querySelectorAll('.admin-only').forEach(el=>el.style.display=currentAuthRole==='admin'?'inline-block':'none');}else{label.hidden=true;open.hidden=false;logout.hidden=true;document.querySelectorAll('.admin-only').forEach(el=>el.style.display='none');}}
+async function loadAuthProfile(user){currentAuthRole='user';if(!authClient||!user)return;try{const {data,error}=await authClient.from('profiles').select('role,display_name').eq('id',user.id).maybeSingle();if(!error&&data){currentAuthRole=data.role||'user';if(data.display_name)user.user_metadata={...(user.user_metadata||{}),display_name:data.display_name};}}catch(e){console.warn('读取用户资料失败',e);}updateAuthUI();}
+async function signOutUser(){if(!authClient)return;const {error}=await authClient.auth.signOut();if(error){alert('退出登录失败：'+error.message);return;}currentAuthUser=null;currentAuthRole='guest';updateAuthUI();}
+async function initAuth(){const cfg=window.MM_SUPABASE_CONFIG||{};if(!cfg.url||!cfg.anonKey||cfg.url.includes('YOUR_')||cfg.anonKey.includes('YOUR_')){document.getElementById('authOpenBtn').title='身份系统尚未连接：请先配置Supabase项目参数';return;}if(!window.supabase?.createClient){authMessage('身份服务组件加载失败，请刷新页面。',true);return;}authClient=window.supabase.createClient(cfg.url,cfg.anonKey);const {data:{session}}=await authClient.auth.getSession();if(session){currentAuthUser=session.user;await loadAuthProfile(currentAuthUser);}updateAuthUI();await loadCommunityEntries();authClient.auth.onAuthStateChange((_event,session)=>{currentAuthUser=session?.user||null;currentAuthRole=currentAuthUser?'user':'guest';setTimeout(async()=>{if(currentAuthUser)await loadAuthProfile(currentAuthUser);else updateAuthUI();await loadCommunityEntries();},0);});}
+document.getElementById('authForm').addEventListener('submit',async e=>{e.preventDefault();if(!authClient){authMessage('还没有连接身份服务。请先创建Supabase项目并填写 auth-config.js。',true);return;}const btn=document.getElementById('authSubmit');btn.disabled=true;authMessage('正在处理…');const email=document.getElementById('authEmail').value.trim();const password=document.getElementById('authPassword').value;try{if(authMode==='signup'){const displayName=document.getElementById('authDisplayName').value.trim();if(!displayName){authMessage('请设置档案馆昵称。',true);return;}const {data,error}=await authClient.auth.signUp({email,password,options:{data:{display_name:displayName}}});if(error)throw error;if(data.session){currentAuthUser=data.user;await loadAuthProfile(currentAuthUser);authMessage('注册成功，已登录。');setTimeout(closeAuthModal,900);}else{authMessage('注册申请已提交！请检查邮箱并点击验证链接，验证后即可登录。');}}else{const {data,error}=await authClient.auth.signInWithPassword({email,password});if(error)throw error;currentAuthUser=data.user;await loadAuthProfile(currentAuthUser);authMessage('登录成功！');setTimeout(closeAuthModal,700);}}catch(err){authMessage(err.message||'操作失败，请稍后重试。',true);}finally{btn.disabled=false;}});
+
+function communityMsg(msg,isError=false){const el=document.getElementById('communityMessage');if(el){el.textContent=msg;el.style.color=isError?'#a14c58':'#765767';}}
+function openTargetFeedback(id,title){if(!currentAuthUser){openAuthModal();authMessage('请先登录，再提交这条记录的反馈。');return;}showPage('community');const f=document.getElementById('communityForm');f.elements.submission_type.value='feedback';f.elements.title.value='';f.elements.summary.focus();f.dataset.targetId=String(id);f.dataset.targetTitle=title;communityMsg('当前反馈对象：'+title+'（'+id+'）');}
+async function submitCommunityForm(e){e.preventDefault();if(!authClient||!currentAuthUser){communityMsg('请先登录后再提交。',true);return;}const f=e.currentTarget,fd=new FormData(f),type=fd.get('submission_type');const payload={user_id:currentAuthUser.id,submission_type:type,target_entry_id:f.dataset.targetId||null,target_title:f.dataset.targetTitle||null,title:String(fd.get('title')||'').trim()||null,event_date:String(fd.get('event_date')||'').trim()||null,category:String(fd.get('category')||'').trim()||null,confidence:'粉丝投稿／待审核',summary:String(fd.get('summary')||'').trim(),analysis:String(fd.get('analysis')||'').trim()||null,source_url:String(fd.get('source_url')||'').trim()||null,message:String(fd.get('message')||'').trim()||null};if(!payload.summary){communityMsg('请填写事件内容或反馈。',true);return;}const btn=f.querySelector('button[type=submit]');btn.disabled=true;communityMsg('正在提交…');try{const {error}=await authClient.from('archive_submissions').insert(payload);if(error)throw error;communityMsg('提交成功！内容已进入审核队列，审核通过前不会公开。');f.reset();delete f.dataset.targetId;delete f.dataset.targetTitle;await loadMySubmissions();}catch(err){communityMsg('提交失败：'+(err.message||'请稍后重试'),true);}finally{btn.disabled=false;}}
+function submissionCard(x,admin=false){const typeLabel={feedback:'反馈',new_entry:'新增建议',edit_suggestion:'修改建议'}[x.submission_type]||x.submission_type;const statusLabel={pending:'待审核',approved:'已通过',rejected:'已驳回',needs_info:'需要补充'}[x.status]||x.status;return `<article class="submission-item"><div class="submission-meta">#${x.id} · ${esc(typeLabel)} · ${esc(new Date(x.created_at).toLocaleString())} <span class="submission-status">${esc(statusLabel)}</span></div>${x.target_title?`<p><b>关联条目：</b>${esc(x.target_title)}</p>`:''}<h4>${esc(x.title||typeLabel)}</h4>${x.event_date?`<p><b>日期：</b>${esc(x.event_date)}</p>`:''}<p>${esc(x.summary||'')}</p>${x.analysis?`<p><b>补充说明：</b>${esc(x.analysis)}</p>`:''}${x.source_url?`<p><a href="${esc(x.source_url)}" target="_blank" rel="noopener">查看来源链接 ↗</a></p>`:''}${x.message?`<p><b>其他说明：</b>${esc(x.message)}</p>`:''}${x.admin_note?`<p><b>管理员备注：</b>${esc(x.admin_note)}</p>`:''}${admin&&x.status==='pending'?`<div class="submission-actions"><button class="community-secondary" onclick="reviewSubmission(${x.id},'approved')">通过${x.submission_type==='new_entry'?'并发布':'审核'}</button><button class="community-secondary" onclick="reviewSubmission(${x.id},'needs_info')">要求补充</button><button class="community-secondary" onclick="reviewSubmission(${x.id},'rejected')">驳回</button></div>`:''}</article>`;}
+async function loadMySubmissions(){const box=document.getElementById('mySubmissions');if(!box)return;if(!currentAuthUser){box.innerHTML='<p class="community-help">请先登录后查看投稿记录。</p>';return;}box.innerHTML='<p class="community-help">正在读取…</p>';const {data,error}=await authClient.from('archive_submissions').select('*').eq('user_id',currentAuthUser.id).order('created_at',{ascending:false}).limit(50);if(error){box.innerHTML='<p class="community-help">读取失败：'+esc(error.message)+'</p>';return;}box.innerHTML=data.length?data.map(x=>submissionCard(x)).join(''):'<p class="community-help">你还没有提交过内容。</p>';}
+async function loadAdminQueue(){const pending=document.getElementById('adminQueue'),reviewed=document.getElementById('reviewedQueue');if(!pending||!reviewed)return;if(currentAuthRole!=='admin'){pending.innerHTML='<p>此页面仅对管理员开放。</p>';reviewed.innerHTML='';return;}pending.innerHTML='<p class="community-help">正在读取…</p>';const {data,error}=await authClient.from('archive_submissions').select('*').order('created_at',{ascending:false}).limit(100);if(error){pending.innerHTML='<p>读取失败：'+esc(error.message)+'</p>';return;}const todo=data.filter(x=>x.status==='pending'),done=data.filter(x=>x.status!=='pending');pending.innerHTML=todo.length?todo.map(x=>submissionCard(x,true)).join(''):'<p class="community-help">目前没有待审核投稿。</p>';reviewed.innerHTML=done.length?done.map(x=>submissionCard(x,false)).join(''):'<p class="community-help">暂无已审核记录。</p>';await loadPublishedAdminEntries();await loadAdminMagazines();}
+async function loadPublishedAdminEntries(){const box=document.getElementById('publishedEntries');if(!box)return;if(currentAuthRole!=='admin'){box.innerHTML='<p>此区域仅对管理员开放。</p>';return;}const list=entries.filter(e=>e.kind==='timeline');box.innerHTML=list.length?list.map(x=>`<article class="published-admin-row"><div class="submission-meta">#${esc(x.id)} · ${esc(x.date)} · ${esc(x.category)} · ${esc(x.confidence||'')}</div><h4>${esc(x.title)}</h4><p>${esc(x.summary)}</p><div class="row-actions"><button class="admin-edit-btn" onclick="editTimelineEntry('${String(x.id)}')">全部字段编辑</button><button class="admin-delete-btn" onclick="deleteTimelineEntry('${String(x.id)}')">删除板块</button></div></article>`).join(''):'<p class="community-help">目前没有时间线条目。</p>';}
+function formatExtra(command,value=null){const editor=document.getElementById('extraRichEditor');editor.focus();document.execCommand(command,false,value);}
+let savedExtraRange=null;
+document.addEventListener('selectionchange',()=>{const editor=document.getElementById('extraRichEditor');const sel=window.getSelection();if(editor&&sel&&sel.rangeCount&&editor.contains(sel.anchorNode)){savedExtraRange=sel.getRangeAt(0).cloneRange();}});
+function editExtraLink(){
+ const editor=document.getElementById('extraRichEditor');const sel=window.getSelection();
+ if(sel&&sel.rangeCount&&editor.contains(sel.anchorNode))savedExtraRange=sel.getRangeAt(0).cloneRange();
+ const range=savedExtraRange;
+ let link=range&&range.startContainer?(range.startContainer.nodeType===1?range.startContainer:range.startContainer.parentElement)?.closest('a'):null;
+ const selected=range?range.toString().trim():'';const currentUrl=link?.getAttribute('href')||'';
+ const label=selected||link?.textContent?.trim()||'';const text=label||prompt('请输入链接显示的文字：');if(!text)return;
+ let url=prompt('请输入或修改这段文字对应的网址：\n可以直接输入域名，无需输入 https://',currentUrl);if(!url)return;
+ url=url.trim();if(!/^[a-z][a-z0-9+.-]*:\/\//i.test(url))url='https://'+url;
+ try{const parsed=new URL(url);if(!['http:','https:'].includes(parsed.protocol)||!parsed.hostname.includes('.'))throw new Error('invalid');url=parsed.href;}catch(_){alert('网址格式不正确，请输入有效域名或完整网址。');return;}
+ if(link&&!selected){link.setAttribute('href',url);link.setAttribute('target','_blank');link.setAttribute('rel','noopener');savedExtraRange=null;return;}
+ if(range&&selected){const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';try{range.surroundContents(a);}catch(_){const fragment=range.extractContents();a.appendChild(fragment);range.insertNode(a);}}
+ else{const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';a.textContent=text;editor.appendChild(a);}
+ savedExtraRange=null;
+}
+function removeExtraLink(){const editor=document.getElementById('extraRichEditor');editor.focus();document.execCommand('unlink',false,null);}
+function prepareExtraForEditor(html,source){let content=html||'';if(source&&!content.includes(source)){const link=`<p><a href="${esc(source)}" target="_blank" rel="noopener">查看资料出处</a></p>`;if(/<h4[^>]*>资料出处[^<]*<\/h4>/i.test(content)){content=content.replace(/(<h4[^>]*>资料出处[^<]*<\/h4>)/i,`$1${link}`);}else{content+=`<h4>资料出处</h4>${link}`;}}return content;}
+function closeTimelineEditor(){document.getElementById('adminEditorModal')?.classList.remove('open');}
+function editTimelineEntry(id){
+ if(currentAuthRole!=='admin')return;
+ const x=entries.find(e=>String(e.id)===String(id));if(!x)return;
+ const form=document.getElementById('adminTimelineEditorForm');if(!form)return;
+ form.elements.entry_id.value=String(id);form.elements.date.value=x.date||'';form.elements.category.value=x.category||'公开互动';
+ if(![...form.elements.category.options].some(o=>o.value===form.elements.category.value)){const op=document.createElement('option');op.value=x.category;op.textContent=x.category;form.elements.category.add(op);}
+ form.elements.title.value=x.title||'';form.elements.confidence.value=x.confidence||'';
+ form.elements.summary.value=x.summary||'';form.elements.analysis.value=x.analysis||'';document.getElementById('extraRichEditor').innerHTML=prepareExtraForEditor(x.extra||'',x.source||'');form.elements.extra.value=document.getElementById('extraRichEditor').innerHTML;
+ document.getElementById('adminEditorMessage').textContent='正在编辑：'+(x.title||id);document.getElementById('adminEditorModal').classList.add('open');
+}
+async function saveTimelineEntry(){
+ const form=document.getElementById('adminTimelineEditorForm');if(!form){alert('找不到编辑表单，请刷新页面后重试。');return;}if(!form.reportValidity())return;
+
+ if(currentAuthRole!=='admin'){alert('当前账号没有管理员权限，请退出后重新登录。');return;}const fd=new FormData(form),id=String(fd.get('entry_id'));const x=entries.find(e=>String(e.id)===id);if(!x){document.getElementById('adminEditorMessage').textContent='保存失败：找不到正在编辑的记录，请刷新后重新打开。';return;}
+ const richEditor=document.getElementById('extraRichEditor');form.elements.extra.value=richEditor.innerHTML;
+ const patch={date:String(fd.get('date')||'').trim(),category:String(fd.get('category')||'').trim(),title:String(fd.get('title')||'').trim(),confidence:String(fd.get('confidence')||'').trim(),summary:String(fd.get('summary')||'').trim(),analysis:String(fd.get('analysis')||'').trim(),extra:richEditor.innerHTML};
+ if(!patch.date||!patch.title||!patch.summary){alert('日期、标题和卡片摘要不能为空。');return;}
+ const btn=document.getElementById('adminEditorSaveBtn'),msg=document.getElementById('adminEditorMessage');btn.disabled=true;btn.textContent='正在保存…';msg.textContent='正在同步到云端…';
+ try{
+  if(x.communityRemote){const {error}=await authClient.from('community_archive_entries').update({title:patch.title,event_date:patch.date,category:patch.category,confidence:patch.confidence||null,summary:patch.summary,analysis:patch.analysis||null,extra:patch.extra||null}).eq('id',x.remoteId);if(error)throw error;}
+  else{const {error}=await authClient.from('archive_entry_overrides').upsert({entry_id:id,override_data:patch,is_deleted:false,updated_by:currentAuthUser.id,updated_at:new Date().toISOString()},{onConflict:'entry_id'});if(error)throw error;}
+  await loadCommunityEntries();await loadPublishedAdminEntries();msg.textContent='保存成功！公开时间线已同步更新。';setTimeout(closeTimelineEditor,650);
+ }catch(err){msg.textContent='保存失败：'+(err.message||'请稍后重试');}finally{btn.disabled=false;btn.textContent='保存修改';}
+
+}
+
+async function deleteTimelineEntry(id){if(currentAuthRole!=='admin')return;const x=entries.find(e=>String(e.id)===String(id));if(!x)return;if(!confirm('确定删除这个时间线板块吗？删除后会从公开时间线移除。'))return;try{if(x.communityRemote){const {error}=await authClient.from('community_archive_entries').delete().eq('id',x.remoteId);if(error)throw error;}else{const {error}=await authClient.from('archive_entry_overrides').upsert({entry_id:String(id),override_data:{},sort_order:null,is_deleted:true,updated_by:currentAuthUser.id,updated_at:new Date().toISOString()},{onConflict:'entry_id'});if(error)throw error;}await loadCommunityEntries();await loadPublishedAdminEntries();alert('板块已从公开时间线删除。');}catch(err){alert('删除失败：'+err.message);}}
+
+
+// 双人杂志：封面存储于 Supabase Storage，目录元数据存于 magazine_covers 表。
+let magazineRows=[];
+function magazineMessage(message,isError=false){const el=document.getElementById('magazineAdminMessage');if(el){el.textContent=message;el.style.color=isError?'#a14c58':'#765767';}}
+function renderMagazineGallery(){const box=document.getElementById('magazineGallery');if(!box)return;box.innerHTML=magazineRows.length?magazineRows.map(m=>`<article class="magazine-card"><img class="magazine-cover" src="${esc(m.image_url)}" alt="${esc(m.title)} 杂志封面" loading="lazy"><h3 class="magazine-name">${esc(m.title)}</h3>${m.issue_year?`<div class="magazine-year">${esc(m.issue_year)}</div>`:''}</article>`).join(''):'<div class="magazine-empty" style="grid-column:1/-1">暂时还没有收录双人杂志封面。</div>';}
+async function loadMagazines(){const box=document.getElementById('magazineGallery');if(!box)return;if(!authClient){box.innerHTML='<div class="magazine-empty" style="grid-column:1/-1">杂志资料服务暂时不可用，请稍后刷新。</div>';return;}box.innerHTML='<div class="magazine-empty" style="grid-column:1/-1">正在载入杂志封面……</div>';try{const {data,error}=await authClient.from('magazine_covers').select('id,title,issue_year,image_url,storage_path,sort_order,created_at').order('sort_order',{ascending:true}).order('created_at',{ascending:true});if(error)throw error;magazineRows=data||[];renderMagazineGallery();}catch(err){box.innerHTML='<div class="magazine-empty" style="grid-column:1/-1">读取失败：'+esc(err.message)+'。请确认杂志栏目数据表已完成初始化。</div>';}}
+async function loadAdminMagazines(){const box=document.getElementById('magazineAdminList');if(!box)return;if(currentAuthRole!=='admin'){box.innerHTML='<p class="community-help">此区域仅对管理员开放。</p>';return;}try{const {data,error}=await authClient.from('magazine_covers').select('id,title,issue_year,image_url,storage_path').order('sort_order',{ascending:true}).order('created_at',{ascending:true});if(error)throw error;magazineRows=data||[];box.innerHTML=magazineRows.length?magazineRows.map(m=>`<div class="magazine-admin-item"><img src="${esc(m.image_url)}" alt=""><div class="magazine-admin-meta"><b>${esc(m.title)}</b><small>${esc(m.issue_year||'未填写年份')}</small><div style="margin-top:6px"><button type="button" class="admin-edit-btn" onclick="editMagazine('${String(m.id)}')">编辑</button></div></div><button type="button" onclick="deleteMagazine('${String(m.id)}')">删除</button></div>`).join(''):'<p class="community-help">目前还没有杂志封面。</p>';}catch(err){box.innerHTML='<p class="community-help">读取失败：'+esc(err.message)+'。请先完成杂志栏目初始化。</p>';}}
+function editMagazine(id){const m=magazineRows.find(x=>String(x.id)===String(id));if(!m)return;const f=document.getElementById('magazineForm');f.elements.magazine_id.value=m.id;f.elements.old_storage_path.value=m.storage_path||'';f.elements.title.value=m.title||'';f.elements.issue_year.value=m.issue_year||'';const file=document.getElementById('magazineCoverFile');file.required=false;const preview=document.getElementById('magazineCoverPreview');preview.src=m.image_url;preview.style.display='block';magazineMessage('正在编辑：'+m.title+'。如不更换封面，可以不选择新图片。');f.scrollIntoView({behavior:'smooth',block:'center'});}
+function resetMagazineForm(){const f=document.getElementById('magazineForm');if(!f)return;f.reset();f.elements.magazine_id.value='';f.elements.old_storage_path.value='';document.getElementById('magazineCoverFile').required=true;const preview=document.getElementById('magazineCoverPreview');preview.removeAttribute('src');preview.style.display='none';magazineMessage('');}
+document.getElementById('magazineCoverFile')?.addEventListener('change',e=>{const file=e.target.files?.[0],preview=document.getElementById('magazineCoverPreview');if(!file){preview.style.display='none';return;}if(!['image/jpeg','image/png','image/webp'].includes(file.type)){magazineMessage('请上传 JPG、PNG 或 WebP 图片。',true);e.target.value='';preview.style.display='none';return;}if(file.size>8*1024*1024){magazineMessage('图片不能超过 8MB，请压缩后再上传。',true);e.target.value='';preview.style.display='none';return;}preview.src=URL.createObjectURL(file);preview.style.display='block';});
+document.getElementById('magazineForm')?.addEventListener('submit',async e=>{e.preventDefault();if(currentAuthRole!=='admin'||!authClient){magazineMessage('请使用管理员账号登录后操作。',true);return;}const f=e.currentTarget,fd=new FormData(f),id=String(fd.get('magazine_id')||''),file=document.getElementById('magazineCoverFile').files?.[0],title=String(fd.get('title')||'').trim(),year=String(fd.get('issue_year')||'').trim(),oldPath=String(fd.get('old_storage_path')||'');if(!title){magazineMessage('请填写杂志名称。',true);return;}if(!file&&!id){magazineMessage('请先选择一张杂志封面图片。',true);return;}const btn=document.getElementById('magazineSaveBtn');btn.disabled=true;btn.textContent='正在上传…';magazineMessage('正在保存杂志资料，请不要关闭页面…');let newPath='';try{let imageUrl=null,storagePath=oldPath;if(file){const ext=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg';newPath=`${Date.now()}-${crypto.randomUUID()}.${ext}`;const {error:uploadError}=await authClient.storage.from('magazine-covers').upload(newPath,file,{contentType:file.type,upsert:false});if(uploadError)throw uploadError;storagePath=newPath;const {data:publicData}=authClient.storage.from('magazine-covers').getPublicUrl(newPath);imageUrl=publicData.publicUrl;}if(id){const patch={title,issue_year:year||null,storage_path:storagePath,updated_at:new Date().toISOString()};if(imageUrl)patch.image_url=imageUrl;const {error}=await authClient.from('magazine_covers').update(patch).eq('id',id);if(error)throw error;if(file&&oldPath){const {error:removeError}=await authClient.storage.from('magazine-covers').remove([oldPath]);if(removeError)console.warn('旧封面未能自动清理',removeError.message);}}else{const {error}=await authClient.from('magazine_covers').insert({title,issue_year:year||null,image_url:imageUrl,storage_path:storagePath,sort_order:Date.now()});if(error)throw error;}resetMagazineForm();magazineMessage('保存成功！');await loadMagazines();await loadAdminMagazines();}catch(err){if(newPath)await authClient.storage.from('magazine-covers').remove([newPath]);magazineMessage('保存失败：'+(err.message||'请稍后重试'),true);}finally{btn.disabled=false;btn.textContent='上传并保存';}});
+async function deleteMagazine(id){if(currentAuthRole!=='admin'||!confirm('确定删除这本杂志封面吗？'))return;const m=magazineRows.find(x=>String(x.id)===String(id));if(!m)return;try{const {error}=await authClient.from('magazine_covers').delete().eq('id',id);if(error)throw error;if(m.storage_path){const {error:removeError}=await authClient.storage.from('magazine-covers').remove([m.storage_path]);if(removeError)console.warn('封面文件未能自动清理',removeError.message);}await loadMagazines();await loadAdminMagazines();}catch(err){alert('删除失败：'+err.message);}}
+
+async function reviewSubmission(id,status){if(currentAuthRole!=='admin')return;let note='';if(status!=='approved'){note=prompt(status==='rejected'?'填写驳回原因（可选）':'请说明需要补充的内容（可选）')||'';}const {data:sub,error:readErr}=await authClient.from('archive_submissions').select('*').eq('id',id).single();if(readErr){alert('读取投稿失败：'+readErr.message);return;}try{if(status==='approved'&&sub.submission_type==='new_entry'){const {error:pubErr}=await authClient.from('community_archive_entries').insert({submission_id:sub.id,kind:'timeline',event_date:sub.event_date||'待补日期',title:sub.title||'粉丝投稿',category:sub.category||'公开互动',confidence:'粉丝投稿／管理员审核',summary:sub.summary,analysis:sub.analysis,source_url:sub.source_url,created_by:currentAuthUser.id,published:true,sort_order:null});if(pubErr)throw pubErr;}const {error}=await authClient.from('archive_submissions').update({status,admin_note:note,reviewed_at:new Date().toISOString()}).eq('id',id);if(error)throw error;await loadAdminQueue();alert(status==='approved'&&sub.submission_type==='new_entry'?'已审核并发布到补充档案。':'审核状态已更新。');}catch(err){alert('操作失败：'+err.message);}}
+async function loadCommunityEntries(){if(!authClient)return;try{const {data,error}=await authClient.from('community_archive_entries').select('*').eq('published',true).order('created_at',{ascending:true}).limit(300);if(error)throw error;const remote=(data||[]).map(x=>({id:-Number(x.id),remoteId:Number(x.id),communityRemote:true,sort_order:x.sort_order==null?null:Number(x.sort_order),kind:x.kind||'timeline',date:x.event_date,title:x.title,category:x.category,confidence:x.confidence,summary:x.summary,analysis:x.analysis||'',source:x.source_url||'',extra:x.extra||''}));let base=entries.filter(e=>!e.communityRemote);const {data:ovs,error:ovErr}=await authClient.from('archive_entry_overrides').select('*');if(ovErr)throw ovErr;const ovMap=new Map((ovs||[]).map(o=>[String(o.entry_id),o]));base=base.filter(e=>!ovMap.get(String(e.id))?.is_deleted).map(e=>{const o=ovMap.get(String(e.id));return o?{...e,...(o.override_data||{}),sort_order:o.sort_order==null?e.sort_order:Number(o.sort_order),cloudOverride:true}:e;});entries=base.concat(remote);renderAll();}catch(e){console.warn('读取已发布补充档案或管理员修改失败',e);}}
+document.getElementById('communityForm')?.addEventListener('submit',submitCommunityForm);
+
+initAuth();
+</script>
+
+
+<div class="admin-editor-modal" id="adminEditorModal" role="dialog" aria-modal="true" aria-labelledby="adminEditorTitle">
+ <div class="admin-editor-dialog">
+  <div class="admin-editor-head"><h3 id="adminEditorTitle">编辑时间线板块</h3><button type="button" class="admin-edit-btn" onclick="closeTimelineEditor()">关闭 ×</button></div>
+  <p class="admin-editor-help">直接修改日期即可调整时间线先后，系统会自动按日期排列。详情编辑区会显示已经排版好的文字，不需要接触代码；修改后点击底部「保存修改」。</p>
+  <form id="adminTimelineEditorForm">
+   <input type="hidden" name="entry_id">
+   <div class="admin-editor-grid">
+    <div class="admin-editor-field"><label>事件日期</label><input name="date" placeholder="YYYY-MM-DD 或 YYYY-MM" required></div>
+    <div class="admin-editor-field"><label>分类</label><select name="category"><option>公开互动</option><option>采访记录</option><option>节目记录</option><option>杂志记录</option><option>合作作品</option><option>粉丝观察</option><option>粉丝repo</option><option>作品关联</option><option>共同出演</option></select></div>
+    <div class="admin-editor-field full"><label>板块标题</label><input name="title" maxlength="220" required></div>
+    <div class="admin-editor-field"><label>资料性质／可信度标签</label><input name="confidence" maxlength="180" placeholder="例如：官方报道／本人回忆／粉丝repo"></div>
+    <div class="admin-editor-field full"><label>卡片摘要</label><textarea name="summary" required maxlength="6000"></textarea></div>
+    <div class="admin-editor-field full"><label>详细分析／背景说明</label><textarea name="analysis" maxlength="12000"></textarea></div>
+    <div class="admin-editor-field full"><label>展开详情内容／原文摘录／译文／资料出处</label>
+     <div class="rich-toolbar" aria-label="文字格式工具"><button type="button" onclick="formatExtra('bold')"><b>加粗</b></button><button type="button" onclick="formatExtra('italic')"><i>斜体</i></button><button type="button" onclick="formatExtra('insertUnorderedList')">项目符号</button><button type="button" onclick="formatExtra('insertOrderedList')">编号列表</button><button type="button" onclick="formatExtra('formatBlock','h4')">小标题</button><button type="button" onclick="formatExtra('formatBlock','blockquote')">引用</button><button type="button" onclick="formatExtra('formatBlock','p')">普通段落</button><button type="button" onclick="editExtraLink()">添加／编辑文字链接</button><button type="button" onclick="removeExtraLink()">取消文字链接</button></div>
+     <div id="extraRichEditor" class="rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="详情文字编辑区"></div>
+     <textarea name="extra" hidden></textarea><span class="admin-editor-help">这里直接编辑完整详情，包括「资料出处」。要修改已有链接：把光标点进链接文字后点击「添加／编辑文字链接」；要给新文字加链接：先选中文字，再点击该按钮并填写网址。可添加多条链接，每条都能单独修改。取消链接不会删除文字。原有排版会保留。</span></div>
+   </div>
+   <div class="admin-editor-actions"><button type="button" onclick="closeTimelineEditor()">取消</button><button type="button" class="save" id="adminEditorSaveBtn" onclick="saveTimelineEntry()">保存修改</button></div>
+   <p id="adminEditorMessage" class="admin-editor-help" aria-live="polite"></p>
+  </form>
+ </div>
+</div>
+
+</body></html>
