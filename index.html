@@ -230,7 +230,7 @@ footer{border-top:1px solid var(--line);padding:25px 28px;text-align:center;colo
   </article>
 <div class="section" style="margin-top:38px"><div class="section-head"><div><h2>共同出演作品</h2><p>两人共同出演的影视作品</p></div></div><div class="bio-card"><h3>2021｜《消失的初恋》</h3><p>日文原名：消えた初恋</p><p>目黑莲：井田浩介　／　道枝骏佑：青木想太</p></div></div>
 </section>
-<section class="page" id="timeline"><h1 class="page-title">关系时间线</h1><p class="page-desc">从两人的早期交集开始，按年份整理个人经历、共同作品、公开互动与采访记录。卡片展示事件摘要，点击可阅读详细资料、原文摘录及出处。</p><div class="notice">档案原则：公开事实、当事人回忆与粉丝视角解读分开标注。采访原文仅摘录必要短句，完整内容请通过出处链接阅读。时间线覆盖2016年早期共同舞台、2019—2020年公开交集、2021年合作启动，以及2022—2024年的采访、博客、节目、社交媒体与现场记录。2022—2024年卡片使用雾蓝色，与早期粉色及2021年鼠尾草绿阶段区分。公开事实、当事人回忆、粉丝观察与粉丝解读分别标注。</div><div class="toolbar"><input id="timelineSearch" placeholder="搜索事件名称或关键词…" oninput="renderTimeline()"><select id="yearFilter" onchange="renderTimeline()"><option value="">全部年份</option></select><select id="typeFilter" onchange="renderTimeline()"><option value="">全部分类</option></select></div><p id="timelineCount" class="page-desc" aria-live="polite">正在载入档案……</p><div class="timeline" id="timelineList"></div></section>
+<section class="page" id="timeline"><h1 class="page-title">关系时间线</h1><p class="page-desc">从两人的早期交集开始，按年份整理个人经历、共同作品、公开互动与采访记录。卡片展示事件摘要，点击可阅读详细资料、原文摘录及出处。</p><div class="notice">档案原则：公开事实、当事人回忆与粉丝视角解读分开标注。采访原文仅摘录必要短句，完整内容请通过出处链接阅读。时间线覆盖2016年早期共同舞台、2019—2020年公开交集、2021年合作启动，以及2022—2024年的采访、博客、节目、社交媒体与现场记录。2022—2024年卡片使用雾蓝色，与早期粉色及2021年鼠尾草绿阶段区分。公开事实、当事人回忆、粉丝观察与粉丝解读分别标注。</div><div class="toolbar"><input id="timelineSearch" placeholder="搜索事件名称或关键词…" oninput="renderTimeline()"><select id="yearFilter" onchange="renderTimeline()"><option value="">全部年份</option></select><select id="typeFilter" onchange="renderTimeline()"><option value="">全部分类</option></select><button type="button" class="admin-edit-btn admin-only" id="addTimelineEntryBtn" onclick="newTimelineEntry()">＋ 新增时间线板块</button></div><p id="timelineCount" class="page-desc" aria-live="polite">正在载入档案……</p><div class="timeline" id="timelineList"></div></section>
 <section class="page" id="sweet"><h1 class="page-title">糖点分析</h1><p class="page-desc">收录互动片段，并区分原始事实与粉丝视角的解读。</p><div class="toolbar"><input id="sweetSearch" placeholder="搜索糖点…" oninput="renderSweet()"><select id="confidenceFilter" onchange="renderSweet()"><option value="">全部标注</option><option>公开可核实</option><option>粉丝视角解读</option><option>待补充来源</option></select></div><div class="cards" id="sweetCards"></div></section>
 <section class="page" id="archive"><h1 class="page-title">资料库</h1><p class="page-desc">采访、杂志、节目、直播与社交媒体等公开资料索引。</p><div class="toolbar"><input id="archiveSearch" placeholder="搜索资料标题或来源…" oninput="renderArchive()"><select id="archiveType" onchange="renderArchive()"><option value="">全部类型</option><option>采访</option><option>节目</option><option>杂志</option><option>社交媒体</option><option>其他</option></select></div><div class="archive-list" id="archiveList"></div></section>
 <section class="page" id="magazines"><h1 class="page-title">双人杂志</h1><p class="magazine-intro">收录目黑莲与道枝骏佑的双人杂志封面。按封面与刊名整理，留存每一次共同登上杂志的记录。</p><div id="magazineGallery" class="magazine-grid"><div class="magazine-empty">正在载入杂志封面……</div></div></section>
@@ -836,6 +836,16 @@ function editExtraLink(){
 function removeExtraLink(){const editor=document.getElementById('extraRichEditor');editor.focus();document.execCommand('unlink',false,null);}
 function prepareExtraForEditor(html,source){let content=html||'';if(source&&!content.includes(source)){const link=`<p><a href="${esc(source)}" target="_blank" rel="noopener">查看资料出处</a></p>`;if(/<h4[^>]*>资料出处[^<]*<\/h4>/i.test(content)){content=content.replace(/(<h4[^>]*>资料出处[^<]*<\/h4>)/i,`$1${link}`);}else{content+=`<h4>资料出处</h4>${link}`;}}return content;}
 function closeTimelineEditor(){document.getElementById('adminEditorModal')?.classList.remove('open');}
+function newTimelineEntry(){
+ if(currentAuthRole!=='admin'||!authClient){alert('请使用管理员账号登录后添加。');return;}
+ const form=document.getElementById('adminTimelineEditorForm');if(!form)return;
+ form.reset();form.elements.entry_id.value='';
+ document.getElementById('extraRichEditor').innerHTML='';form.elements.extra.value='';
+ document.getElementById('adminEditorTitle').textContent='新增时间线板块';
+ document.getElementById('adminEditorSaveBtn').textContent='发布到时间线';
+ document.getElementById('adminEditorMessage').textContent='填写完成后点击「发布到时间线」，新板块会直接显示在公开时间线，无需经过投稿审核。';
+ document.getElementById('adminEditorModal').classList.add('open');
+}
 function editTimelineEntry(id){
  if(currentAuthRole!=='admin')return;
  const x=entries.find(e=>String(e.id)===String(id));if(!x)return;
@@ -844,22 +854,26 @@ function editTimelineEntry(id){
  if(![...form.elements.category.options].some(o=>o.value===form.elements.category.value)){const op=document.createElement('option');op.value=x.category;op.textContent=x.category;form.elements.category.add(op);}
  form.elements.title.value=x.title||'';form.elements.confidence.value=x.confidence||'';
  form.elements.summary.value=x.summary||'';form.elements.analysis.value=x.analysis||'';document.getElementById('extraRichEditor').innerHTML=prepareExtraForEditor(x.extra||'',x.source||'');form.elements.extra.value=document.getElementById('extraRichEditor').innerHTML;
+ document.getElementById('adminEditorTitle').textContent='编辑时间线板块';
+ document.getElementById('adminEditorSaveBtn').textContent='保存修改';
  document.getElementById('adminEditorMessage').textContent='正在编辑：'+(x.title||id);document.getElementById('adminEditorModal').classList.add('open');
 }
 async function saveTimelineEntry(){
  const form=document.getElementById('adminTimelineEditorForm');if(!form){alert('找不到编辑表单，请刷新页面后重试。');return;}if(!form.reportValidity())return;
-
- if(currentAuthRole!=='admin'){alert('当前账号没有管理员权限，请退出后重新登录。');return;}const fd=new FormData(form),id=String(fd.get('entry_id'));const x=entries.find(e=>String(e.id)===id);if(!x){document.getElementById('adminEditorMessage').textContent='保存失败：找不到正在编辑的记录，请刷新后重新打开。';return;}
+ if(currentAuthRole!=='admin'||!authClient){alert('当前账号没有管理员权限，请退出后重新登录。');return;}
+ const fd=new FormData(form),id=String(fd.get('entry_id')||''),x=id?entries.find(e=>String(e.id)===id):null;
+ if(id&&!x){document.getElementById('adminEditorMessage').textContent='保存失败：找不到正在编辑的记录，请刷新后重新打开。';return;}
  const richEditor=document.getElementById('extraRichEditor');form.elements.extra.value=richEditor.innerHTML;
  const patch={date:String(fd.get('date')||'').trim(),category:String(fd.get('category')||'').trim(),title:String(fd.get('title')||'').trim(),confidence:String(fd.get('confidence')||'').trim(),summary:String(fd.get('summary')||'').trim(),analysis:String(fd.get('analysis')||'').trim(),extra:richEditor.innerHTML};
  if(!patch.date||!patch.title||!patch.summary){alert('日期、标题和卡片摘要不能为空。');return;}
- const btn=document.getElementById('adminEditorSaveBtn'),msg=document.getElementById('adminEditorMessage');btn.disabled=true;btn.textContent='正在保存…';msg.textContent='正在同步到云端…';
+ const btn=document.getElementById('adminEditorSaveBtn'),msg=document.getElementById('adminEditorMessage');btn.disabled=true;btn.textContent=id?'正在保存…':'正在发布…';msg.textContent='正在同步到云端…';
  try{
-  if(x.communityRemote){const {error}=await authClient.from('community_archive_entries').update({title:patch.title,event_date:patch.date,category:patch.category,confidence:patch.confidence||null,summary:patch.summary,analysis:patch.analysis||null,extra:patch.extra||null}).eq('id',x.remoteId);if(error)throw error;}
+  if(!id){const {error}=await authClient.from('community_archive_entries').insert({kind:'timeline',event_date:patch.date,title:patch.title,category:patch.category||'公开互动',confidence:patch.confidence||'管理员新增',summary:patch.summary,analysis:patch.analysis||null,extra:patch.extra||null,created_by:currentAuthUser.id,published:true,sort_order:null});if(error)throw error;}
+  else if(x.communityRemote){const {error}=await authClient.from('community_archive_entries').update({title:patch.title,event_date:patch.date,category:patch.category,confidence:patch.confidence||null,summary:patch.summary,analysis:patch.analysis||null,extra:patch.extra||null}).eq('id',x.remoteId);if(error)throw error;}
   else{const {error}=await authClient.from('archive_entry_overrides').upsert({entry_id:id,override_data:patch,is_deleted:false,updated_by:currentAuthUser.id,updated_at:new Date().toISOString()},{onConflict:'entry_id'});if(error)throw error;}
-  await loadCommunityEntries();await loadPublishedAdminEntries();msg.textContent='保存成功！公开时间线已同步更新。';setTimeout(closeTimelineEditor,650);
- }catch(err){msg.textContent='保存失败：'+(err.message||'请稍后重试');}finally{btn.disabled=false;btn.textContent='保存修改';}
-
+  await loadCommunityEntries();await loadPublishedAdminEntries();msg.textContent=id?'保存成功！公开时间线已同步更新。':'新增成功！板块已直接发布到公开时间线。';
+  setTimeout(()=>{closeTimelineEditor();document.getElementById('adminEditorTitle').textContent='编辑时间线板块';btn.textContent='保存修改';},800);
+ }catch(err){msg.textContent='保存失败：'+(err.message||'请稍后重试');}finally{btn.disabled=false;btn.textContent=id?'保存修改':'发布到时间线';}
 }
 
 async function deleteTimelineEntry(id){if(currentAuthRole!=='admin')return;const x=entries.find(e=>String(e.id)===String(id));if(!x)return;if(!confirm('确定删除这个时间线板块吗？删除后会从公开时间线移除。'))return;try{if(x.communityRemote){const {error}=await authClient.from('community_archive_entries').delete().eq('id',x.remoteId);if(error)throw error;}else{const {error}=await authClient.from('archive_entry_overrides').upsert({entry_id:String(id),override_data:{},sort_order:null,is_deleted:true,updated_by:currentAuthUser.id,updated_at:new Date().toISOString()},{onConflict:'entry_id'});if(error)throw error;}await loadCommunityEntries();await loadPublishedAdminEntries();alert('板块已从公开时间线删除。');}catch(err){alert('删除失败：'+err.message);}}
